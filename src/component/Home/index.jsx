@@ -26,7 +26,7 @@ function Home() {
   } else {
     component = (
       <>
-        <Header />
+        <Header/>
         <HomecHero />
         <PropertyListing />
         <About />
