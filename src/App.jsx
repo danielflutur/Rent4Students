@@ -23,6 +23,7 @@ import Login from "./component/Login";
 import ErrorPage from "./component/Error";
 import Contact from "./component/Contact";
 import SignUp from "./component/SignUp";
+import RoleSelection from "./component/RoleSelection";
 
 function App() {
   useEffect(() => {
@@ -113,6 +114,10 @@ function App() {
     {
       path: "/contact",
       element: <Contact />,
+    },
+    {
+      path: "/role-selection",
+      element: <RoleSelection />,
     },
   ]);
 

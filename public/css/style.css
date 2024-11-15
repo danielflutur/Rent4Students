@@ -4794,6 +4794,73 @@ blockquote::before {
 ========================================*/
 
 /*======================================
+   Role Cards
+========================================*/
+.role-card {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  border-radius: 4px;
+}
+.role-card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 20%;
+}
+.role-card__title {
+  font-size: 24px;
+}
+.role-card__text {
+  color: #545454;
+  font-size: 16px;
+}
+.role-card__button {
+  margin-top: 30px;
+}
+.role-card__img {
+  background: #eceaff;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+}
+.role-card__img img {
+  max-width: 130px;
+}
+.role-card__img.role-card__img--sale {
+  background: #f6f0e2;
+}
+
+@media only screen and (min-width: 0px) and (max-width: 50px) {
+  .role-card__img {
+    width: 50px;
+    height: 50px;
+  }
+  .role-card__img img {
+    width: 50px;
+  }
+  .role-card__title {
+    font-size: 20px;
+  }
+ .role-card.role-card-bg-third-color.role-card-border {
+  }
+  .role-card {
+    padding: 30px 15px;
+  }
+}
+/*======================================
+   End Add Property
+========================================*/
+
+/*======================================
    Error Page Area
 ========================================*/
 .homec-error-inner {

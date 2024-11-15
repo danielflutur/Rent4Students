@@ -95,15 +95,18 @@ function Navbar({ handleSidebar, secondNav }) {
                 </Link>
                 {secondNav ? (
                   <Link
-                    to="/add-property"
+                    to="/role-selection"
                     className="homec-btn homec-btn__second"
                   >
-                    <span>Add Property</span>
+                    <span>Login</span>
                   </Link>
+                  
                 ) : (
-                  <Link to="/add-property" className="homec-btn">
-                    <span>Add Property</span>
+                  <div>
+                  <Link to="/role-selection" className="homec-btn">
+                    <span>Sign Up</span>
                   </Link>
+                  </div>
                 )}
               </div>
             </div>
