@@ -1,0 +1,11 @@
+
+.sidenav{
+  width: 50px;
+  color: #fff;
+  margin: 10;
+  padding: 10;
+  border: none;
+  outline: none;
+  list-style: none;
+  box-sizing: border-box;
+}
