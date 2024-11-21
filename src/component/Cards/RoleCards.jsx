@@ -1,7 +1,7 @@
 import Prototype from "prop-types";
 import { Link } from "react-router-dom";
 
-function RoleCard({ img, role, btn, link }) {
+function RoleCard({ img, role, info, btn, link }) {
   return (
     <div
       className="col-lg-3 col-md-6 col-12 mg-top-30"
@@ -17,17 +17,13 @@ function RoleCard({ img, role, btn, link }) {
         {/* Homec Property Content   */}
         <div className="role-card__content">
           <h3 className="role-card__title"> {role}</h3>
-          <p className="role-card__text">
-            info text
-          </p>
+          <p className="role-card__text"> {info}</p>
           <div className="role-card__button">
             <Link
               to={link}
-              className={
-                btn !== "second" ? "homec-btn" : "homec-btn homec-btn__second"
-              }
+              className="homec-btn"
             >
-              <span>Sign Up {role}</span>
+              <span>Sign Up</span>
             </Link>
           </div>
         </div>
@@ -40,6 +36,7 @@ function RoleCard({ img, role, btn, link }) {
 RoleCard.propTypes = {
   img: Prototype.string.isRequired,
   role: Prototype.string.isRequired,
+  info: Prototype.string.isRequired,
   btn: Prototype.string,
   link: Prototype.string.isRequired,
 };

@@ -4005,7 +4005,6 @@ blockquote::before {
 @media only screen and (max-width: 767px) {
   .homec-funfact {
     margin: 0;
-    padding: ;
     top: -50px;
     padding: 20px;
   }
@@ -4170,7 +4169,7 @@ blockquote::before {
   gap: 15px;
 }
 .breadcrumb__title {
-  color: #fff;
+  color: #ffffff;
   font-size: 42px;
 }
 .breadcrumb__menu {
@@ -4805,6 +4804,9 @@ blockquote::before {
   text-align: center;
   gap: 20px;
   border-radius: 4px;
+  background: #fff8e8;
+  height: 550px;
+  padding-bottom: 20px;
 }
 .role-card__content {
   display: flex;
@@ -4815,28 +4817,39 @@ blockquote::before {
 }
 .role-card__title {
   font-size: 24px;
+  position: fixed;
 }
 .role-card__text {
+  position: fixed;
   color: #545454;
   font-size: 16px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 140px;
 }
 .role-card__button {
-  margin-top: 30px;
+  top: 420px;
+  margin-left: 90px;
+  width: 220px;
+  padding-top: 10px;
+  position: fixed;
 }
 .role-card__img {
-  background: #eceaff;
+  background: #cfcaf5;
   width: 220px;
   height: 220px;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 100%;
+  position: fixed;
+  top: 20px;
 }
 .role-card__img img {
-  max-width: 130px;
+  max-width: 160px;
 }
 .role-card__img.role-card__img--sale {
-  background: #f6f0e2;
+  background: #4e4c47;
 }
 
 @media only screen and (min-width: 0px) and (max-width: 50px) {
@@ -4853,7 +4866,7 @@ blockquote::before {
  .role-card.role-card-bg-third-color.role-card-border {
   }
   .role-card {
-    padding: 30px 15px;
+    padding: 50px 15px;
   }
 }
 /*======================================
