@@ -1,4 +1,4 @@
-import { Menu } from "antd";
+import { Button, Menu } from "antd";
 import {
   CommentOutlined,
   ContactsOutlined,
@@ -81,6 +81,11 @@ const MenuList = () => {
       </Menu.SubMenu>
       <Menu.Item key="contact" icon={<CommentOutlined />}>
         <Link to="/contact">Contact</Link>
+      </Menu.Item>
+      <Menu.Item key="role_selection">
+        <Button>
+          <Link to="/role-selection">Sign Up</Link>
+        </Button>
       </Menu.Item>
     </Menu>
   );
