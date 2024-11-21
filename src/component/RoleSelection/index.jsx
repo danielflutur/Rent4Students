@@ -1,13 +1,10 @@
-import Header from "../Header";
 import Footer from "../Footer";
-import DownloadApp from "../DownloadApp";
 import Breadcrumbs from "../Breadcrumbs";
-import HistoryLinks from "../Breadcrumbs/HistoryLinks";
-import PropertyAddCard from "../Cards/PropertyAddCard";
 import { useEffect, useState } from "react";
 import Preloader from "../Loader";
 import GoTopBtn from "../Button/GoTopBtn";
 import RoleCard from "../Cards/RoleCards";
+import PageLayout from "../PageLayout/PageLayout";
 
 function RoleSelection() {
   const [isLoading, setisLoadingg] = useState(true);
@@ -21,9 +18,8 @@ function RoleSelection() {
     component = <Preloader />;
   } else {
     component = (
-      <>
-        <Header />
-        <Breadcrumbs title="Continure as" titlePosition="bottom">
+      <PageLayout>
+        <Breadcrumbs title="Continue as" titlePosition="bottom">
         </Breadcrumbs>
 
         <section className="homec-error pd-top-90 pd-btm-120">
@@ -61,7 +57,7 @@ function RoleSelection() {
         </section>
         <Footer />
         <GoTopBtn />
-      </>
+      </PageLayout>
     );
   }
   return component;

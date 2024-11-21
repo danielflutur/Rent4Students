@@ -82,6 +82,9 @@ const MenuList = () => {
       <Menu.Item key="contact" icon={<CommentOutlined />}>
         <Link to="/contact">Contact</Link>
       </Menu.Item>
+      <Menu.Item key="role_selection" icon={<CommentOutlined />}>
+        <Link to="/role-selection">RoleSelection</Link>
+      </Menu.Item>
     </Menu>
   );
 };
