@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Header from "../Header";
 import Breadcrumbs from "../Breadcrumbs";
 import HistoryLinks from "../Breadcrumbs/HistoryLinks";
 import Footer from "../Footer";
@@ -8,6 +7,7 @@ import Preloader from "../Loader";
 import SingleSlider from "./SingleSlider";
 import ThumbnailsSlider from "./ThumbnilsSlider";
 import PropertyDetails from "./PropertyDetails";
+import PageLayout from "../PageLayout/PageLayout";
 
 function PropertySingle() {
   const [isLoading, setIsLoading] = useState(true);
@@ -21,28 +21,29 @@ function PropertySingle() {
   } else {
     component = (
       <>
-        <Header />
-        <Breadcrumbs title="Latest Properties">
-          <HistoryLinks link="home" text="Home" />
-          <HistoryLinks
-            link="property"
-            text="Latest Properties"
-            isActive={true}
-          />
-        </Breadcrumbs>
-        <section className="pd-top-80 pd-btm-80">
-          <div className="container">
-            <div className="row">
-              <div className="col-12">
-                <SingleSlider />
-                <ThumbnailsSlider />
+        <PageLayout>
+          <Breadcrumbs title="Latest Properties">
+            <HistoryLinks link="home" text="Home" />
+            <HistoryLinks
+              link="property"
+              text="Latest Properties"
+              isActive={true}
+            />
+          </Breadcrumbs>
+          <section className="pd-top-80 pd-btm-80">
+            <div className="container">
+              <div className="row">
+                <div className="col-12">
+                  <SingleSlider />
+                  <ThumbnailsSlider />
+                </div>
               </div>
             </div>
-          </div>
-        </section>
-        <PropertyDetails />
-        <Footer />
-        <GoTopBtn />
+          </section>
+          <PropertyDetails />
+          <Footer />
+          <GoTopBtn />
+        </PageLayout>
       </>
     );
   }

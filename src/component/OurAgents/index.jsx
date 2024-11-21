@@ -1,4 +1,3 @@
-import Header from "../Header";
 import Footer from "../Footer";
 import DownloadApp from "../DownloadApp";
 import HistoryLinks from "../Breadcrumbs/HistoryLinks";
@@ -10,6 +9,7 @@ import Preloader from "../Loader";
 import { useEffect, useState } from "react";
 import agents from "../../data/agents";
 import GoTopBtn from "../Button/GoTopBtn";
+import PageLayout from "../PageLayout/PageLayout";
 
 function OurAgents() {
   // page handle
@@ -42,44 +42,45 @@ function OurAgents() {
   } else {
     component = (
       <>
-        <Header />
-        <Breadcrumbs title="Our Agents" titlePosition="bottom">
-          <HistoryLinks link="home" text="Home" />
-          <HistoryLinks link="/our-agent" text="Our Agents" isActive={true} />
-        </Breadcrumbs>
+        <PageLayout>
+          <Breadcrumbs title="Our Agents" titlePosition="bottom">
+            <HistoryLinks link="home" text="Home" />
+            <HistoryLinks link="/our-agent" text="Our Agents" isActive={true} />
+          </Breadcrumbs>
 
-        <section className="pd-top-70 pd-btm-100">
-          <div className="container">
-            <div className="row">
-              {agents?.map((agent) => (
-                <AgentCard
-                  key={agent.id}
-                  img={agent.img3}
-                  phone={agent.phone}
-                  linkedin={agent.linkedin}
-                  twitter={agent.twitter}
-                  insta={agent.insta}
-                  name={agent.name}
-                  desc={agent.position}
-                  widthClasses="col-lg-3 col-md-6 col-12"
-                  classes="homec-agent__grid homec-border mg-top-30"
+          <section className="pd-top-70 pd-btm-100">
+            <div className="container">
+              <div className="row">
+                {agents?.map((agent) => (
+                  <AgentCard
+                    key={agent.id}
+                    img={agent.img3}
+                    phone={agent.phone}
+                    linkedin={agent.linkedin}
+                    twitter={agent.twitter}
+                    insta={agent.insta}
+                    name={agent.name}
+                    desc={agent.position}
+                    widthClasses="col-lg-3 col-md-6 col-12"
+                    classes="homec-agent__grid homec-border mg-top-30"
+                  />
+                ))}
+              </div>
+              <div className="row mg-top-40">
+                <Pagination
+                  totalPage={totalPage}
+                  handlePage={handelPage}
+                  currentPage={currentPage}
                 />
-              ))}
+              </div>
             </div>
-            <div className="row mg-top-40">
-              <Pagination
-                totalPage={totalPage}
-                handlePage={handelPage}
-                currentPage={currentPage}
-              />
-            </div>
-          </div>
-        </section>
+          </section>
 
-        <FaqSection />
-        <DownloadApp />
-        <Footer />
-        <GoTopBtn />
+          <FaqSection />
+          <DownloadApp />
+          <Footer />
+          <GoTopBtn />
+        </PageLayout>
       </>
     );
   }

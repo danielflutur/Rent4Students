@@ -1,0 +1,12 @@
+  
+#desktopLayout.content-collapsed{
+  margin-left: 80px;
+}
+
+#desktopLayout.content-not-collapsed{
+  margin-left: 200px;
+}
+
+#mobileLayout{
+  margin-left: 0;
+}
