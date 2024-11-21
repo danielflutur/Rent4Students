@@ -2,9 +2,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Home from "./component/Home";
-import Home2 from "./component/Home-2";
-import Home3 from "./component/Home-3";
+import Home from "./component/Home/Home.jsx";
 import Property from "./component/Property";
 import PropertySingle from "./component/Property Single";
 import EditProperty from "./component/Edit Property";
@@ -33,14 +31,6 @@ function App() {
       path: "/",
       element: <Home />,
       errorElement: <ErrorPage />,
-    },
-    {
-      path: "/Home2",
-      element: <Home2 />,
-    },
-    {
-      path: "/Home3",
-      element: <Home3 />,
     },
     {
       path: "/property",

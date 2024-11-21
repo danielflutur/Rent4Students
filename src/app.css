@@ -114,6 +114,14 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.navmodal {
+  position: fixed;
+  width: 10%;
+  height: 100%;
+  border-radius: 0 !important;
+  background-color: rgba(0, 0, 0, 0);
+}
+
 .my-masonry-grid {
   display: -webkit-box; /* Not needed if autoprefixing */
   display: -ms-flexbox; /* Not needed if autoprefixing */

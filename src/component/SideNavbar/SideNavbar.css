@@ -1,0 +1,18 @@
+#sidenav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 1000;
+}
+
+#sidenav.content-collapsed{
+  margin-right: 80px;
+  background-color: blue !important;
+}
+
+
+#sidenav.content-not-collapsed{
+  margin-right: 200px;
+  background-color: red !important;
+}
