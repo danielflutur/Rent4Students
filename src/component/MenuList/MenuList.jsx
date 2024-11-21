@@ -14,7 +14,7 @@ const MenuList = () => {
   return (
     <Menu theme="dark" mode="inline" className="menu-bar">
       <Menu.Item key="home" icon={<HomeOutlined />}>
-        Home
+        <Link to="/">Home</Link>
       </Menu.Item>
       <Menu.SubMenu
         key="properties_menu"

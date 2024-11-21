@@ -1,4 +1,3 @@
-import Header from "../Header";
 import Breadcrumbs from "../Breadcrumbs";
 import HistoryLinks from "../Breadcrumbs/HistoryLinks";
 import DownloadApp from "../DownloadApp";
@@ -9,6 +8,7 @@ import FeaturesV2 from "../Features/FeaturesV2";
 import FunFacts from "../FunFact";
 import Preloader from "../Loader";
 import { useEffect, useState } from "react";
+import PageLayout from "../PageLayout/PageLayout";
 
 function Faq() {
   const [isLoading, setisLoadingg] = useState(true);
@@ -22,19 +22,20 @@ function Faq() {
   } else {
     component = (
       <>
-        <Header />
-        <Breadcrumbs title="Faq's" titlePosition="bottom">
-          <HistoryLinks link="/home" text="Home" />
-          <HistoryLinks link="/faq" text="Faq's" isActive={true} />
-        </Breadcrumbs>
-        <FaqSection />
-        <div className="mg-top-90">
-          <FeaturesV2 />
-          <FunFacts v2={true} />
-        </div>
-        <DownloadApp />
-        <Footer />
-        <GoTopBtn />
+        <PageLayout>
+          <Breadcrumbs title="Faq's" titlePosition="bottom">
+            <HistoryLinks link="/home" text="Home" />
+            <HistoryLinks link="/faq" text="Faq's" isActive={true} />
+          </Breadcrumbs>
+          <FaqSection />
+          <div className="mg-top-90">
+            <FeaturesV2 />
+            <FunFacts v2={true} />
+          </div>
+          <DownloadApp />
+          <Footer />
+          <GoTopBtn />
+        </PageLayout>
       </>
     );
   }

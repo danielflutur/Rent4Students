@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import Preloader from "../Loader";
-import Header from "../Header";
 import Breadcrumbs from "../Breadcrumbs";
 import GoTopBtn from "../Button/GoTopBtn";
 import Footer from "../Footer";
 import HistoryLinks from "../Breadcrumbs/HistoryLinks";
 import PropertyGrid from "./PropertyGrid";
+import PageLayout from "../PageLayout/PageLayout";
 
 function Property() {
   const [isLoading, setisLoadingg] = useState(true);
@@ -19,18 +19,19 @@ function Property() {
   } else {
     component = (
       <>
-        <Header />
-        <Breadcrumbs title="Latest Properties">
-          <HistoryLinks link="home" text="Home" />
-          <HistoryLinks
-            link="property"
-            text="Latest Properties"
-            isActive={true}
-          />
-        </Breadcrumbs>
-        <PropertyGrid />
-        <Footer />
-        <GoTopBtn />
+        <PageLayout>
+          <Breadcrumbs title="Latest Properties">
+            <HistoryLinks link="home" text="Home" />
+            <HistoryLinks
+              link="property"
+              text="Latest Properties"
+              isActive={true}
+            />
+          </Breadcrumbs>
+          <PropertyGrid />
+          <Footer />
+          <GoTopBtn />
+        </PageLayout>
       </>
     );
   }

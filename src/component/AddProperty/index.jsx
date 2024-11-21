@@ -1,4 +1,3 @@
-import Header from "../Header";
 import Footer from "../Footer";
 import DownloadApp from "../DownloadApp";
 import Breadcrumbs from "../Breadcrumbs";
@@ -7,6 +6,7 @@ import PropertyAddCard from "../Cards/PropertyAddCard";
 import { useEffect, useState } from "react";
 import Preloader from "../Loader";
 import GoTopBtn from "../Button/GoTopBtn";
+import PageLayout from "../PageLayout/PageLayout.jsx";
 
 function AddProperty() {
   const [isLoading, setisLoadingg] = useState(true);
@@ -21,37 +21,38 @@ function AddProperty() {
   } else {
     component = (
       <>
-        <Header />
-        <Breadcrumbs title="Add Property" titlePosition="bottom">
-          <HistoryLinks link="/home" text="Home" />
-          <HistoryLinks
-            link="/add-property"
-            text="Add Property"
-            isActive={true}
-          />
-        </Breadcrumbs>
+        <PageLayout>
+          <Breadcrumbs title="Add Property" titlePosition="bottom">
+            <HistoryLinks link="/home" text="Home" />
+            <HistoryLinks
+              link="/add-property"
+              text="Add Property"
+              isActive={true}
+            />
+          </Breadcrumbs>
 
-        <section className="homec-error pd-top-90 pd-btm-120">
-          <div className="container">
-            <div className="row">
-              <PropertyAddCard
-                img="img/property-rent.png"
-                why="Rent"
-                link="/submit-property"
-              />
-              <PropertyAddCard
-                img="img/property-sale.png"
-                why="Sale"
-                link="/submit-property"
-                btn="second"
-              />
+          <section className="homec-error pd-top-90 pd-btm-120">
+            <div className="container">
+              <div className="row">
+                <PropertyAddCard
+                  img="img/property-rent.png"
+                  why="Rent"
+                  link="/submit-property"
+                />
+                <PropertyAddCard
+                  img="img/property-sale.png"
+                  why="Sale"
+                  link="/submit-property"
+                  btn="second"
+                />
+              </div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        <DownloadApp />
-        <Footer />
-        <GoTopBtn />
+          <DownloadApp />
+          <Footer />
+          <GoTopBtn />
+        </PageLayout>
       </>
     );
   }

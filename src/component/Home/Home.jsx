@@ -11,16 +11,10 @@ import LatestProperty from "../LatestProperty";
 import PropertyListing from "../PropertyListing";
 import Preloader from "../Loader";
 import FaqSection from "../Faq/FaqSection";
-import { Layout, Button } from "antd";
-import Logo from "../Logo/Logo";
-import MenuList from "../MenuList/MenuList";
-import {MenuFoldOutlined, MenuUnfoldOutlined} from "@ant-design/icons"
-import "../Home/Home.css"
+import PageLayout from "../PageLayout/PageLayout";
 
-const { Header, Sider } = Layout;
 function Home() {
   const [isLoading, setisLoadingg] = useState(true);
-  const [collapsed, setCollapsed] = useState(false);
 
   useEffect(() => {
     setisLoadingg(false);
@@ -32,44 +26,19 @@ function Home() {
   } else {
     component = (
       <>
-        <Layout>
-          <Sider
-            collapsed={collapsed}
-            collapsible
-            trigger={null}
-            className="sidenav"
-            theme="dark"
-          >
-            <Logo />
-            <MenuList />
-          </Sider>
-          <Layout>
-            <Header
-              style={{
-                padding: 0,
-                background: '#fff',
-              }}
-            >
-              <Button
-                type="text"
-                className="toggle"
-                onClick={() => setCollapsed(!collapsed)}
-                icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              />
-            </Header>
-            <HomecHero />
-            <PropertyListing />
-            <About />
-            <LatestProperty />
-            <Features />
-            <Agents />
-            <FaqSection />
-            <DownloadApp />
-            <Blog />
-            <Footer />
-            <GoTopBtn />
-          </Layout>
-        </Layout>
+        <PageLayout>
+          <HomecHero />
+          <PropertyListing />
+          <About />
+          <LatestProperty />
+          <Features />
+          <Agents />
+          <FaqSection />
+          <DownloadApp />
+          <Blog />
+          <Footer />
+          <GoTopBtn />
+        </PageLayout>
       </>
     );
   }
