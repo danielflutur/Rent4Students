@@ -29,7 +29,7 @@ function RoleSelection() {
                 img="img/role_university.png"
                 role="University"
                 info="Administrați studenții și facilitați validarea rapidă a statutului lor academic."
-                link="/signup" //aici o sa fie un signup diferit pentru fiecare tip de rol
+                link="/signup-university" //aici o sa fie un signup diferit pentru fiecare tip de rol
               />
               <RoleCard
                 img="img/role_student.png"
