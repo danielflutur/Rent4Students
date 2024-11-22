@@ -21,6 +21,7 @@ import Login from "./component/Login";
 import ErrorPage from "./component/Error";
 import Contact from "./component/Contact";
 import SignUp from "./component/SignUp";
+import SignUpUniversity from "./component/SignUpUniversity";
 import RoleSelection from "./component/RoleSelection";
 
 function App() {
@@ -96,6 +97,10 @@ function App() {
     {
       path: "/signup",
       element: <SignUp />,
+    },
+    {
+      path: "/signup-university",
+      element: <SignUpUniversity />,
     },
     {
       path: "/404",
