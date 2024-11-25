@@ -23,6 +23,7 @@ import Contact from "./component/Contact";
 import SignUp from "./component/SignUp";
 import SignUpUniversity from "./component/SignUpUniversity";
 import RoleSelection from "./component/RoleSelection";
+import HomeUniversity from "./component/HomeUniversity/HomeUniversity.jsx";
 
 function App() {
   useEffect(() => {
@@ -33,6 +34,10 @@ function App() {
       path: "/",
       element: <Home />,
       errorElement: <ErrorPage />,
+    },
+    {
+      path: "/home-university",
+      element: <HomeUniversity />,
     },
     {
       path: "/property",

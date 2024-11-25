@@ -1635,6 +1635,12 @@ input[type="checkbox"]:checked::before {
   text-align: center;
   font-size: 64px;
 }
+.homec-hero__subtitle {
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 32px;
+}
 .homec-hero__inner {
   min-height: 950px;
   display: flex;
