@@ -24,6 +24,9 @@ const MenuList = () => {
         <Menu.Item key="add_faculty">
           <Link to="/add-faculty">Adaugă Facultate</Link>
         </Menu.Item>
+        <Menu.Item key="faculty">
+          <Link to="/faculty">Gestionează Facultăți</Link>
+        </Menu.Item>
       </Menu.SubMenu>
       <Menu.SubMenu
         key="properties_menu"

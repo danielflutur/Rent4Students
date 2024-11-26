@@ -26,6 +26,7 @@ import RoleSelection from "./component/RoleSelection";
 import HomeUniversity from "./component/HomeUniversity/HomeUniversity.jsx";
 import PricingUniversity from "./component/PricingUniversity.jsx/index.jsx";
 import AddFaculty from "./component/AddFaculty/index.jsx";
+import Faculty from "./component/Faculty/index.jsx";
 
 function App() {
   useEffect(() => {
@@ -128,6 +129,10 @@ function App() {
     {
       path: "/add-faculty",
       element: <AddFaculty />,
+    },
+    {
+      path: "/faculty",
+      element: <Faculty />,
     },
   ]);
 
