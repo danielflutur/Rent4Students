@@ -112,12 +112,13 @@ function SignUpUniversity() {
                     </div>
                     <div className="form-group form-mg-top-30">
                       <div className="ecom-wc__button ecom-wc__button--bottom">
-                        <button
+                        <a
+                          href="/home-university"
                           className="homec-btn homec-btn__second"
                           type="submit"
                         >
                           <span>Înregistrează-te</span>
-                        </button>
+                        </a>
                       </div>
                     </div>
                     {/* Form Group  */}

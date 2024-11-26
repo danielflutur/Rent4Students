@@ -1618,6 +1618,10 @@ input[type="checkbox"]:checked::before {
 /*======================================
    Hero Area
 ========================================*/
+.homec-hero-top {
+  position: top;
+  min-height: 700px;
+}
 .homec-hero {
   position: relative;
   min-height: 950px;
@@ -1635,8 +1639,21 @@ input[type="checkbox"]:checked::before {
   text-align: center;
   font-size: 64px;
 }
+.homec-hero__subtitle {
+  margin-bottom: 40px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 32px;
+}
 .homec-hero__inner {
   min-height: 950px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 75px;
+}
+.homec-hero__inner-top {
+  min-height: 600px;
   display: flex;
   justify-content: center;
   align-items: center;

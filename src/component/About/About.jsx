@@ -22,20 +22,15 @@ function About() {
             {/* Homec Image Group */}
             <div className="homec-image-group homec-image-group--v2">
               <div className="homec-image-group__main">
-                <img src="https://placehold.co/495x600" alt="#" />
-                <div className="homec-experiences">
-                  <h4 className="homec-experiences__title">
-                    12 Years <span>Experience</span>
-                  </h4>
-                </div>
+                <img src="img/image-university-1.png" alt="#" />
               </div>
               <div className="homec-ceo-quote">
                 <div className="homec-ceo-quote__img">
                   <div className="homec-overlay"></div>
-                  <img src="https://placehold.co/225x260" alt="#" />
+                  <img src="img/image-university-2.png" alt="#" />
                 </div>
                 <h4 className="homec-ceo-quote__title">
-                  Wade De Warren<span>Homec Ceo & Founder</span>
+                  Beneficii pentru Studenți
                 </h4>
               </div>
             </div>
@@ -52,7 +47,7 @@ function About() {
                     data-aos="fade-down"
                     data-aos-delay="300"
                   >
-                    About Homeco
+                    Rent4Students
                   </span>
                 </div>
                 <h2
@@ -60,7 +55,7 @@ function About() {
                   data-aos="fade-in"
                   data-aos-delay="400"
                 >
-                  Have done some Coo Stuff with common users
+                  Cum influențează aplicația viața studenților și nu numai?
                 </h2>
               </div>
               <div
@@ -69,29 +64,16 @@ function About() {
                 data-aos-delay="500"
               >
                 <p className="homec-about-content__text">
-                  There are many variations of passages of Lorem Ipsum
-                  available, but the majority have suffered alteration in some
-                  form, by injected humour, or randomised words which don't look
-                  even slightly believable.
+                  Rent4Students este o platformă digitală care simplifică procesul de gestionare
+                  a cererilor pentru subvenții de chirie dedicate studenților. Universitățile beneficiază
+                  de un sistem centralizat pentru administrarea cererilor și a documentelor,
+                  reducând birocrația și optimizând timpul secretarilor.
                 </p>
                 <div className="homec-focus-content homec-focus-content--v2 homec-border mg-top-20">
                   <p>
-                    Over 20 years’ experience providing top quality house
-                    Booking in to the rant and sell for your Amazing Dream &
-                    Make you Happy
+                  Platforma promovează transparența și eficiența în relațiile dintre studenți,
+                  universități și proprietari, contribuind la un mediu de gestionare modern și digitalizat.
                   </p>
-                </div>
-                <div className="homec-dflex-space">
-                  <AboutCard
-                    text="believe in our service & Care"
-                    img="img/count-icon1.svg"
-                    count={90}
-                  />
-                  <AboutCard
-                    text="house ready for cccupancy"
-                    img="img/count-icon2.svg"
-                    count={120}
-                  />
                 </div>
               </div>
             </div>
