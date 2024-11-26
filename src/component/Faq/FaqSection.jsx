@@ -32,7 +32,9 @@ function FaqSection() {
                 </span>
               </div>
               <h2 className="homec-section__title">
-                If you want to know Frequently Ask Questions
+              Dacă doriți să aflați
+              <br></br> 
+              Întrebări frecvente
               </h2>
             </div>
             <div
@@ -40,43 +42,39 @@ function FaqSection() {
               id="homec-accordion"
             >
               <According
-                heading="What are we for it Company?"
-                desc=" From the first year of primary school, we provide
-                    interactive and one-to-one online trainings for our children
-                    to enjoy the first year of primary school, we provide
-                    interactive and one-to-one online trainings."
+                heading="Cum poate o universitate să adauge și să gestioneze facultățile în platformă?"
+                desc=" Universitățile pot utiliza un formular dedicat pentru a adăuga
+                    facultăți, alături de adresele de e-mail ale secretarilor care vor
+                    gestiona cererile studenților."
                 collapse={collapse}
                 handleCollapse={handleCollapse}
                 id={1}
               />
               <According
-                heading="What happens if you delete social media apps?"
-                desc=" From the first year of primary school, we provide
-                    interactive and one-to-one online trainings for our children
-                    to enjoy the first year of primary school, we provide
-                    interactive and one-to-one online trainings."
+                heading="Ce avantaje aduce platforma Rent4Students universităților?"
+                desc=" Platforma digitalizează gestionarea cererilor de subvenții
+                    pentru chirie, economisind timp și resurse administrative, și
+                    oferă un mediu centralizat și ușor de utilizat."
                 collapse={collapse}
                 handleCollapse={handleCollapse}
                 id={2}
               />
 
               <According
-                heading="What is social media in simple words?"
-                desc="From the first year of primary school, we provide
-                    interactive and one-to-one online trainings for our children
-                    to enjoy the first year of primary school, we provide
-                    interactive and one-to-one online trainings."
+                heading="Ce tipuri de abonamente sunt disponibile pentru universități?"
+                desc=" Rent4Students oferă două opțiuni: un plan anual pentru acces
+                    complet timp de un an și un plan pe patru ani, ideal pentru
+                    gestionarea unei generații universitare complete."
                 collapse={collapse}
                 handleCollapse={handleCollapse}
                 id={3}
               />
               <According
                 serial={4}
-                heading="What is social media in simple words?"
-                desc="From the first year of primary school, we provide
-                    interactive and one-to-one online trainings for our children
-                    to enjoy the first year of primary school, we provide
-                    interactive and one-to-one online trainings."
+                heading="Cum sunt gestionate cererile și documentele studenților?"
+                desc="Fiecare facultate își gestionează propriii studenți printr-un
+                    sistem centralizat, asigurând transparență și eficiență în
+                    procesarea cererilor pentru ajutorul de chirie."
                 collapse={collapse}
                 handleCollapse={handleCollapse}
                 id={4}
@@ -90,11 +88,11 @@ function FaqSection() {
           >
             {/* Support Img   */}
             <div className="homec-support-img">
-              <img src="https://placehold.co/615x665" alt="#" />
+              <img src="img/image-university-3.png" alt="#" />
               <div className="homec-support-img__content">
                 <img src="img/support-icon-white.svg" alt="#" />
                 <h4 className="homec-support-img__title">
-                  24/7 Support <span>Have any Questions Contact Us?</span>
+                  24/7 Suport <span>Dacă ai întrebări contactează-ne?</span>
                 </h4>
               </div>
             </div>

@@ -24,6 +24,7 @@ import SignUp from "./component/SignUp";
 import SignUpUniversity from "./component/SignUpUniversity";
 import RoleSelection from "./component/RoleSelection";
 import HomeUniversity from "./component/HomeUniversity/HomeUniversity.jsx";
+import PricingUniversity from "./component/PricingUniversity.jsx/index.jsx";
 
 function App() {
   useEffect(() => {
@@ -82,6 +83,10 @@ function App() {
     {
       path: "/about",
       element: <AboutUs />,
+    },
+    {
+      path: "/pricing-university",
+      element: <PricingUniversity />,
     },
     {
       path: "/pricing",

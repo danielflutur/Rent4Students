@@ -12,6 +12,7 @@ import Preloader from "../Loader";
 import FaqSection from "../Faq/FaqSection";
 import PageLayout from "../PageLayout/PageLayout";
 import HomecHeroUniversity from "../HomecHeroUniversity";
+import PricingUniversity from "../PricingUniversity.jsx";
 
 function HomeUniversity() {
   const [isLoading, setisLoadingg] = useState(true);
@@ -28,14 +29,10 @@ function HomeUniversity() {
       <>
         <PageLayout>
           <HomecHeroUniversity />
-          <PropertyListing />
-          <About />
-          <LatestProperty />
+          <PricingUniversity />
           <Features />
-          <Agents />
+          <About />
           <FaqSection />
-          <DownloadApp />
-          <Blog />
           <Footer />
           <GoTopBtn />
         </PageLayout>
