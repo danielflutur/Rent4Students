@@ -25,6 +25,7 @@ import SignUpUniversity from "./component/SignUpUniversity";
 import RoleSelection from "./component/RoleSelection";
 import HomeUniversity from "./component/HomeUniversity/HomeUniversity.jsx";
 import PricingUniversity from "./component/PricingUniversity.jsx/index.jsx";
+import ValidatePhoneNumber from "./component/ValidatePhoneNumber/ValidatePhoneNumber.jsx"
 
 function App() {
   useEffect(() => {
@@ -124,6 +125,10 @@ function App() {
       path: "/role-selection",
       element: <RoleSelection />,
     },
+    {
+      path: "/validate-phone",
+      element: <ValidatePhoneNumber />,
+    }
   ]);
 
   return (
