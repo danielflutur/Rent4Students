@@ -9,10 +9,13 @@
   padding: 0;
 }
 .p-relative {
-  position: relative;
+  position: fix;
 }
 .container {
   max-width: 1194px;
+}
+.container-pricing-university {
+  max-width: 800px;
 }
 .container-fluid {
   padding: 0;

@@ -11,8 +11,8 @@ function Features() {
       <div className="container">
         <div className="row">
           <Title
-            firstText="4 step to go"
-            secondText=" Why Choose us"
+            firstText="4 pași"
+            secondText=" De ce să ne alegi pe noi?"
             marginSize="40"
             styleFirst={{ color: "#ffff" }}
             styleSecond={{ color: "#ffff" }}
@@ -25,26 +25,22 @@ function Features() {
               <FeaturesCardV2
                 icon="img/hand-icon.svg"
                 serial="01"
-                title="Trusted"
-                text="believe in our service & Care"
+                title="Încredere"
               />
               <FeaturesCardV2
                 icon="img/support-icon.svg"
                 serial="02"
-                title="24/7 Support"
-                text="believe in our service & Care"
+                title="24/7 Suport"
               />
               <FeaturesCardV2
                 icon="img/finance-icon.svg"
                 serial="03"
-                title="Financing Easy"
-                text="believe in our service & Care"
+                title="Finanțare ușoară"
               />
               <FeaturesCardV2
                 icon="img/wide-house-icon.svg"
                 serial="04"
-                title="Wide Range House"
-                text="believe in our service & Care"
+                title="Gamă largă de chirii"
               />
               {/* End Features Single */}
             </div>

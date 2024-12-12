@@ -37,7 +37,7 @@ function PricingCard({ features, title, price, period, isActive }) {
           </ul>
           <div className="homec-psingle__button">
             <a href="#" className="homec-btn homec-btn__thrid">
-              <span>Apply for Plan Now</span>
+              <span>Aplică pentru acest Plan</span>
             </a>
           </div>
         </div>
