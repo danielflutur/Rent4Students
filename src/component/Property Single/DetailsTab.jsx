@@ -8,9 +8,7 @@ function DetailsTab({ text, isActive, children }) {
       role="tabpanel"
     >
       <div className="homec-pdetails-tab__inner">
-        {text?.map((item, index) => (
-          <p key={index + "Fea"}>{item}</p>
-        ))}
+        <p>{text}</p>
         {/* Homec Features  */}
         {children}
       </div>
@@ -19,7 +17,6 @@ function DetailsTab({ text, isActive, children }) {
 }
 
 DetailsTab.propTypes = {
-  text: ProtoTypes.array.isRequired,
   children: ProtoTypes.node.isRequired,
   isActive: ProtoTypes.bool.isRequired,
 };

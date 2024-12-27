@@ -6,6 +6,7 @@ import Footer from "../Footer";
 import HistoryLinks from "../Breadcrumbs/HistoryLinks";
 import PropertyGrid from "./PropertyGrid";
 import PageLayout from "../PageLayout/PageLayout";
+import { ListingFeaturesProvider } from "../../context/ListingFeaturesProvider";
 
 function Property() {
   const [isLoading, setisLoadingg] = useState(true);
@@ -28,7 +29,9 @@ function Property() {
               isActive={true}
             />
           </Breadcrumbs>
+          <ListingFeaturesProvider>
           <PropertyGrid />
+          </ListingFeaturesProvider>
           <Footer />
           <GoTopBtn />
         </PageLayout>

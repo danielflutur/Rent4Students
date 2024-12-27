@@ -21,7 +21,6 @@ function PropertyListing() {
 
         <div className="row" style={{ zIndex: "-1" }}>
           <div className="col-12" data-aos="fade-up" data-aos-delay="600">
-            {/* Homec Listing  */}
             <div className=" mg-top-40 container">
               <ResponsiveMasonry
                 columnsCountBreakPoints={{ 350: 2, 750: 3, 900: 4 }}
@@ -67,7 +66,6 @@ function PropertyListing() {
                 </Masonry>
               </ResponsiveMasonry>
             </div>
-            {/* Homec listing end  */}
           </div>
         </div>
         <div className="row">
