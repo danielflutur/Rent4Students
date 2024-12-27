@@ -144,3 +144,10 @@
 .react-dropdown-select-input {
   display: none !important;
 }
+
+.listings-image {
+  display: flex;
+  height: 50%;
+  width: 100%;
+  overflow: clip;
+}

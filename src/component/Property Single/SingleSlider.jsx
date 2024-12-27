@@ -2,7 +2,7 @@ import { responsiveSmallAgentsSlider } from "../../utils/responsiveSlider";
 import ImageCard from "../Cards/ImageCard";
 import Carousel from "react-multi-carousel";
 
-function SingleSlider() {
+function SingleSlider({property}) {
   return (
     <Carousel
       responsive={responsiveSmallAgentsSlider}
@@ -18,34 +18,17 @@ function SingleSlider() {
         "mobile",
       ]}
     >
-      <ImageCard
-        price="3,976"
+      {property.photos.map((photo, index) => (
+        <ImageCard
+        key={index}
+        price={property.rentPrice}
         duration="Month"
-        title="Modern House With Pool"
-        text="1901 Thornridge Cir. Shiloh, Hawaii 81063"
-        img="https://placehold.co/1170x600"
+        title={property.title}
+        text={property.address.streetAddress}
+        img={photo}
       />
-      <ImageCard
-        price="3,976"
-        duration="Month"
-        title="Affordable Green Villa House"
-        text="1901 Thornridge Cir. Shiloh, Hawaii 81063"
-        img="https://placehold.co/1170x600"
-      />
-      <ImageCard
-        price="3,976"
-        duration="Month"
-        title="Modern House With Pool"
-        text="1901 Thornridge Cir. Shiloh, Hawaii 81063"
-        img="https://placehold.co/1170x600"
-      />
-      <ImageCard
-        price="3,976"
-        duration="Month"
-        title="Affordable Green Villa House"
-        text="1901 Thornridge Cir. Shiloh, Hawaii 81063"
-        img="https://placehold.co/1170x600"
-      />
+      ))}
+     
     </Carousel>
   );
 }

@@ -1,9 +1,18 @@
+import { useEffect, useState } from "react";
 import Title from "../Title";
 import TitleBtn from "../Button/TitleBtn";
 import LatestPropertyCard from "../Cards/LatestPropertyCard";
-import properties from "../../data/property";
+import ApiService from "../../services/ApiService";
+
 
 function LatestProperty() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    ApiService.get("Listings")
+      .then((response) => setData(response.data))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
   return (
     <section
       className="homec-properties homec-bg-cover pd-top-120 pd-btm-120"
@@ -31,21 +40,15 @@ function LatestProperty() {
         </div>
 
         <div className="row">
-          {properties?.map((property) => (
+          {data?.map((property) => (
             <LatestPropertyCard
               key={property.id}
-              img={property.img}
-              likeLink={property.likeLink}
-              detailsLink={property.detailsLink}
-              agentName={property.agentName}
-              agentImg={property.agentImg}
-              price={property.price}
-              period={property.period}
-              whatFor={property.whatFor}
-              propertyLink={property.propertyLink}
-              name={property.name}
+              id={property.id}
+              title={property.title}
+              rentPrice={property.rentPrice}
+              surface={property.surface}
               address={property.address}
-              detailsList={property.detailsList}
+              photos={property.photos}
             />
           ))}
         </div>

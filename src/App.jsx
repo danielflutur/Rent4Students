@@ -46,7 +46,7 @@ function App() {
       element: <Property />,
     },
     {
-      path: "/property-single",
+      path: "/property-single/:id",
       element: <PropertySingle />,
     },
     {

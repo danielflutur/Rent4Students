@@ -1,14 +1,16 @@
 import HeroSliderSlide from "./HeroSliderSlide";
-
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { responsiveHeroSlider } from "../../utils/responsiveSlider";
 import { CustomDot } from "../CustomDot/CustomDot";
+import { useContext } from "react";
+import { ListingsContext } from "../../context/ListingsProvider";
+
 function HeroSlider() {
+  const listings = useContext(ListingsContext);
+
   return (
     <div className="homec-slider-property-slider">
-      {/* Swiper Card Slider */}
-
       <Carousel
         responsive={responsiveHeroSlider}
         showDots={true}
@@ -23,51 +25,21 @@ function HeroSlider() {
         ]}
         customDot={<CustomDot />}
       >
-        <HeroSliderSlide
-          link="property-single"
-          img="https://placehold.co/495x500"
-          price="3,976"
-          pricePeriod="month"
-          title="Modern House With Pool"
-          propertyText="1901 Thornridge Cir. Shiloh, Hawaii 81063"
-          propertyImg="img/location-icon2.svg"
-          propertyList={[
-            { name: "3 Room", img: "img/room-icon2.svg" },
-            { name: "2 Bathroom", img: "img/bath-icon2.svg" },
-            { name: "5x9 m2", img: "img/size-icon2.svg" },
-          ]}
-        />
-        <HeroSliderSlide
-          link="property-single"
-          img="https://placehold.co/495x500"
-          price="3,976"
-          pricePeriod="month"
-          title="Diamond Mn Apartment"
-          propertyText="1901 Thornridge Cir. Shiloh, Hawaii 81063"
-          propertyImg="img/location-icon2.svg"
-          propertyList={[
-            { name: "3 Room", img: "img/room-icon2.svg" },
-            { name: "2 Bathroom", img: "img/bath-icon2.svg" },
-            { name: "5x9 m2", img: "img/size-icon2.svg" },
-          ]}
-        />
-        <HeroSliderSlide
-          link="property-single"
-          img="https://placehold.co/495x500"
-          price="3,976"
-          pricePeriod="month"
-          title="Northwest Office Space"
-          propertyText="1901 Thornridge Cir. Shiloh, Hawaii 81063"
-          propertyImg="img/location-icon2.svg"
-          propertyList={[
-            { name: "3 Room", img: "img/room-icon2.svg" },
-            { name: "2 Bathroom", img: "img/bath-icon2.svg" },
-            { name: "5x9 m2", img: "img/size-icon2.svg" },
-          ]}
-        />
+        {listings.slice(0, 3).map((listing) => {
+          return (
+            <HeroSliderSlide
+              key={listing.id}
+              link={`property-single/${listing.id}`}
+              img={listing.photos[0]}
+              price={`${listing.rentPrice}`}
+              pricePeriod="month"
+              title={listing.title}
+              propertyText={listing.address.streetAddress}
+              propertyImg="/img/location-icon2.svg"
+            />
+          );
+        })}
       </Carousel>
-
-      {/* End Swiper Card Slider  */}
     </div>
   );
 }
