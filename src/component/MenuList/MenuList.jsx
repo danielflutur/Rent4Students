@@ -94,6 +94,9 @@ const MenuList = () => {
       <Menu.Item key="contact" icon={<CommentOutlined />}>
         <Link to="/contact">Contact</Link>
       </Menu.Item>
+      <Menu.Item key="validate-phone" icon={<CommentOutlined />}>
+        <Link to="/validate-phone">Validate Phone Number</Link>
+      </Menu.Item>
       <Menu.Item key="role_selection">
         <Button>
           <Link to="/role-selection">Sign Up</Link>

@@ -9,7 +9,6 @@ function HeroSliderSlide({
   title,
   propertyText,
   propertyImg,
-  propertyList,
 }) {
   return (
     <div className="swiper-slide" style={{ marginBottom: "50px" }}>
@@ -31,15 +30,6 @@ function HeroSliderSlide({
               <img src={propertyImg} alt="#" />
               <p>{propertyText}</p>
             </div>
-            {/* Property List */}
-            <ul className="homec-property__list homec-border-top list-none">
-              {propertyList?.map((property, index) => (
-                <li key={property.name + index}>
-                  <img src={property.img} alt="#" />
-                  {property.name}
-                </li>
-              ))}
-            </ul>
           </div>
         </div>
       </Link>
@@ -56,7 +46,6 @@ HeroSliderSlide.propTypes = {
   title: ProtoTypes.string.isRequired,
   propertyText: ProtoTypes.string.isRequired,
   propertyImg: ProtoTypes.string.isRequired,
-  propertyList: ProtoTypes.array.isRequired,
 };
 
 export default HeroSliderSlide;

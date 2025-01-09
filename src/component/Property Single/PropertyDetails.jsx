@@ -1,23 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropertyDetailsBtn from "../Button/PropertyDetailsBtn";
 import DetailsTab from "./DetailsTab";
 import DetailsTabFeatures from "./DetailsTabFeatures";
-import FloorDetails from "../FloorDetails";
-import PropertyVideo from "../PropertyVideo/";
 import PropertyLocation from "../PropertyLocation";
 import PropertyReview from "../PropertyReview";
 import PropertyAgents from "../Agents/PropertyAgents";
+import { useData } from "../../context/ListingFeaturesProvider";  // Importing context to access features
 
-function PropertyDetails() {
+function PropertyDetails({ listing }) {
   const [activeTab, setActiveTab] = useState("Property Details");
   const handleActive = (title) => {
     setActiveTab(title);
   };
 
+  const { features } = useData();  // Access the features from ListingFeaturesProvider
+  const [listingFeatures, setListingFeatures] = useState([]);
+
+  // Get features based on amenitiesIds from the listing
+  useEffect(() => {
+    if (features && listing.amenitiesIds) {
+      const filteredFeatures = features.filter((feature) =>
+        listing.amenitiesIds.includes(feature.id)
+      );
+      setListingFeatures(filteredFeatures); // Set the filtered features based on the amenitiesIds
+    }
+  }, [listing.amenitiesIds, features]);
+
   return (
     <section
       className="pd-top-0 homec-bg-third-color pd-btm-80 homec-bg-cover"
-      style={{ backgroundImage: "url('img/property-single-bg.svg')" }}
+      style={{ backgroundImage: "url('/img/property-single-bg.svg')" }}
     >
       <div className="container">
         <div className="row">
@@ -29,16 +41,6 @@ function PropertyDetails() {
             >
               <PropertyDetailsBtn
                 title="Property Details"
-                active={activeTab}
-                handleActive={handleActive}
-              />
-              <PropertyDetailsBtn
-                title="Floor Plans"
-                active={activeTab}
-                handleActive={handleActive}
-              />
-              <PropertyDetailsBtn
-                title="Property Video"
                 active={activeTab}
                 handleActive={handleActive}
               />
@@ -58,56 +60,15 @@ function PropertyDetails() {
               <div className="tab-content">
                 <DetailsTab
                   isActive={activeTab === "Property Details"}
-                  text={[
-                    "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature,",
-                    'discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.',
-                  ]}
+                  text={listing.description}
                 >
                   <DetailsTabFeatures
                     title="Additional Details"
-                    property={[
-                      { ["Building age"]: "2 Years" },
-                      { Cooling: "Yes" },
-                      { Gas: "Yes" },
-                      { Parking: "Yes" },
-                      { Sewer: "Yes" },
-                      { ["Exercise Room"]: "Yes" },
-                      { Heating: "Yes" },
-                      { Water: "Yes" },
-                      { Storage: "Yes" },
-                    ]}
-                  />{" "}
-                  <DetailsTabFeatures
-                    title="Nearest Place"
-                    property={[
-                      { Airport: "3 KM" },
-                      { Hospital: "2 KM" },
-                      { Breach: "3 KM" },
-                      { School: "4 KM" },
-                      { Park: "2 KM" },
-                    ]}
-                  />
-                  <DetailsTabFeatures
-                    title="Nearest Place"
-                    property={[
-                      "Elevator in building",
-                      "Alcohol",
-                      "Reservations",
-                      "Free coffe and tea",
-                      "Accepts Credit Cards",
-                      "Air Condition",
-                      "Cable Tv",
-                      "Balcony",
-                    ]}
-                    check={true}
+                    property={listingFeatures?.map((feature) => ({
+                      [feature.name]: feature.value,
+                    }))}
                   />
                 </DetailsTab>
-                <FloorDetails isActive={activeTab === "Floor Plans"} />
-                <PropertyVideo
-                  isActive={activeTab === "Property Video"}
-                  img="https://placehold.co/785x410"
-                  text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden end to main to marked."
-                />
                 <PropertyLocation
                   address="70 Washington Square South, New York, NY 10012, United States"
                   text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden end to main to marked."

@@ -8,16 +8,24 @@ import DownloadApp from "../DownloadApp";
 import Features from "../Features";
 import HomecHero from "../HomecHero";
 import LatestProperty from "../LatestProperty";
-import PropertyListing from "../PropertyListing";
 import Preloader from "../Loader";
 import FaqSection from "../Faq/FaqSection";
 import PageLayout from "../PageLayout/PageLayout";
+import ApiService from "../../services/ApiService";
+import { ListingsProvider } from "../../context/ListingsProvider";
+import { ListingFeaturesProvider } from "../../context/ListingFeaturesProvider";
 
 function Home() {
+  const [lisitngs, setListings] = useState([]);
   const [isLoading, setisLoadingg] = useState(true);
 
   useEffect(() => {
-    setisLoadingg(false);
+    ApiService.get("Listings")
+      .then((response) => {
+        setListings(response.data);
+        setisLoadingg(false);
+      })
+      .catch((error) => console.error("Error fetching data:", error));
   }, []);
 
   let component = undefined;
@@ -27,17 +35,20 @@ function Home() {
     component = (
       <>
         <PageLayout>
-          <HomecHero />
-          <PropertyListing />
-          <About />
-          <LatestProperty />
-          <Features />
-          <Agents />
-          <FaqSection />
-          <DownloadApp />
-          <Blog />
-          <Footer />
-          <GoTopBtn />
+          <ListingsProvider>
+            <ListingFeaturesProvider>
+              <HomecHero />
+              <About />
+              <LatestProperty />
+              <Features />
+              <Agents />
+              <FaqSection />
+              <DownloadApp />
+              <Blog />
+              <Footer />
+              <GoTopBtn />
+            </ListingFeaturesProvider>
+          </ListingsProvider>
         </PageLayout>
       </>
     );

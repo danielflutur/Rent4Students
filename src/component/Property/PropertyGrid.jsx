@@ -1,19 +1,51 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PropertyBar from "./PropertyBar";
-import Sidebar from "../Sidebar";
 import LatestPropertyCard from "../Cards/LatestPropertyCard";
 import Pagination from "../Pagination";
-import properties from "../../data/property";
+import ApiService from "../../services/ApiService";
+import ListingFilters from "../ListingFilters/ListingFilters";
+import { useData } from "../../context/ListingFeaturesProvider";
 
 function PropertyGrid() {
-  //handle grid style
+  // Handle grid style
   const [gridStyle, setGridStyle] = useState("grid");
-  const handleGridStyle = (style) => {
-    setGridStyle(style);
-  };
-  //handle page
+  const handleGridStyle = (style) => setGridStyle(style);
+
+  // Handle pagination
   const [currentPage, setCurrentPage] = useState(1);
   const totalPage = 24;
+
+  // Data for listings
+  const [data, setData] = useState([]);
+  const [filteredData, setFilteredData] = useState([]);
+  
+  // Selected filters
+  const [activeFilters, setActiveFilters] = useState([]);
+
+  const { features } = useData(); // Access listing features
+
+  useEffect(() => {
+    // Fetch all listings
+    ApiService.get("Listings")
+      .then((response) => {
+        setData(response.data);
+        setFilteredData(response.data); // Initialize filtered data
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
+
+  // Update filtered data when activeFilters change
+  useEffect(() => {
+    if (activeFilters.length === 0) {
+      setFilteredData(data);
+    } else {
+      setFilteredData(
+        data.filter((listing) =>
+          activeFilters.every((filterId) => listing.amenitiesIds.includes(filterId))
+        )
+      );
+    }
+  }, [activeFilters, data]);
 
   const handelPage = (page) => {
     if (page === "prev") {
@@ -34,31 +66,26 @@ function PropertyGrid() {
       <div className="container">
         <PropertyBar gridStyle={gridStyle} handleGridStyle={handleGridStyle} />
         <div className="row">
-          <Sidebar />
+          {/* Pass filter state and handler to ListingFilters */}
+          <ListingFilters activeFilters={activeFilters} setActiveFilters={setActiveFilters} />
           <div className="col-lg-8 col-12">
             <div className="tab-content" id="nav-tabContent">
-              {/* <!-- Grid Tab --> */}
+              {/* Grid Tab */}
               <div
                 className="tab-pane fade show active"
                 id="homec-grid"
                 role="tabpanel"
               >
                 <div className="row">
-                  {properties?.map((property) => (
+                  {filteredData?.map((property) => (
                     <LatestPropertyCard
                       key={property.id}
-                      img={property.img}
-                      likeLink={property.likeLink}
-                      detailsLink={property.detailsLink}
-                      agentName={property.agentName}
-                      agentImg={property.agentImg}
-                      price={property.price}
-                      period={property.period}
-                      whatFor={property.whatFor}
-                      propertyLink={property.propertyLink}
-                      name={property.name}
+                      id={property.id}
+                      title={property.title}
+                      rentPrice={property.rentPrice}
+                      surface={property.surface}
                       address={property.address}
-                      detailsList={property.detailsList}
+                      photos={property.photos}
                       classes={`${
                         gridStyle === "grid"
                           ? "col-md-6 col-12 mg-top-30"

@@ -25,6 +25,7 @@ import SignUpUniversity from "./component/SignUpUniversity";
 import RoleSelection from "./component/RoleSelection";
 import HomeUniversity from "./component/HomeUniversity/HomeUniversity.jsx";
 import PricingUniversity from "./component/PricingUniversity.jsx/index.jsx";
+import ValidatePhoneNumber from "./component/ValidatePhoneNumber/ValidatePhoneNumber.jsx"
 import AddFaculty from "./component/AddFaculty/index.jsx";
 import Faculty from "./component/Faculty/index.jsx";
 import EditFaculty from "./component/EditFaculty/index.jsx";
@@ -48,7 +49,7 @@ function App() {
       element: <Property />,
     },
     {
-      path: "/property-single",
+      path: "/property-single/:id",
       element: <PropertySingle />,
     },
     {
@@ -128,6 +129,10 @@ function App() {
       element: <RoleSelection />,
     },
     {
+      path: "/validate-phone",
+      element: <ValidatePhoneNumber />,
+    },
+    {
       path: "/add-faculty",
       element: <AddFaculty />,
     },
@@ -138,7 +143,7 @@ function App() {
     {
       path: "/edit-faculty/:id",  // Define dynamic route with the ID parameter
       element: <EditFaculty />,
-    },
+    }
   ]);
 
   return (

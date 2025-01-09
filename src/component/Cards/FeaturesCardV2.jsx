@@ -30,7 +30,6 @@ FeaturesCardV2.propTypes = {
   icon: ProtoTypes.string.isRequired,
   serial: ProtoTypes.string.isRequired,
   title: ProtoTypes.string.isRequired,
-  text: ProtoTypes.string.isRequired,
 };
 
 export default FeaturesCardV2;

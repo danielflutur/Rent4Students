@@ -26,7 +26,6 @@ function DetailsTabFeatures({ title, property, check }) {
 
 DetailsTabFeatures.propTypes = {
   title: ProtoTypes.string.isRequired,
-  property: ProtoTypes.array.isRequired,
   check: ProtoTypes.bool,
 };
 
