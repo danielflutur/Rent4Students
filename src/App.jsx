@@ -27,6 +27,7 @@ import HomeUniversity from "./component/HomeUniversity/HomeUniversity.jsx";
 import PricingUniversity from "./component/PricingUniversity.jsx/index.jsx";
 import AddFaculty from "./component/AddFaculty/index.jsx";
 import Faculty from "./component/Faculty/index.jsx";
+import EditFaculty from "./component/EditFaculty/index.jsx";
 
 function App() {
   useEffect(() => {
@@ -133,6 +134,10 @@ function App() {
     {
       path: "/faculty",
       element: <Faculty />,
+    },
+    {
+      path: "/edit-faculty/:id",  // Define dynamic route with the ID parameter
+      element: <EditFaculty />,
     },
   ]);
 

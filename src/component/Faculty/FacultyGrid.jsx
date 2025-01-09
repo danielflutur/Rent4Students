@@ -4,6 +4,7 @@ import Sidebar from "../Sidebar";
 import LatestPropertyCard from "../Cards/LatestPropertyCard";
 import Pagination from "../Pagination";
 import properties from "../../data/property";
+import TableSecretary from "../TableFaculty";
 
 function FacultyGrid() {
   //handle grid style
@@ -42,6 +43,7 @@ function FacultyGrid() {
                 id="homec-grid"
                 role="tabpanel"
               >
+                <TableSecretary/>
                 //aici cred ca ar trebui adaugat tabelul
                 <Pagination
                   totalPage={totalPage}

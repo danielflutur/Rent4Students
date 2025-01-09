@@ -1142,6 +1142,53 @@ object {
 .homec-btn:hover {
   color: #7166f0;
 }
+/* Stilizare pentru butonul de ștergere */
+.homec-btn-delete {
+  background: #f44336; /* Roșu */
+  color: #fff;
+  border: 1px solid transparent;
+  font-weight: 500;
+  padding: 0 30px;
+  line-height: 20px;
+  border-radius: 4px;
+  display: flex;
+  gap: 10px;
+  transition: all 0.5s ease;
+  max-width: fit-content;
+  cursor: pointer;
+  height: 60px;
+  font-size: 18px;
+  z-index: 2;
+  overflow: hidden;
+  text-align: center;
+  line-height: 60px;
+}
+
+.homec-btn-delete:hover {
+  background: #d32f2f; /* Roșu închis pentru hover */
+  color: #fff;
+  transition: all 0.5s ease;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.homec-btn-delete:before {
+  position: absolute;
+  width: 0px;
+  height: 0px;
+  background-color: #fff;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 1s ease;
+  z-index: 1;
+  content: "";
+}
+
+.homec-btn-delete:hover:before {
+  width: 800px;
+  height: 800px;
+  display: inline-block;
+}
 
 .homec-btn.homec-btn__second {
   background: #f2c94c;
