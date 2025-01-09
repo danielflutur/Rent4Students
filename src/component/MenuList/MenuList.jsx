@@ -17,6 +17,18 @@ const MenuList = () => {
         <Link to="/">Home</Link>
       </Menu.Item>
       <Menu.SubMenu
+        key="faculty_menu"
+        icon={<ShopOutlined />}
+        title="Facultați"
+      >
+        <Menu.Item key="add_faculty">
+          <Link to="/add-faculty">Adaugă Facultate</Link>
+        </Menu.Item>
+        <Menu.Item key="faculty">
+          <Link to="/faculty">Gestionează Facultăți</Link>
+        </Menu.Item>
+      </Menu.SubMenu>
+      <Menu.SubMenu
         key="properties_menu"
         icon={<ShopOutlined />}
         title="Properties"
