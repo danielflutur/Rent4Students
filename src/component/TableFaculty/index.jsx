@@ -1,6 +1,7 @@
 import React, { useState } from "react";  // Add useState import from React
 import { Space, Table, Tag, Modal } from "antd";
 import { useNavigate } from 'react-router-dom';  // For navigation
+import EmailTemplate from "../Form/EmailTemplate";
 
 const TableSecretary = () => {
   const navigate = useNavigate();  // Hook for navigation
@@ -48,9 +49,7 @@ const TableSecretary = () => {
       width: 150,
       render: (_, record) => (
         <Space size="middle">
-          <button type="submit" className="homec-btn">
-            <span>Trimite Email</span>
-          </button>
+          <EmailTemplate record={record} />
         </Space>
       ),
     },

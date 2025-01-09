@@ -44,12 +44,6 @@ function FacultyGrid() {
                 role="tabpanel"
               >
                 <TableSecretary/>
-                //aici cred ca ar trebui adaugat tabelul
-                <Pagination
-                  totalPage={totalPage}
-                  handlePage={handelPage}
-                  currentPage={currentPage}
-                />
               </div>
             </div>
           </div>
