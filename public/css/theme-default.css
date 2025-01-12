@@ -1715,6 +1715,147 @@ object {
     transform: translateX(20px);
   }
 }
+
 /*======================================
 	End Theme Default
 ========================================*/
+
+/* Cardul pentru buton */
+.ecom-wc__card {
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.ecom-wc__card:hover {
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+}
+
+/* Card Body */
+.ecom-wc__card-body {
+  padding: 20px;
+}
+
+/* Stil pentru butonul "Completează acum" */
+.complete-now {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #7166f0; /* Violet */
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.complete-now:hover {
+  background-color: #4f43c6;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.complete-now span {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.complete-now:hover span {
+  padding-left: 10px;
+}
+
+/* Stil pentru butonul "Caută pe cont propriu" */
+.explore-yourself {
+  display: inline-block;
+  padding: 15px 30px;
+  background-color: #f5a623; /* Portocaliu */
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: bold;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.explore-yourself:hover {
+  background-color: #d88d17;
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.explore-yourself span {
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+
+.explore-yourself:hover span {
+  padding-left: 10px;
+}
+
+/* Stilizare pentru textul din card */
+.ecom-wc__bottom p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Ajustare pentru coloană și text */
+.ecom-wc__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ecom-wc__button--bottom {
+  margin-top: 10px;
+}
+
+.ecom-wc__bottom p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  font-style: italic;
+}
+
+/* Responsivitate pentru carduri și butoane pe mobil */
+@media (max-width: 767px) {
+  .ecom-wc__card {
+    margin-bottom: 20px;
+  }
+
+  .ecom-wc__button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .complete-now,
+  .explore-yourself {
+    width: 100%;
+    padding: 12px 0;
+    font-size: 14px;
+  }
+}
+
+
+.progress-bar-container {
+  width: 100%;
+  height: 5px;
+  background-color: #f3f3f3;
+  margin-bottom: 20px;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #4caf50; /* Culoarea barei de progres */
+  transition: width 0.3s ease-in-out;
+}
+

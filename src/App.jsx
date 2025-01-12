@@ -22,6 +22,7 @@ import ErrorPage from "./component/Error";
 import Contact from "./component/Contact";
 import SignUp from "./component/SignUp";
 import SignUpUniversity from "./component/SignUpUniversity";
+import SignUpStudent from "./component/SignUpStudent/index.jsx";
 import RoleSelection from "./component/RoleSelection";
 import HomeUniversity from "./component/HomeUniversity/HomeUniversity.jsx";
 import PricingUniversity from "./component/PricingUniversity.jsx/index.jsx";
@@ -29,6 +30,11 @@ import ValidatePhoneNumber from "./component/ValidatePhoneNumber/ValidatePhoneNu
 import AddFaculty from "./component/AddFaculty/index.jsx";
 import Faculty from "./component/Faculty/index.jsx";
 import EditFaculty from "./component/EditFaculty/index.jsx";
+import WelcomeStudents from "./component/WelcomeStudents/index.jsx";
+import Page1PersonalData from "./component/ProgressiveBar/Page1PersonalData.jsx";
+import Page2HousingPreferences from "./component/ProgressiveBar/Page2HousingPreferences.jsx";
+import ProgressiveBar from "./component/ProgressiveBar/index.jsx";
+import Page3HouseRules from "./component/ProgressiveBar/Page3HouseRules.jsx";
 
 function App() {
   useEffect(() => {
@@ -115,6 +121,29 @@ function App() {
     {
       path: "/signup-university",
       element: <SignUpUniversity />,
+    },
+    {
+      path: "/signup-student",
+      element: <SignUpStudent />,
+    },
+    {
+      path: "/welcome-students",
+      element: <WelcomeStudents />,
+    },
+    {
+      path: "/page-1-personal-data",
+      element: <Page1PersonalData />,
+    },
+    {
+      path: "/page-2-housing-preferences",
+      element: <Page2HousingPreferences />,
+    },
+    {
+      path: "/page-3-home-rules",
+      element: <Page3HouseRules />,
+    },
+    {
+      element: <ProgressiveBar />,
     },
     {
       path: "/404",

@@ -35,7 +35,7 @@ function RoleSelection() {
                 img="img/role_student.png"
                 role="Student"
                 info="Găsiți locuința perfectă, sigură și aproape de facultatea dumneavoastră."
-                link="/signup" //aici o sa fie un signup diferit pentru fiecare tip de rol
+                link="/signup-student" //aici o sa fie un signup diferit pentru fiecare tip de rol
                // btn="second"
               />
               <RoleCard

@@ -1,0 +1,39 @@
+.welcome-section {
+    background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  }
+  
+  .welcome-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+  
+  .welcome-subtitle {
+    font-size: 1.25rem;
+    font-weight: 300;
+  }
+  
+  .role-card {
+    border: 1px solid #ddd;
+    padding: 1.5rem;
+    transition: transform 0.2s ease;
+  }
+  
+  .role-card:hover {
+    transform: scale(1.05);
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .btn-outline-secondary {
+    border: 1px solid #6c757d;
+    color: #6c757d;
+  }
+  
+  .btn-primary:hover,
+  .btn-outline-secondary:hover {
+    opacity: 0.9;
+  }
+  

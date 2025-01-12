@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 function RoleCard({ img, role, info, btn, link }) {
   return (
     <div
-      className="col-lg-3 col-md-6 col-12 mg-top-30"
+      className="col-lg-3 col-md-6 col-16 mg-top-30"
       data-aos="fade-up"
       data-aos-delay="300"
     >
