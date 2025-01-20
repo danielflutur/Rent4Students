@@ -1,5 +1,5 @@
+import ListingHeroSlider from "../ListingHeroSlider/ListingHeroSlider";
 import HeroContent from "./HeroContent";
-import HeroSlider from "./HeroSlider";
 
 function HomecHero() {
   return (
@@ -13,7 +13,7 @@ function HomecHero() {
           <div className="col-12">
             <div className="homec-hero__inner homec-hero__inner--v2">
               <HeroContent />
-              <HeroSlider />
+              <ListingHeroSlider />
             </div>
           </div>
         </div>

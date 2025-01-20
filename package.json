@@ -12,6 +12,7 @@
   "dependencies": {
     "@ckeditor/ckeditor5-build-classic": "^38.0.1",
     "@ckeditor/ckeditor5-react": "^6.0.0",
+    "@react-google-maps/api": "^2.20.5",
     "antd": "^5.22.1",
     "aos": "^2.3.4",
     "axios": "^1.7.9",

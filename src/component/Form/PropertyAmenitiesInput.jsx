@@ -1,17 +1,17 @@
 import ProtoTypes from "prop-types";
 import PropertyCheckInput from "./PropertyCheckInput";
 
-function PropertyAminitiesInput({ aminities, handleChange }) {
+function PropertyAmenitiesInput({ amenities, handleChange }) {
   return (
     <div className="homec-submit-form mg-top-40">
-      <h4 className="homec-submit-form__title">Aminities</h4>
+      <h4 className="homec-submit-form__title">Facilitati</h4>
       <div className="homec-submit-form__inner">
         <div className="form-group homec-form-input--list">
-          {Object.keys(aminities).map((item, index) => (
+          {amenities.map((item) => (
             <PropertyCheckInput
-              key={item + index}
-              title={item}
-              isChecked={aminities[item]}
+              key={item.id}
+              title={item.value}
+              isChecked={item.checked}
               handleChange={handleChange}
             />
           ))}
@@ -21,9 +21,8 @@ function PropertyAminitiesInput({ aminities, handleChange }) {
   );
 }
 
-PropertyAminitiesInput.propTypes = {
-  aminities: ProtoTypes.object.isRequired,
+PropertyAmenitiesInput.propTypes = {
   handleChange: ProtoTypes.func.isRequired,
 };
 
-export default PropertyAminitiesInput;
+export default PropertyAmenitiesInput;

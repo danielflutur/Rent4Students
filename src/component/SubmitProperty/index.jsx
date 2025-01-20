@@ -7,6 +7,9 @@ import Preloader from "../Loader";
 import { useEffect, useState } from "react";
 import GoTopBtn from "../Button/GoTopBtn";
 import PageLayout from "../PageLayout/PageLayout";
+import NewPropertyFrom from "../Form/NewPropertyForm";
+import { ListingFeaturesProvider } from "../../context/ListingFeaturesProvider";
+import { ListingTypeProvider } from "../../context/ListingTypeProvider";
 
 function SubmitProperty() {
   const [isLoading, setisLoadingg] = useState(true);
@@ -33,7 +36,12 @@ function SubmitProperty() {
               isActive={true}
             />
           </Breadcrumbs>
-          <PropertyFrom />
+          {/* <PropertyFrom /> */}
+          <ListingFeaturesProvider>
+            <ListingTypeProvider>
+              <NewPropertyFrom />
+            </ListingTypeProvider>
+          </ListingFeaturesProvider>
           <DownloadApp />
           <Footer />
           <GoTopBtn />
