@@ -1,7 +1,10 @@
 import AboutCard from "../Cards/AboutCard";
 import AboutShapeImg from "./AboutShapeImg";
+import { useTranslation } from "react-i18next";
 
 function About() {
+  const { t } = useTranslation(); // Hook pentru traduceri
+
   return (
     <section className="homec-about homec-bg-third-color pd-top-90 pd-btm-120">
       <div className="homec-shape">
@@ -30,7 +33,7 @@ function About() {
                   <img src="img/image-university-2.png" alt="#" />
                 </div>
                 <h4 className="homec-ceo-quote__title">
-                  Beneficii pentru Studenți
+                  {t("about_benefits_students")}
                 </h4>
               </div>
             </div>
@@ -43,7 +46,9 @@ function About() {
                 <div className="homec-section__shape">
                   <span
                     className="homec-section__badge homec-section__badge--shape"
-                    style={{ backgroundImage: "url('img/section-shape.svg')" }}
+                    style={{
+                      backgroundImage: "url('img/section-shape.svg')",
+                    }}
                     data-aos="fade-down"
                     data-aos-delay="300"
                   >
@@ -55,7 +60,7 @@ function About() {
                   data-aos="fade-in"
                   data-aos-delay="400"
                 >
-                  Cum influențează aplicația viața studenților și nu numai?
+                  {t("about_influence_students")}
                 </h2>
               </div>
               <div
@@ -64,16 +69,10 @@ function About() {
                 data-aos-delay="500"
               >
                 <p className="homec-about-content__text">
-                  Rent4Students este o platformă digitală care simplifică procesul de gestionare
-                  a cererilor pentru subvenții de chirie dedicate studenților. Universitățile beneficiază
-                  de un sistem centralizat pentru administrarea cererilor și a documentelor,
-                  reducând birocrația și optimizând timpul secretarilor.
+                  {t("about_platform_description")}
                 </p>
                 <div className="homec-focus-content homec-focus-content--v2 homec-border mg-top-20">
-                  <p>
-                  Platforma promovează transparența și eficiența în relațiile dintre studenți,
-                  universități și proprietari, contribuind la un mediu de gestionare modern și digitalizat.
-                  </p>
+                  <p>{t("about_transparency_efficiency")}</p>
                 </div>
               </div>
             </div>

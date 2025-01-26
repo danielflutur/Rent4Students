@@ -1,10 +1,12 @@
-import React, { useState } from "react";  // Add useState import from React
+import React, { useState } from "react";
 import { Space, Table, Tag, Modal } from "antd";
-import { useNavigate } from 'react-router-dom';  // For navigation
+import { useNavigate } from 'react-router-dom';
 import EmailTemplate from "../Form/EmailTemplate";
+import { useTranslation } from "react-i18next";
 
 const TableSecretary = () => {
-  const navigate = useNavigate();  // Hook for navigation
+  const { t } = useTranslation(); // Hook pentru traducere
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
 
@@ -14,7 +16,7 @@ const TableSecretary = () => {
   };
 
   const handleOk = () => {
-    console.log(`Șterge facultatea: ${selectedFaculty?.nameFaculty}`);
+    console.log(`${t("delete_faculty")} ${selectedFaculty?.nameFaculty}`);
     setIsModalOpen(false);
   };
 
@@ -24,27 +26,27 @@ const TableSecretary = () => {
 
   const columns = [
     {
-      title: "Nume Facultate",
+      title: t("faculty_name"),
       dataIndex: "nameFaculty",
       key: "nameFaculty",
       width: 150,
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Secretar",
+      title: t("secretary"),
       dataIndex: "secretary",
       key: "secretary",
       width: 200,
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Email",
+      title: t("email_secretary"),
       dataIndex: "email",
       key: "email",
       width: 170,
     },
     {
-      title: "Trimite email",
+      title: t("send_email"),
       key: "sentEmail",
       width: 150,
       render: (_, record) => (
@@ -54,7 +56,7 @@ const TableSecretary = () => {
       ),
     },
     {
-      title: "Status",
+      title: t("status"),
       key: "tags",
       dataIndex: "tags",
       width: 100,
@@ -63,16 +65,16 @@ const TableSecretary = () => {
           {tags.map((tag) => {
             let color;
             switch (tag.toUpperCase()) {
-              case "TRIMIS":
+              case "SENT":
                 color = "green";
                 break;
-              case "TRIMITE":
+              case "SEND":
                 color = "purple";
                 break;
-              case "ÎN PROGRES":
+              case "IN PROGRESS":
                 color = "blue";
                 break;
-              case "EȘUAT":
+              case "FAILED":
                 color = "red";
                 break;
               default:
@@ -88,7 +90,7 @@ const TableSecretary = () => {
       ),
     },
     {
-      title: "Editează",
+      title: t("edit"),
       key: "edit",
       width: 200,
       render: (_, record) => (
@@ -96,15 +98,15 @@ const TableSecretary = () => {
           <button
             type="button"
             className="homec-btn homec-btn__second"
-            onClick={() => navigate(`/edit-faculty/${record.key}`)}  // Navigate with faculty ID
+            onClick={() => navigate(`/edit-faculty/${record.key}`)}
           >
-            <span>Editează</span>
+            <span>{t("edit")}</span>
           </button>
         </Space>
       ),
     },
     {
-      title: "Șterge",
+      title: t("delete"),
       key: "delete",
       width: 200,
       render: (_, record) => (
@@ -114,7 +116,7 @@ const TableSecretary = () => {
             className="homec-btn homec-btn-delete"
             onClick={() => showModal(record)}
           >
-            <span>Șterge</span>
+            <span>{t("delete")}</span>
           </button>
         </Space>
       ),
@@ -124,31 +126,31 @@ const TableSecretary = () => {
   const data = [
     {
       key: "1",
-      nameFaculty: "Inginerie",
+      nameFaculty: "Engineering",
       secretary: "John Brown",
       email: "john@gmail.com",
-      tags: ["TRIMIS"],
+      tags: ["SENT"],
     },
     {
       key: "2",
-      nameFaculty: "Medicina",
+      nameFaculty: "Medicine",
       secretary: "Aa Bb",
       email: "a@gmail.com",
-      tags: ["ÎN PROGRES"],
+      tags: ["IN PROGRESS"],
     },
     {
       key: "3",
-      nameFaculty: "Fizica",
+      nameFaculty: "Physics",
       secretary: "Cc Dd",
       email: "c@gmail.com",
-      tags: ["TRIMITE"],
+      tags: ["SEND"],
     },
     {
       key: "4",
-      nameFaculty: "Chimie",
+      nameFaculty: "Chemistry",
       secretary: "Dd Ee",
       email: "d@gmail.com",
-      tags: ["EȘUAT"],
+      tags: ["FAILED"],
     },
   ];
 
@@ -158,16 +160,15 @@ const TableSecretary = () => {
 
       {/* Modal pentru confirmare ștergere */}
       <Modal
-        title="Confirmare Ștergere"
+        title={t("confirm_delete")}
         open={isModalOpen}
         onOk={handleOk}
         onCancel={handleCancel}
-        okText="Șterge"
-        cancelText="Anulează"
+        okText={t("delete")}
+        cancelText={t("cancel")}
       >
         <p>
-          Sunteți sigur că doriți să ștergeți facultatea{" "}
-          <strong>{selectedFaculty?.nameFaculty}</strong>?
+          {t("are_you_sure_delete")} <strong>{selectedFaculty?.nameFaculty}</strong>?
         </p>
       </Modal>
     </>

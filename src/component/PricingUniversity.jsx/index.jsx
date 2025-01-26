@@ -1,55 +1,48 @@
-import Breadcrumbs from "../Breadcrumbs";
-import HistoryLinks from "../Breadcrumbs/HistoryLinks";
-import DownloadApp from "../DownloadApp";
-import Footer from "../Footer";
-import GoTopBtn from "../Button/GoTopBtn";
+import { useTranslation } from "react-i18next";
 import PricingCard from "../Cards/PricingCard";
-import FaqSection from "../Faq/FaqSection";
-import Preloader from "../Loader";
-import { useEffect, useState } from "react";
-import PageLayout from "../PageLayout/PageLayout";
 
 function PricingUniversity() {
-  return ( 
-          <section className="pd-top-90 pd-btm-20">
-            <div className="container-sm">
-            <h3 className="ecom-wc__form-title ecom-wc__form-title__one">
-            Planuri de Abonament pentru Universități
-                    <span>
-                    Planul Anual, ideal pentru gestionarea studenților pe termen scurt, și Planul Pe 4 Ani, perfect pentru integrarea pe termen lung, cu beneficii financiare atractive.
-                    </span>
-                  </h3>
-              <div className="row justify-content-md-center">
-                    <PricingCard
-                      title="Planul Anual"
-                      price="49"
-                      period="12 luni"
-                      isActive={true}
-                      features={[
-                        { name: "Supor Tehnic", value: true },
-                        { name: "Preț complet", value: true },
-                        { name: "Reduceri", value: false },
-                        { name: "Training gratuit", value: false },
-                        { name: "Actualizari prioritare", value: false },
-                      ]}
-                    />{"  "}
-                    <PricingCard
-                      title="Planul pe 4 Ani"
-                      price="99"
-                      period="4 ani"
-                      features={[
-                        { name: "Supor Tehnic", value: true },
-                        { name: "Discount semnificativ", value: true },
-                        { name: "Reduceri", value: true },
-                        { name: "Training gratuit", value: true },
-                        { name: "Actualizari prioritare", value: true },
-                      ]}
-                    />
-              </div>
-            </div>
-          </section>
-    );
-  }
+  const { t } = useTranslation(); // Hook pentru traduceri
 
+  return (
+    <section className="pd-top-90 pd-btm-20">
+      <div className="container-sm">
+        <h3 className="ecom-wc__form-title ecom-wc__form-title__one">
+          {t("pricing_title")}
+          <span>
+            {t("pricing_subtitle")}
+          </span>
+        </h3>
+        <div className="row justify-content-md-center">
+          <PricingCard
+            title={t("annual_plan_title")}
+            price="49"
+            period={t("annual_plan_period")}
+            isActive={true}
+            features={[
+              { name: t("feature_support"), value: true },
+              { name: t("feature_full_price"), value: true },
+              { name: t("feature_discounts"), value: false },
+              { name: t("feature_free_training"), value: false },
+              { name: t("feature_priority_updates"), value: false },
+            ]}
+          />
+          <PricingCard
+            title={t("four_year_plan_title")}
+            price="99"
+            period={t("four_year_plan_period")}
+            features={[
+              { name: t("feature_support"), value: true },
+              { name: t("feature_significant_discount"), value: true },
+              { name: t("feature_discounts"), value: true },
+              { name: t("feature_free_training"), value: true },
+              { name: t("feature_priority_updates"), value: true },
+            ]}
+          />
+        </div>
+      </div>
+    </section>
+  );
+}
 
 export default PricingUniversity;

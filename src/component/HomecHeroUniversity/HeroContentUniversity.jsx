@@ -1,24 +1,27 @@
+import { useTranslation } from "react-i18next";
 import HeroContentListUniversity from "./HeroContentListUniversity";
 
 function HeroContentUniversity() {
+  const { t } = useTranslation(); // Adăugăm hook-ul pentru traduceri
+
   return (
     <div className="homec-hero__content homec-hero__content--v2">
       <h3 className="homec-hero__title">
-        Bine ați venit în aplicația RENT4STUDENTS
+        {t("hero_welcome")}
       </h3>
-      <h3 className="homec-hero__subtitle">Partenerul ideal al universităților în gestionarea cazărilor pentru studenți.
+      <h3 className="homec-hero__subtitle">
+        {t("hero_subtitle")}
       </h3>
-      
-        
+
       <ul className="homec-iconic-list homec-iconic-list__v2 homec-iconic-list__white list-none mg-top-30">
         <HeroContentListUniversity
-          text="Simplificăm conexiunea dintre universitate și studenți."
+          text={t("hero_list_item_1")}
         />
         <HeroContentListUniversity
-          text="Administrarea fișierelor necesare pentru ajutor de chirie"
+          text={t("hero_list_item_2")}
         />
         <HeroContentListUniversity
-          text="Gestionarea digitalizată a cererilor pentru ajutor de chirie."
+          text={t("hero_list_item_3")}
         />
       </ul>
     </div>

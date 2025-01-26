@@ -8,14 +8,18 @@ import { useEffect, useState } from "react";
 import GoTopBtn from "../Button/GoTopBtn";
 import PageLayout from "../PageLayout/PageLayout";
 import FacultyFrom from "../Form/FacultyFrom";
+import { useTranslation } from "react-i18next";
 
 function AddFaculty() {
-  const [isLoading, setisLoadingg] = useState(true);
+  const { t } = useTranslation(); // Hook pentru traduceri
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    setisLoadingg(false);
+    setIsLoading(false);
   }, []);
 
   let component = undefined;
+
   if (isLoading) {
     component = <Preloader />;
   } else {
@@ -23,11 +27,10 @@ function AddFaculty() {
       <>
         <PageLayout>
           <Breadcrumbs
-            title="Adaugă Facultate"
+            title={t("add_faculty_breadcrumb_title")}
             titlePosition="bottom"
             background="url(img/bread-overlay.jpg)"
-          >
-          </Breadcrumbs>
+          ></Breadcrumbs>
           <FacultyFrom />
           <Footer />
           <GoTopBtn />

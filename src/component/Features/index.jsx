@@ -1,7 +1,10 @@
 import FeaturesCardV2 from "../Cards/FeaturesCardV2";
 import Title from "../Title";
+import { useTranslation } from "react-i18next";
 
 function Features() {
+  const { t } = useTranslation(); // Hook pentru traduceri
+
   return (
     <section className="homec-bg-primary-color pd-top-110 pd-btm-110">
       <div
@@ -11,8 +14,8 @@ function Features() {
       <div className="container">
         <div className="row">
           <Title
-            firstText="4 pași"
-            secondText=" De ce să ne alegi pe noi?"
+            firstText={t("features_title_first")}
+            secondText={t("features_title_second")}
             marginSize="40"
             styleFirst={{ color: "#ffff" }}
             styleSecond={{ color: "#ffff" }}
@@ -25,22 +28,22 @@ function Features() {
               <FeaturesCardV2
                 icon="img/hand-icon.svg"
                 serial="01"
-                title="Încredere"
+                title={t("feature_trust")}
               />
               <FeaturesCardV2
                 icon="img/support-icon.svg"
                 serial="02"
-                title="24/7 Suport"
+                title={t("feature_support_24")}
               />
               <FeaturesCardV2
                 icon="img/finance-icon.svg"
                 serial="03"
-                title="Finanțare ușoară"
+                title={t("feature_easy_finance")}
               />
               <FeaturesCardV2
                 icon="img/wide-house-icon.svg"
                 serial="04"
-                title="Gamă largă de chirii"
+                title={t("feature_wide_range")}
               />
               {/* End Features Single */}
             </div>
