@@ -1,11 +1,15 @@
 import { useState } from "react";
 import According from "./According";
+import { useTranslation } from "react-i18next";
 
 function FaqSection() {
+  const { t } = useTranslation(); // Hook pentru traduceri
   const [collapse, setCollapse] = useState(1);
+
   const handleCollapse = (id) => {
     setCollapse(id === collapse ? false : id);
   };
+
   return (
     <section
       className="homec-bg-cover pd-top-90 pd-btm-120"
@@ -28,13 +32,13 @@ function FaqSection() {
                   className="homec-section__badge homec-section__badge--shape homec-section__badge--shape--v2"
                   style={{ backgroundImage: "url('img/shape-3.svg')" }}
                 >
-                  FAQ
+                  {t("faq_badge")}
                 </span>
               </div>
               <h2 className="homec-section__title">
-              Dacă doriți să aflați
-              <br></br> 
-              Întrebări frecvente
+                {t("faq_title_line1")}
+                <br />
+                {t("faq_title_line2")}
               </h2>
             </div>
             <div
@@ -42,39 +46,29 @@ function FaqSection() {
               id="homec-accordion"
             >
               <According
-                heading="Cum poate o universitate să adauge și să gestioneze facultățile în platformă?"
-                desc=" Universitățile pot utiliza un formular dedicat pentru a adăuga
-                    facultăți, alături de adresele de e-mail ale secretarilor care vor
-                    gestiona cererile studenților."
+                heading={t("faq_question1_heading")}
+                desc={t("faq_question1_desc")}
                 collapse={collapse}
                 handleCollapse={handleCollapse}
                 id={1}
               />
               <According
-                heading="Ce avantaje aduce platforma Rent4Students universităților?"
-                desc=" Platforma digitalizează gestionarea cererilor de subvenții
-                    pentru chirie, economisind timp și resurse administrative, și
-                    oferă un mediu centralizat și ușor de utilizat."
+                heading={t("faq_question2_heading")}
+                desc={t("faq_question2_desc")}
                 collapse={collapse}
                 handleCollapse={handleCollapse}
                 id={2}
               />
-
               <According
-                heading="Ce tipuri de abonamente sunt disponibile pentru universități?"
-                desc=" Rent4Students oferă două opțiuni: un plan anual pentru acces
-                    complet timp de un an și un plan pe patru ani, ideal pentru
-                    gestionarea unei generații universitare complete."
+                heading={t("faq_question3_heading")}
+                desc={t("faq_question3_desc")}
                 collapse={collapse}
                 handleCollapse={handleCollapse}
                 id={3}
               />
               <According
-                serial={4}
-                heading="Cum sunt gestionate cererile și documentele studenților?"
-                desc="Fiecare facultate își gestionează propriii studenți printr-un
-                    sistem centralizat, asigurând transparență și eficiență în
-                    procesarea cererilor pentru ajutorul de chirie."
+                heading={t("faq_question4_heading")}
+                desc={t("faq_question4_desc")}
                 collapse={collapse}
                 handleCollapse={handleCollapse}
                 id={4}
@@ -86,17 +80,17 @@ function FaqSection() {
             data-aos="fade-up"
             data-aos-delay="600"
           >
-            {/* Support Img   */}
+            {/* Support Img */}
             <div className="homec-support-img">
               <img src="img/image-university-3.png" alt="#" />
               <div className="homec-support-img__content">
                 <img src="img/support-icon-white.svg" alt="#" />
                 <h4 className="homec-support-img__title">
-                  24/7 Suport <span>Dacă ai întrebări contactează-ne?</span>
+                  {t("faq_support_title")} <span>{t("faq_support_subtitle")}</span>
                 </h4>
               </div>
             </div>
-            {/* End Support Img  */}
+            {/* End Support Img */}
           </div>
         </div>
       </div>

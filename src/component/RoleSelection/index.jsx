@@ -5,12 +5,14 @@ import Preloader from "../Loader";
 import GoTopBtn from "../Button/GoTopBtn";
 import RoleCard from "../Cards/RoleCards";
 import PageLayout from "../PageLayout/PageLayout";
+import { useTranslation } from "react-i18next";  // Importă hook-ul useTranslation
 
 function RoleSelection() {
-  const [isLoading, setisLoadingg] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const { t } = useTranslation();  // Folosește useTranslation pentru traduceri
 
   useEffect(() => {
-    setisLoadingg(false);
+    setIsLoading(false);
   }, []);
 
   let component = undefined;
@@ -19,7 +21,7 @@ function RoleSelection() {
   } else {
     component = (
       <PageLayout>
-        <Breadcrumbs title="Continue as" titlePosition="bottom">
+        <Breadcrumbs title={t("continue_as")} titlePosition="bottom">
         </Breadcrumbs>
 
         <section className="homec-error pd-top-90 pd-btm-120">
@@ -27,30 +29,27 @@ function RoleSelection() {
             <div className="row">
               <RoleCard
                 img="img/role_university.png"
-                role="University"
-                info="Administrați studenții și facilitați validarea rapidă a statutului lor academic."
-                link="/signup-university" //aici o sa fie un signup diferit pentru fiecare tip de rol
+                role={t('university')}
+                info={t('university_info')}
+                link="/signup-university"
               />
               <RoleCard
                 img="img/role_student.png"
-                role="Student"
-                info="Găsiți locuința perfectă, sigură și aproape de facultatea dumneavoastră."
-                link="/signup-student" //aici o sa fie un signup diferit pentru fiecare tip de rol
-               // btn="second"
+                role={t('student')}
+                info={t('student_info')}
+                link="/signup-student"
               />
               <RoleCard
                 img="img/role_owner.png"
-                role="Owner"
-                info="Listați proprietăți și conectați-vă cu studenți validați de universitate."
-                link="/signup" //aici o sa fie un signup diferit pentru fiecare tip de rol
-               // btn="second"
+                role={t('owner')}
+                info={t('owner_info')}
+                link="/signup"
               />
               <RoleCard
                 img="img/role_agency.png"
-                role="Real Estate Agency"
-                info="Gestionează oferte imobiliare și ajută studenții să găsească un cămin."
-                link="/signup" //aici o sa fie un signup diferit pentru fiecare tip de rol
-               // btn="second"
+                role={t('agency')}
+                info={t('agency_info')}
+                link="/signup"
               />
             </div>
           </div>

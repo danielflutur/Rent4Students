@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import WelcomeCardUniversity from "../Cards/WelcomeCardUniversity";
 import PropertyTextInput from "../Form/PropertyTextInput";
 import Preloader from "../Loader";
+import { useTranslation } from "react-i18next";  // Importă hook-ul useTranslation
 
 function SignUpUniversity() {
+  const { t } = useTranslation();  // Folosește useTranslation pentru traduceri
+
   const [input, setInput] = useState({
     universityName: "",
     email: "",
@@ -12,11 +15,11 @@ function SignUpUniversity() {
     password: "",
     confirmPassword: "",
   });
+
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  // Loading Handle
   const [isLoading, setisLoadingg] = useState(true);
   useEffect(() => {
     setisLoadingg(false);
@@ -29,7 +32,6 @@ function SignUpUniversity() {
     component = (
       <section
         className="ecom-wc ecom-wc__full ecom-bg-cover"
-        // style={{ backgroundImage: "url('img/credential-bg.svg')" }}
       >
         <div className="container-fluid p-0">
           <div className="row g-0">
@@ -37,21 +39,18 @@ function SignUpUniversity() {
               <div className="ecom-wc__form">
                 <div className="ecom-wc__form-inner">
                   <h3 className="ecom-wc__form-title ecom-wc__form-title__one">
-                    Creazăți cont ca Universitate
-                    <span>
-                    Câmpurile obligatorii sunt marcate cu *
-                    </span>
+                    {t("create_account")}
+                    <span>{t("fields_required")}</span>
                   </h3>
-                  {/* Sign in Form  */}
                   <form
-                    className="ecom-wc__form-main p-0  "
+                    className="ecom-wc__form-main p-0"
                     action="index.html"
                     method="post"
                   >
                     <div className="row">
                       <PropertyTextInput
                         size="col-lg-15 col-md-15"
-                        title="Numele Universități*"
+                        title={t("university_name")}
                         name="universityName"
                         value={input.universityName}
                         handleChange={handleChange}
@@ -61,7 +60,7 @@ function SignUpUniversity() {
 
                       <PropertyTextInput
                         size="col-lg-15 col-md-15"
-                        title="Email*"
+                        title={t("email")}
                         name="email"
                         value={input.email}
                         handleChange={handleChange}
@@ -71,7 +70,7 @@ function SignUpUniversity() {
 
                       <PropertyTextInput
                         size="col-lg-6 col-md-6"
-                        title="Validare Cod de Identificare Fiscala*"
+                        title={t("cif_validation")}
                         name="validationCIF"
                         value={input.validationCIF}
                         handleChange={handleChange}
@@ -81,7 +80,7 @@ function SignUpUniversity() {
                       
                       <PropertyTextInput
                         size="col-lg-6 col-md-6"
-                        title="Validare Cod Instutional*"
+                        title={t("ci_validation")}
                         name="validationCI"
                         value={input.validationCI}
                         handleChange={handleChange}
@@ -91,7 +90,7 @@ function SignUpUniversity() {
 
                       <PropertyTextInput
                         size="col-lg-6 col-md-6"
-                        title="Parola*"
+                        title={t("password")}
                         name="password"
                         value={input.password}
                         handleChange={handleChange}
@@ -101,7 +100,7 @@ function SignUpUniversity() {
                       />
                       <PropertyTextInput
                         size="col-lg-6 col-md-6"
-                        title="Confirmare Parola*"
+                        title={t("confirm_password")}
                         name="confirmPassword"
                         value={input.confirmPassword}
                         handleChange={handleChange}
@@ -117,20 +116,18 @@ function SignUpUniversity() {
                           className="homec-btn homec-btn__second"
                           type="submit"
                         >
-                          <span>Înregistrează-te</span>
+                          <span>{t("signup")}</span>
                         </a>
                       </div>
                     </div>
-                    {/* Form Group  */}
                     <div className="form-group mg-top-20">
                       <div className="ecom-wc__bottom">
                         <p className="ecom-wc__text">
-                          Ai deja un cont? <a href="signup">Autentifică-te</a>
+                          {t("already_have_account")} <a href="signup">{t("sign_in")}</a>
                         </p>
                       </div>
                     </div>
                   </form>
-                  {/* End Sign in Form  */}
                 </div>
               </div>
             </div>

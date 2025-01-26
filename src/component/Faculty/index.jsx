@@ -3,14 +3,16 @@ import Preloader from "../Loader";
 import Breadcrumbs from "../Breadcrumbs";
 import GoTopBtn from "../Button/GoTopBtn";
 import Footer from "../Footer";
-import HistoryLinks from "../Breadcrumbs/HistoryLinks";
 import FacultyGrid from "./FacultyGrid";
 import PageLayout from "../PageLayout/PageLayout";
+import { useTranslation } from "react-i18next";
 
 function Faculty() {
-  const [isLoading, setisLoadingg] = useState(true);
+  const { t } = useTranslation(); // Hook pentru traduceri
+  const [isLoading, setIsLoading] = useState(true);
+
   useEffect(() => {
-    setisLoadingg(false);
+    setIsLoading(false);
   }, []);
 
   let component = undefined;
@@ -20,8 +22,7 @@ function Faculty() {
     component = (
       <>
         <PageLayout>
-          <Breadcrumbs title="Gestionare Facultăți">
-          </Breadcrumbs>
+          <Breadcrumbs title={t("manage_faculties")} />
           <FacultyGrid />
           <GoTopBtn />
         </PageLayout>

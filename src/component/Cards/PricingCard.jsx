@@ -1,6 +1,9 @@
-import ProtoTypes from "prop-types";
+import PropTypes from "prop-types";
+import { useTranslation } from "react-i18next";
 
 function PricingCard({ features, title, price, period, isActive }) {
+  const { t } = useTranslation(); // Hook pentru traduceri
+
   return (
     <div
       className="col-lg-4 col-md-4 col-12 mg-top-30"
@@ -31,13 +34,13 @@ function PricingCard({ features, title, price, period, isActive }) {
                     } `}
                   ></i>
                 </span>
-                {feature.value && feature.value} {feature.name}
+                {feature.value && t("included")} {t(feature.name)}
               </li>
             ))}
           </ul>
           <div className="homec-psingle__button">
             <a href="#" className="homec-btn homec-btn__thrid">
-              <span>Aplică pentru acest Plan</span>
+              <span>{t("apply_for_plan")}</span>
             </a>
           </div>
         </div>
@@ -47,11 +50,11 @@ function PricingCard({ features, title, price, period, isActive }) {
 }
 
 PricingCard.propTypes = {
-  features: ProtoTypes.array.isRequired,
-  title: ProtoTypes.string.isRequired,
-  price: ProtoTypes.string.isRequired,
-  period: ProtoTypes.string.isRequired,
-  isActive: ProtoTypes.bool,
+  features: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.string.isRequired,
+  period: PropTypes.string.isRequired,
+  isActive: PropTypes.bool,
 };
 
 export default PricingCard;
