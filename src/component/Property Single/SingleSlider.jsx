@@ -24,7 +24,7 @@ function SingleSlider({property}) {
         price={property.rentPrice}
         duration="Month"
         title={property.title}
-        text={property.address.streetAddress}
+        text={property.address.addressDetails}
         img={photo}
       />
       ))}

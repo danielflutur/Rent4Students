@@ -13,127 +13,203 @@ function NewPropertyFrom() {
   const { features } = useData();
   const { types } = useTypeData();
 
-  const facilities = features
-    .filter((feature) => feature.name === "Facilitati")
-    .map((feature) => ({
-      id: feature.id,
-      name: feature.name,
-      value: feature.value,
-      checked: false,
-    }));
+  const groupedFeatures = features.reduce((acc, feature) => {
+    if (!acc[feature.name]) acc[feature.name] = [];
+    acc[feature.name].push({ id: feature.id, value: feature.value });
+    return acc;
+  }, {});
+
+  const facilities = groupedFeatures["Facilitati"] || [];
 
   const [input, setInput] = useState({
     title: "",
     description: "",
-    propertyType: "",
     rentPrice: "",
     depositAmount: "",
     buildingYear: "",
     surface: "",
-    numberOfRooms: "",
-    floor: "",
-    furnishedStatus: "",
-    apartmentLayout: "",
-    heating: "",
-    elevator: "",
-    petsAllowed: "",
-    smokingPolicy: "",
-    rentFlexibility: "",
-    minimumRent: "",
-    buildingMaterial: "",
-    windowMaterial: "",
-    aditionalStorage: "",
-    propertyImage: [],
-    location: { county: "", city: "", addressDetails: "", googleMaps: "" },
-    amenities: facilities
+    listingTypeId: "",
+    address: {
+      addressDetails: "",
+      city: "",
+      county: "",
+      googleMap: ""
+    },
+    ownerId: "E51F5E7E-D9D0-4339-EF75-08DD19211861",
+    amenitiesIds: [],
+    photos: [],
   });
 
-  // handle property information
+  const [facilityState, setFacilityState] = useState(
+    facilities.map((item) => ({
+      id: item.id,
+      value: item.value,
+      checked: input.amenitiesIds.includes(item.id),
+    }))
+  );
+
+  const handleImageInput = async (images) => {
+    const uploadedPhotos = [];
+
+    for (const image of images) {
+      const formData = new FormData();
+      formData.append("image", image);
+
+      try {
+        const response = await ApiService.post("/detect-appliances", formData);
+        if (response.data) {
+          uploadedPhotos.push({
+            id: image.name,
+            img: URL.createObjectURL(image),
+            detectedObjects: response.data,
+            image: image
+          });
+
+          const detectedFacilities = response.data.map(
+            (detectedFacility) => detectedFacility.id
+          );
+
+          setFacilityState((prevState) =>
+            prevState.map((facility) => ({
+              ...facility,
+              checked: detectedFacilities.includes(facility.id),
+            }))
+          );
+
+          setInput((prevInput) => ({
+            ...prevInput,
+            amenitiesIds: detectedFacilities,
+          }));
+        } else {
+          uploadedPhotos.push({
+            id: image.name,
+            img: URL.createObjectURL(image),
+            detectedObjects: [],
+            image: image
+          });
+        }
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
+    }
+
+    setInput((prev) => ({
+      ...prev,
+      photos: [...prev.photos, ...uploadedPhotos],
+    }));
+  };
+
+  const handleImageDelete = (id) => {
+    setInput((prev) => ({
+      ...prev,
+      photos: prev.photos.filter((photo) => photo.id !== id),
+    }));
+  };
 
   const handleTextChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  // handle editable textarea
   const handleTextArea = (e) => {
     setInput({ ...input, [e.name]: e.value });
   };
 
-  // handle property location input sector
+  const handleListingTypeChange = (selectedId) => {
+    setInput((prevInput) => ({
+      ...prevInput,
+      listingTypeId: selectedId,
+    }));
+  };
 
-  const handleLocationChange = (e) => {
-    setInput({
-      ...input,
-      location: { ...input.location, [e.target.name]: e.target.value },
+  const handleDropdownChange = (groupName, selectedId) => {
+    setInput((prevInput) => {
+      const updatedAmenitiesIds = [...prevInput.amenitiesIds];
+      if (!updatedAmenitiesIds.includes(selectedId)) {
+        updatedAmenitiesIds.push(selectedId);
+      }
+      return { ...prevInput, amenitiesIds: updatedAmenitiesIds };
     });
   };
 
-  // Handle image uploads
-  const handleImageUpload = (files) => {
-    setInput((prevState) => ({
-      ...prevState,
-      propertyImage: [...prevState.propertyImage, ...files],
+  const handleFacilityChange = (id) => {
+    setInput((prevInput) => {
+      const updatedAmenitiesIds = prevInput.amenitiesIds.includes(id)
+        ? prevInput.amenitiesIds.filter((amenityId) => amenityId !== id)
+        : [...prevInput.amenitiesIds, id];
+
+      setFacilityState((prevState) =>
+        prevState.map((facility) =>
+          facility.id === id
+            ? { ...facility, checked: !facility.checked }
+            : facility
+        )
+      );
+
+      return { ...prevInput, amenitiesIds: updatedAmenitiesIds };
+    });
+  };
+
+  const handleAddressChange = (newAddressField) => {
+    setInput((prevInput) => ({
+      ...prevInput,
+      address: {
+        ...prevInput.address,
+        ...newAddressField,
+      },
     }));
   };
 
-   // Handle image deletion
-   const handleImageDelete = (id) => {
-    setInput((prevState) => ({
-      ...prevState,
-      propertyImage: prevState.propertyImage.filter(
-        (image, index) => index !== id
-      ),
-    }));
-  };
-  
-  const handleDropdownChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
-
-  // handle amenities
-
-  const handleCheckBox = (e, id) => {
-    setInput((prevState) => ({
-      ...prevState,
-      amenities: prevState.amenities.map((amenity) =>
-        amenity.id === id ? { ...amenity, checked: e.target.checked } : amenity
-      ),
-    }));
+  const renderSelectDropDowns = () => {
+    return Object.entries(groupedFeatures)
+      .filter(([groupName]) => groupName !== "Facilitati")
+      .map(([groupName, options]) => (
+        <SelectDropDown
+          key={groupName}
+          size="col-lg-6 col-md-6"
+          title={groupName}
+          name={groupName.toLowerCase().replace(/\s+/g, "")}
+          data={options}
+          handleChange={(e) => handleDropdownChange(groupName, e.target.value)}
+        />
+      ));
   };
 
-   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
-      const formData = new FormData();
+      const data = new FormData();
+      data.append('Title', input.title);
+      data.append('Description', input.description);
+      data.append('RentPrice', input.rentPrice);
+      data.append('DepositAmount', input.depositAmount);
+      data.append('BuildingYear', input.buildingYear);
+      data.append('Surface', input.surface);
+      data.append('ListingTypeId', input.listingTypeId);
 
-      // Append all input fields
-      Object.keys(input).forEach((key) => {
-        if (key === "propertyImage") {
-          // Append images separately
-          input.propertyImage.forEach((image) => {
-            formData.append("propertyImage", image);
-          });
-        } else if (typeof input[key] === "object" && input[key] !== null) {
-          // Append nested objects as JSON strings
-          formData.append(key, JSON.stringify(input[key]));
-        } else {
-          formData.append(key, input[key]);
-        }
+      // Address as a nested object
+      data.append('Address.AddressDetails', input.address.addressDetails);
+      data.append('Address.City', input.address.city);
+      data.append('Address.County', input.address.county);
+
+      data.append('OwnerId', input.ownerId);
+
+      // Append photos
+      // data.append('Photos', input.photos);
+
+      input.photos.forEach((photo) => {
+        data.append('Photos', photo.image);
       });
 
-      // Use apiService to make the POST request
-      const response = await ApiService.post("Listing", formData);
-      console.log(response);
-      
-      if (response.status === 200) {
-        console.log("Property submitted successfully!");
-      } else {
-        console.error("Error submitting property:", response.statusText);
-      }
+      // Append amenities as array
+      input.amenitiesIds.forEach((id) => {
+        data.append('AmenitiesIds', id);
+      });
+
+      const response = await ApiService.post('Listings', data);
+      console.log('Listing created successfully:', response.data);
     } catch (error) {
-      console.error("Error submitting property:", error);
+      console.error('Error creating listing:', error.response?.data || error.message);
     }
   };
 
@@ -163,195 +239,69 @@ function NewPropertyFrom() {
                       handleChange={handleTextArea}
                       placeholder="Descriere"
                     />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Tip Proprietate*"
-                      name="propertyType"
-                      value={input.propertyType}
-                      data={types}
-                      handleChange={handleDropdownChange}
-                    />
                     <PropertyTextInput
-                      size="col-lg-6 col-md-6"
                       title="Pret Chirie*"
+                      size="col-lg-6 col-md-6"
                       name="rentPrice"
                       value={input.rentPrice}
                       handleChange={handleTextChange}
                       placeholder="200"
                     />
                     <PropertyTextInput
-                      size="col-lg-6 col-md-6"
                       title="Avans Chirie*"
+                      size="col-lg-6 col-md-6"
                       name="depositAmount"
                       value={input.depositAmount}
                       handleChange={handleTextChange}
                       placeholder="200"
                     />
                     <PropertyTextInput
-                      size="col-lg-6 col-md-6"
                       title="An Constructie"
+                      size="col-lg-6 col-md-6"
                       name="buildingYear"
                       value={input.buildingYear}
                       handleChange={handleTextChange}
                       placeholder="2008"
                     />
                     <PropertyTextInput
-                      size="col-lg-6 col-md-6"
                       title="Suprafata (m2)*"
+                      size="col-lg-6 col-md-6"
                       name="surface"
                       value={input.surface}
                       handleChange={handleTextChange}
                       placeholder="46"
                     />
-                    <PropertyTextInput
-                      size="col-lg-6 col-md-6"
-                      title="Nr. Camere*"
-                      name="numberOfRooms"
-                      value={input.numberOfRooms}
-                      handleChange={handleTextChange}
-                      placeholder="2"
-                    />
                     <SelectDropDown
+                      title="Tip Proprietate*"
                       size="col-lg-6 col-md-6"
-                      title="Etaj*"
-                      name="floor"
-                      value={input.floor}
-                      data={features.filter(
-                        (feature) => feature.name === "Etaj"
-                      )}
-                      handleChange={handleDropdownChange}
+                      name="propertyType"
+                      value={input.listingTypeId}
+                      data={types}
+                      handleChange={(e) =>
+                        handleListingTypeChange(e.target.value)
+                      }
                     />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Status Mobilare*"
-                      name="furnishedStatus"
-                      value={input.furnishedStatus}
-                      data={features.filter(
-                        (feature) => feature.name === "Status Mobilare"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Aranjamentul Apartamentului*"
-                      name="apartmentLayout"
-                      value={input.apartmentLayout}
-                      data={features.filter(
-                        (feature) =>
-                          feature.name === "Aranjamentul Apartamentului"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Incalzire*"
-                      name="heating"
-                      value={input.heating}
-                      data={features.filter(
-                        (feature) => feature.name === "Incalzire"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Lift*"
-                      name="elevator"
-                      value={input.elevator}
-                      data={features.filter(
-                        (feature) => feature.name === "Lift"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Animale de companie*"
-                      name="petsAllowed"
-                      value={input.petsAllowed}
-                      data={features.filter(
-                        (feature) => feature.name === "Animale de companie"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Politica Fumat*"
-                      name="smokingPolicy"
-                      value={input.smokingPolicy}
-                      data={features.filter(
-                        (feature) => feature.name === "Politica Fumat"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Flexibilitate Chirie"
-                      name="rentFlexibility"
-                      value={input.rentFlexibility}
-                      data={features.filter(
-                        (feature) => feature.name === "Flexibilitate Chirie"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Perioada Minima de Inchiriere*"
-                      name="minimumRent"
-                      value={input.minimumRent}
-                      data={features.filter(
-                        (feature) =>
-                          feature.name === "Perioada Minima de Inchiriere"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Material Constructie"
-                      name="buildingMaterial"
-                      value={input.buildingMaterial}
-                      data={features.filter(
-                        (feature) => feature.name === "Material Constructie"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Material Ferestre"
-                      name="windowMaterial"
-                      value={input.windowMaterial}
-                      data={features.filter(
-                        (feature) => feature.name === "Material Ferestre"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
-                    <SelectDropDown
-                      size="col-lg-6 col-md-6"
-                      title="Depozitare Aditionala*"
-                      name="aditionalStorage"
-                      value={input.aditionalStorage}
-                      data={features.filter(
-                        (feature) => feature.name === "Depozitare Aditionala"
-                      )}
-                      handleChange={handleDropdownChange}
-                    />
+                    {renderSelectDropDowns()}
                   </div>
                 </div>
               </div>
               <PropertyLocationInput
-                location={input.location}
-                handleLocation={handleLocationChange}
+                address={input.address}
+                handleLocation={handleAddressChange}
               />
               <ImageInput
-                uploadedImg={input.propertyImage}
+                uploadedImg={input.photos}
                 handleDelete={handleImageDelete}
-                handleImage={handleImageUpload}
+                handleImage={handleImageInput}
               />
               <PropertyAmenitiesInput
-                amenities={input.amenities}
-                handleChange={handleCheckBox}
+                amenities={facilityState}
+                handleChange={handleFacilityChange}
               />
               <div className="row">
                 <div className="col-12 d-flex justify-content-end mg-top-40">
-                  <button type="submit" className="homec-btn homec-btn__second">
+                  <button type="submit" className="homec-btn homec-btn__second"
+                  onClick={handleSubmit}>
                     <span>Submit Property Now</span>
                   </button>
                 </div>

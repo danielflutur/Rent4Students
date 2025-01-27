@@ -17,7 +17,11 @@ const ApiService = {
 
     return axiosInstance.get(url);
   },
-  post: (endpoint, data) => axiosInstance.post(endpoint, data),
+  post: (endpoint, data) => {
+    const headers = data instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {};
+    return axiosInstance.post(endpoint, data, { headers });
+  },
+  
 };
 
 export default ApiService;

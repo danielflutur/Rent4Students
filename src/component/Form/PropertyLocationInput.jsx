@@ -6,7 +6,7 @@ import AddressApiService from "../../services/AddressApiService";
 import Preloader from "../Loader";
 import LocationPicker from "../LocationPicker/LocationPicker";
 
-function PropertyLocationInput({ location, handleLocation }) {
+function PropertyLocationInput({ address, handleLocation }) {
   const [selectedCounty, setSelectedCounty] = useState(null);
   const [counties, setCounties] = useState([]);
   const [localities, setLocalities] = useState([]);
@@ -32,9 +32,10 @@ function PropertyLocationInput({ location, handleLocation }) {
     AddressApiService.get(`geonameId=${countyId}`)
       .then((response) => {
         const filteredLocalities = response.data.geonames
-          .filter((locality) =>
-            locality.toponymName.startsWith("Municipiul") ||
-            locality.toponymName.startsWith("Oraș")
+          .filter(
+            (locality) =>
+              locality.toponymName.startsWith("Municipiul") ||
+              locality.toponymName.startsWith("Oraș")
           )
           .map((locality) => {
             const nameParts = locality.toponymName.split(" ");
@@ -42,7 +43,7 @@ function PropertyLocationInput({ location, handleLocation }) {
               name: nameParts.slice(1).join(" "),
               id: locality.geonameId,
               lat: parseFloat(locality.lat),
-              lng: parseFloat(locality.lng)
+              lng: parseFloat(locality.lng),
             };
           });
         setLocalities(filteredLocalities);
@@ -59,21 +60,32 @@ function PropertyLocationInput({ location, handleLocation }) {
     setSelectedCounty(selectedCounty);
     if (selectedCounty?.id) {
       fetchLocalities(selectedCounty.id);
-    } else {
-      setLocalities([]);
+      handleLocation({
+        county: selectedCounty.name, // Update only the county field
+      });
     }
   };
 
   const handleLocalityChange = (selected) => {
     const locality = selected[0];
     setSelectedLocality(locality);
-    console.log(selected);
+    handleLocation({
+      city: locality.name, // Update only the city field
+    });
   };
 
   const handleMapLocationChange = (location) => {
-    handleLocation({ ...location, googleMap: location });
+    handleLocation({
+      googleMap: location, // Update only the googleMap field
+    });
   };
-
+  
+  const handleTextArea = (data) => {
+    handleLocation({
+        addressDetails: data.target.value // Update only the addressDetails field
+    });
+  };
+  
   if (isLoading) {
     return <Preloader />;
   }
@@ -112,7 +124,7 @@ function PropertyLocationInput({ location, handleLocation }) {
                   name: locality.name,
                   id: locality.id,
                   lat: locality.lat,
-                  lng: locality.lng
+                  lng: locality.lng,
                 }))}
                 labelField="name"
                 valueField="id"
@@ -130,15 +142,15 @@ function PropertyLocationInput({ location, handleLocation }) {
           </div>
           <PropertyTextAreaV2
             title="Detalii Adresa(strada, numar, etc.)*"
-            value={location.addressDetails}
-            handleChange={handleLocation}
+            value={address.addressDetails}
+            handleChange={handleTextArea}
             name="addressDetails"
             placeHolder="Alexandru cel Bun, 12, Bl. B1, Sc. C, Ap.4"
           />
           <div className="col-12">
             <h4 className="homec-submit-form__heading">Pinpoint Location*</h4>
             <LocationPicker
-              initialLocation={location.googleMap}
+              initialLocation={address.googleMap}
               onLocationChange={handleMapLocationChange}
               center={
                 selectedLocality

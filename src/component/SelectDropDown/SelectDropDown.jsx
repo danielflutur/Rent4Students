@@ -1,16 +1,8 @@
 import Select from "react-dropdown-select";
 
-function SelectDropDown({
-  size,
-  title,
-  margin,
-  data,
-  name,
-  value,
-  handleChange,
-}) {
+function SelectDropDown({ size, title, margin, data, name, handleChange }) {
   return (
-    <div className={`${size && size} col-12 `}>
+    <div className={`${size && size} col-12`}>
       <div className="mg-top-20">
         <h4
           className="homec-submit-form__heading"
@@ -20,7 +12,7 @@ function SelectDropDown({
         </h4>
         <div className="form-group homec-form-input">
           <Select
-            values={[data[0]]}
+            values={[]}
             options={data.map((individualData) => ({
               name: individualData.value,
               id: individualData.id,
@@ -28,13 +20,16 @@ function SelectDropDown({
             labelField="name"
             valueField="id"
             onChange={(selectedValues) => {
-              handleChange({ target: { name, value: selectedValues[0]?.id } });
+              if (selectedValues.length > 0) {
+                handleChange({
+                  target: { name, value: selectedValues[0].id }, // Pass correct data
+                });
+              }
             }}
             searchBy="name"
-            searchable={true}
-            handle={true}
+            searchable
             placeholder="Select"
-            closeOnSelect={true}
+            closeOnSelect
             dropdownPosition="auto"
             className="homec-form-select homec-border"
           />

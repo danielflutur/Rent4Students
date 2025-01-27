@@ -34,7 +34,7 @@ function HeroSlider() {
               price={`${listing.rentPrice}`}
               pricePeriod="month"
               title={listing.title}
-              propertyText={listing.address.streetAddress}
+              propertyText={listing.address.addressDetails}
               propertyImg="/img/location-icon2.svg"
             />
           );

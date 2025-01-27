@@ -41,7 +41,7 @@ function LatestPropertyCard({
           </h3>
           <div className="homec-property__text">
             <img src="img/location-icon.svg" alt="#" />
-            <p>{address.streetAddress}</p>
+            <p>{address.addressDetails}</p>
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import ProtoTypes from "prop-types";
+import PropTypes from "prop-types";
 import PropertyCheckInput from "./PropertyCheckInput";
 
 function PropertyAmenitiesInput({ amenities, handleChange }) {
@@ -12,7 +12,7 @@ function PropertyAmenitiesInput({ amenities, handleChange }) {
               key={item.id}
               title={item.value}
               isChecked={item.checked}
-              handleChange={handleChange}
+              handleChange={() => handleChange(item.id)}
             />
           ))}
         </div>
@@ -22,7 +22,8 @@ function PropertyAmenitiesInput({ amenities, handleChange }) {
 }
 
 PropertyAmenitiesInput.propTypes = {
-  handleChange: ProtoTypes.func.isRequired,
+  amenities: PropTypes.array.isRequired,
+  handleChange: PropTypes.func.isRequired,
 };
 
 export default PropertyAmenitiesInput;
