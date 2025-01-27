@@ -2,20 +2,25 @@ import { useEffect, useState } from "react";
 import WelcomeCard from "../Cards/WelcomeCard";
 import PropertyTextInput from "../Form/PropertyTextInput";
 import Preloader from "../Loader";
+import WelcomeCardValidatePhoneNumber from "../Cards/WelcomeCardValidatePhoneNumber";
+import { useTranslation } from "react-i18next"; // Importați useTranslation
 
-function SignUp() {
+function ValidatePhoneNumber() {
   const [input, setInput] = useState({
     validationCode: "",
   });
+  
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
   // Loading Handle
-  const [isLoading, setisLoadingg] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setisLoadingg(false);
+    setIsLoading(false);
   }, []);
+
+  const { t } = useTranslation(); // Folosim useTranslation pentru a obține funcția de traducere
 
   let component = undefined;
   if (isLoading) {
@@ -29,17 +34,17 @@ function SignUp() {
               <div className="ecom-wc__form">
                 <div className="ecom-wc__form-inner">
                   <h3 className="ecom-wc__form-title ecom-wc__form-title__one">
-                    Validate you phone number
+                    {t('validate_phone_number.title')} {/* Traducere */}
                   </h3>
                   <form
-                    className="ecom-wc__form-main p-0  "
+                    className="ecom-wc__form-main p-0"
                     action="index.html"
                     method="post"
                   >
                     <div className="row">
                       <PropertyTextInput
                         size="col-lg-6 col-md-6"
-                        title="Validation Code*"
+                        title={t('validate_phone_number.validation_code')} 
                         name="validationCode"
                         value={input.validationCode}
                         handleChange={handleChange}
@@ -49,26 +54,17 @@ function SignUp() {
                     </div>
                     <div className="form-group form-mg-top-30">
                       <div className="ecom-wc__button ecom-wc__button--bottom">
-                        <button
-                          className="homec-btn homec-btn__second"
-                          type="submit"
-                        >
-                          <span>Validate</span>
-                        </button>
+                        <a href="/welcome-students" className="homec-btn homec-btn__second" type="submit">
+                          <span>{t('validate_phone_number.validate_button')}</span> {/* Traducere */}
+                        </a>
                       </div>
                     </div>
                   </form>
                 </div>
               </div>
             </div>
-            <WelcomeCard
-              languages={["English", "Bengali", "Frances"]}
-              links={[
-                { link: "#", name: "Terms & Condition" },
-                { link: "#", name: "Privacy Policy" },
-                { link: "#", name: "Help" },
-              ]}
-              image="https://placehold.co/600x600"
+            <WelcomeCardValidatePhoneNumber
+              image="img/validate_phone.png"
               brunches="120"
               builtHouse="150k"
             />
@@ -77,7 +73,8 @@ function SignUp() {
       </section>
     );
   }
+  
   return component;
 }
 
-export default SignUp;
+export default ValidatePhoneNumber;

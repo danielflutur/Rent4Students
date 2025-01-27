@@ -6,11 +6,17 @@ import { MenuOutlined } from "@ant-design/icons";
 import SideNavbar from "../SideNavbar/SideNavbar";
 
 const { Header } = Layout;
-const NavPanel = ({ handleSidebar, extendSidebar, collapsed}) => {
+const NavPanel = ({ handleSidebar, extendSidebar, collapsed }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [language, setLanguage] = useState("en");
 
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 768);
+  };
+
+  const handleLanguageChange = (selectedLanguage) => {
+    setLanguage(selectedLanguage);
+    // Poți adăuga logica necesară pentru a schimba limba aplicației, de exemplu actualizarea unui context sau apelarea unui API
   };
 
   useEffect(() => {
@@ -38,7 +44,7 @@ const NavPanel = ({ handleSidebar, extendSidebar, collapsed}) => {
           </Button>
         </Header>
       ) : (
-        <SideNavbar extendSidebar={extendSidebar} collapsed={collapsed}/>
+        <SideNavbar extendSidebar={extendSidebar} collapsed={collapsed} />
       )}
     </Layout>
   );

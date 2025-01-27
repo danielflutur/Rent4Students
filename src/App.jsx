@@ -22,10 +22,19 @@ import ErrorPage from "./component/Error";
 import Contact from "./component/Contact";
 import SignUp from "./component/SignUp";
 import SignUpUniversity from "./component/SignUpUniversity";
+import SignUpStudent from "./component/SignUpStudent/index.jsx";
 import RoleSelection from "./component/RoleSelection";
 import HomeUniversity from "./component/HomeUniversity/HomeUniversity.jsx";
 import PricingUniversity from "./component/PricingUniversity.jsx/index.jsx";
 import ValidatePhoneNumber from "./component/ValidatePhoneNumber/ValidatePhoneNumber.jsx"
+import AddFaculty from "./component/AddFaculty/index.jsx";
+import Faculty from "./component/Faculty/index.jsx";
+import EditFaculty from "./component/EditFaculty/index.jsx";
+import WelcomeStudents from "./component/WelcomeStudents/index.jsx";
+import Page1PersonalData from "./component/ProgressiveBar/Page1PersonalData.jsx";
+import Page2HousingPreferences from "./component/ProgressiveBar/Page2HousingPreferences.jsx";
+import ProgressiveBar from "./component/ProgressiveBar/index.jsx";
+import Page3HouseRules from "./component/ProgressiveBar/Page3HouseRules.jsx";
 
 function App() {
   useEffect(() => {
@@ -114,6 +123,29 @@ function App() {
       element: <SignUpUniversity />,
     },
     {
+      path: "/signup-student",
+      element: <SignUpStudent />,
+    },
+    {
+      path: "/welcome-students",
+      element: <WelcomeStudents />,
+    },
+    {
+      path: "/page-1-personal-data",
+      element: <Page1PersonalData />,
+    },
+    {
+      path: "/page-2-housing-preferences",
+      element: <Page2HousingPreferences />,
+    },
+    {
+      path: "/page-3-home-rules",
+      element: <Page3HouseRules />,
+    },
+    {
+      element: <ProgressiveBar />,
+    },
+    {
       path: "/404",
       element: <ErrorPage />,
     },
@@ -128,6 +160,18 @@ function App() {
     {
       path: "/validate-phone",
       element: <ValidatePhoneNumber />,
+    },
+    {
+      path: "/add-faculty",
+      element: <AddFaculty />,
+    },
+    {
+      path: "/faculty",
+      element: <Faculty />,
+    },
+    {
+      path: "/edit-faculty/:id",  // Define dynamic route with the ID parameter
+      element: <EditFaculty />,
     }
   ]);
 
