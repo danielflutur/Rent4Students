@@ -1,12 +1,12 @@
-import HeroSliderSlide from "./HeroSliderSlide";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import { responsiveHeroSlider } from "../../utils/responsiveSlider";
 import { CustomDot } from "../CustomDot/CustomDot";
 import { useContext } from "react";
 import { ListingsContext } from "../../context/ListingsProvider";
+import ListingSliderSlide from "../ListingSliderSlide/ListingSliderSlide";
 
-function HeroSlider() {
+function ListingHeroSlider() {
   const listings = useContext(ListingsContext);
 
   return (
@@ -27,7 +27,7 @@ function HeroSlider() {
       >
         {listings.slice(0, 3).map((listing) => {
           return (
-            <HeroSliderSlide
+            <ListingSliderSlide
               key={listing.id}
               link={`property-single/${listing.id}`}
               img={listing.photos[0]}
@@ -44,4 +44,4 @@ function HeroSlider() {
   );
 }
 
-export default HeroSlider;
+export default ListingHeroSlider;

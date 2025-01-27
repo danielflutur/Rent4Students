@@ -885,8 +885,6 @@ input[type="checkbox"]:checked::before {
   box-shadow: 0px 9px 126px rgba(20, 0, 255, 0.06);
   border-radius: 8px;
   padding: 12px;
-  height: 400px;
-  width: 100%;
 }
 
 .homec-property__topbar {
@@ -908,7 +906,6 @@ input[type="checkbox"]:checked::before {
 }
 .homec-property__head img {
   width: 100%;
-  height: 200px;
   border-radius: 4px;
 }
 .homec-property__hsticky {
@@ -1810,7 +1807,6 @@ input[type="checkbox"]:checked::before {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 170px;
   background: transparent;
   z-index: 100;
   padding: 0;
