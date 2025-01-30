@@ -11,15 +11,9 @@ function FacultyBar({ gridStyle, handleGridStyle }) {
         {/* Show Results   */}
         {/* End Show Results  */}
       </div>
-      <div className="homec-property-bar__single">
-        <div
-          id="homec-tabs"
-          className="list-group homec-gl-tabs"
-          role="tablist"
-        >
-        </div>
-      </div>
+      
     </div>
+ 
   );
 }
 

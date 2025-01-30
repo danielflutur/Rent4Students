@@ -107,6 +107,15 @@ const MenuList = () => {
         </Menu.Item>
       </Menu.SubMenu>
 
+      <Menu.Item key="roommates" icon={<ContactsOutlined />}>
+        <Link to="/roommates">{t("menu.roommates")}</Link>
+      </Menu.Item>
+
+      <Menu.Item key="renthelp" icon={<ContactsOutlined />}>
+      <Link to="/apply-for-rent-help">{t("menu.renthelp")}</Link>
+      </Menu.Item>
+
+
       <Menu.SubMenu key="agents" icon={<ContactsOutlined />} title={t("menu.agents")}>
         <Menu.Item key="our_agent">
           <Link to="/our-agent">{t("menu.our_agent")}</Link>

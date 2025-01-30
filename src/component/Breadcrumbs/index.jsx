@@ -5,7 +5,7 @@ function Breadcrumbs({ title, children, titlePosition, background, overlay }) {
     <section
       className="breadcrumbs__content"
       style={{
-        backgroundImage: `url(/img/role_page.jpg)`, // Use the imported image
+        backgroundImage: `url(/img/role_page.png)`, // Use the imported image
       }}
     >
       {overlay && <div className="homec-overlay"></div>}

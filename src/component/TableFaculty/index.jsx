@@ -5,7 +5,7 @@ import EmailTemplate from "../Form/EmailTemplate";
 import { useTranslation } from "react-i18next";
 
 const TableSecretary = () => {
-  const { t } = useTranslation(); // Hook pentru traducere
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedFaculty, setSelectedFaculty] = useState(null);
@@ -29,14 +29,14 @@ const TableSecretary = () => {
       title: t("faculty_name"),
       dataIndex: "nameFaculty",
       key: "nameFaculty",
-      width: 150,
+      width: 300,
       render: (text) => <a>{text}</a>,
     },
     {
       title: t("secretary"),
       dataIndex: "secretary",
       key: "secretary",
-      width: 200,
+      width: 250,
       render: (text) => <a>{text}</a>,
     },
     {
@@ -97,10 +97,10 @@ const TableSecretary = () => {
         <Space size="middle">
           <button
             type="button"
-            className="homec-btn homec-btn__second"
+            className="edit-btn"
             onClick={() => navigate(`/edit-faculty/${record.key}`)}
           >
-            <span>{t("edit")}</span>
+            <span>{t("edit")}</span> {/* Textul "Edit" pe buton */}
           </button>
         </Space>
       ),
@@ -113,10 +113,10 @@ const TableSecretary = () => {
         <Space size="middle">
           <button
             type="button"
-            className="homec-btn homec-btn-delete"
+            className="delete-btn"
             onClick={() => showModal(record)}
           >
-            <span>{t("delete")}</span>
+            <span>{t("delete")}</span> {/* Textul "Delete" pe buton */}
           </button>
         </Space>
       ),
@@ -126,39 +126,60 @@ const TableSecretary = () => {
   const data = [
     {
       key: "1",
-      nameFaculty: "Engineering",
-      secretary: "John Brown",
-      email: "john@gmail.com",
+      nameFaculty: "Faculty of Computer Science",
+      secretary: "Laura Ionescu",
+      email: "laura.ionescu@university.com",
       tags: ["SENT"],
     },
     {
       key: "2",
-      nameFaculty: "Medicine",
-      secretary: "Aa Bb",
-      email: "a@gmail.com",
+      nameFaculty: "Faculty of Medicine",
+      secretary: "Alexandru Popescu",
+      email: "alexandru.popescu@university.com",
       tags: ["IN PROGRESS"],
     },
     {
       key: "3",
-      nameFaculty: "Physics",
-      secretary: "Cc Dd",
-      email: "c@gmail.com",
+      nameFaculty: "Faculty of Law",
+      secretary: "Maria Georgescu",
+      email: "maria.georgescu@university.com",
       tags: ["SEND"],
     },
     {
       key: "4",
-      nameFaculty: "Chemistry",
-      secretary: "Dd Ee",
-      email: "d@gmail.com",
+      nameFaculty: "Faculty of Engineering",
+      secretary: "Ion Marinescu",
+      email: "ion.marinescu@university.com",
       tags: ["FAILED"],
     },
+    {
+      key: "5",
+      nameFaculty: "Faculty of Business Administration",
+      secretary: "Elena Dumitrescu",
+      email: "elena.dumitrescu@university.com",
+      tags: ["IN PROGRESS"],
+    },
+    {
+      key: "6",
+      nameFaculty: "Faculty of Arts",
+      secretary: "Vasile Ionescu",
+      email: "vasile.ionescu@university.com",
+      tags: ["SENT"],
+    },
   ];
+  
 
   return (
-    <>
-      <Table columns={columns} dataSource={data} tableLayout="fixed" />
+    <div className="table-container">
+      <Table
+        columns={columns}
+        dataSource={data}
+        tableLayout="fixed"
+        pagination={{ pageSize: 5 }}
+        scroll={{ x: true }}
+      />
 
-      {/* Modal pentru confirmare ștergere */}
+      {/* Modal for Delete Confirmation */}
       <Modal
         title={t("confirm_delete")}
         open={isModalOpen}
@@ -171,7 +192,7 @@ const TableSecretary = () => {
           {t("are_you_sure_delete")} <strong>{selectedFaculty?.nameFaculty}</strong>?
         </p>
       </Modal>
-    </>
+    </div>
   );
 };
 
