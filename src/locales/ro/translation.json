@@ -239,13 +239,51 @@
     "atheist": "Ateu/Agnostic",
     "otherReligion": "Alta religie",
     "specifyReligion": "Specifica religia",
-    "nextPage": "Următoare pagina"
+    "nextPage": "Următoare pagina",
+    "additional_info": "Informații adiționale",
+    "additional_info_description": "Aceste informații ne vor ajuta să îți oferim cea mai bună experiență în cadrul aplicației. Aceste detalii vor fi procesate automat pe parcursul procesului de înregistrare.",
+    "studentIdNumber": "Număr matricol",
+    "yearOfStudy": "Anul de studiu",
+    "gender": "Genul",
+    "birthDate": "Data nașterii"
   },
 
   "validate_phone_number": {
     "title": "Verifică numărul de telefon",
+    "phone_number": "Introdu numărul de telefon",
+    "confirm_button": "Confirmare număr",
+    "resend_code_button": "Retrimitere cod",
     "validation_code": "Codul de validare*",
+    "invalid_code": "Codul este invalid*",
     "validate_button": "Validare"
+  },
+
+  "personal_data_form":{
+    "personal_and_lifestyle": "Informații personale și stil de viață",
+    "personal_and_lifestyle_description": "Aceste informații ne vor ajuta să îți oferim cea mai bună experiență în cadrul aplicației. Aceste detalii vor fi procesate automat pe parcursul procesului de înregistrare.",
+    "ocupation": "Ocupație",
+    "religion": "Religie",
+    "dietaryPreferences": "Preferințe alimentare",
+    "sleepingHours": "Program de somn obișnuit",
+    "smokingHabbit": "Obiceiuri fumat",
+    "alcoholConsumption": "Consum de alcool",
+    "petOwnership": "Deținere animale",
+    "petPreferences": "Preferințe animale",
+    "living_and_social": "Conviețuire și obiceiuri sociale",
+    "noiseTolerance": "Toleranță la zgomot",
+    "cleanlinessLevel": "Nivel de curățenie",
+    "cookingHabbits": "Obiceiuri de gătit",
+    "prefferedLiving": "Aranjament preferat",
+    "exerciseRoutine": "Rutină exerciții fizice",
+    "socialHabbits": "Obiceiuri sociale",
+    "prefferedRoommate": "Genul colegului de apartament",
+    "guestTolerance": "Toleranță la oaspeți",
+    "compatibility_and_communication": "Compatibilitate și comunicare",
+    "studyEnvironment": "Mediu de studiu",
+    "prefferedCommunication": "Mijloc de comunicare preferat",
+    "personalityType": "Tipul personalității",
+    "resolutionType": "Tipul de mediere a conflictelor",
+    "nextPage": "Urmatoarea pagină"
   },
 
   "hero_student_welcome": "Bine ați venit la RENT4STUDENTS",

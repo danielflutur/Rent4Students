@@ -216,13 +216,36 @@
     "atheist": "Atheist/Agnostic",
     "otherReligion": "Other religion",
     "specifyReligion": "Specify religion",
-    "nextPage": "Next Page"
+    "nextPage": "Next Page",
+    "additional_info": "Additional Info",
+    "additional_info_description": "These informations will help us to offer the best experience in using our app. These details will be processed automatically during the registration proccess.",
+    "studentIdNumber": "Student ID Number",
+    "yearOfStudy": "Year of study",
+    "gender": "Gender",
+    "birthDate": "Date of birth"
   },
 
   "validate_phone_number": {
     "title": "Validate your phone number",
+    "phone_number": "Insert your phone number",
+    "confirm_button": "Confirm number",
+    "resend_code_button": "Resend Code",
     "validation_code": "Validation Code*",
+    "invalid_code": "Invalid Code*",
     "validate_button": "Validate"
+  },
+  "personal_data_form":{
+    "personal_and_lifestyle": "Informații personale și stil de viață",
+    "personal_and_lifestyle_description": "Aceste informații ne vor ajuta să îți oferim cea mai bună experiență în cadrul aplicației. Aceste detalii vor fi procesate automat pe parcursul procesului de înregistrare.",
+    "ocupation": "Ocupație",
+    "religion": "Religie",
+    "dietaryPreferences": "Preferințe alimentare",
+    "sleepingHours": "Program de somn obișnuit",
+    "smokingHabbit": "Obiceiuri fumat",
+    "alcoholConsumption": "Consum de alcool",
+    "petOwnership": "Deținere animale",
+    "petPreferences": "Preferințe animale",
+    "nextPage": "Urmatoarea pagină"
   },
 
   "rent_help_title": "Apply for Rent Help",

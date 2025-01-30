@@ -1,6 +1,6 @@
 import Select from "react-dropdown-select";
 
-function SelectDropDown({ size, title, margin, data, name, handleChange }) {
+function SelectDropDown({ size, title, margin, data, name, handleChange, defaultValueId }) {
   return (
     <div className={`${size && size} col-12`}>
       <div className="mg-top-20">
@@ -12,7 +12,7 @@ function SelectDropDown({ size, title, margin, data, name, handleChange }) {
         </h4>
         <div className="form-group homec-form-input">
           <Select
-            values={[]}
+            values={defaultValueId}
             options={data.map((individualData) => ({
               name: individualData.value,
               id: individualData.id,

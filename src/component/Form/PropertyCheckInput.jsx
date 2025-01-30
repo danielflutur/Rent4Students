@@ -1,8 +1,9 @@
 import ProtoTypes from "prop-types";
+import "../StudentHobbiesInput/StudentHobbiesInput.css";
 
 function PropertyCheckInput({ title, handleChange, isChecked }) {
   return (
-    <div className="form-group homec-form-checkbox mg-top-15">
+    <div className="form-group page-form-checkbox mg-top-15">
       <input
         type="checkbox"
         id="item2"
@@ -10,7 +11,7 @@ function PropertyCheckInput({ title, handleChange, isChecked }) {
         checked={isChecked}
         onChange={(e) => handleChange(e)}
       />
-      <label className="homec-form-label" htmlFor="item2">
+      <label className="page-form-label" htmlFor="item2">
         {title}
       </label>
     </div>

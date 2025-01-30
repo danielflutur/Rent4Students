@@ -31,10 +31,12 @@ import AddFaculty from "./component/AddFaculty/index.jsx";
 import Faculty from "./component/Faculty/index.jsx";
 import EditFaculty from "./component/EditFaculty/index.jsx";
 import WelcomeStudents from "./component/WelcomeStudents/index.jsx";
-import Page1PersonalData from "./component/ProgressiveBar/Page1PersonalData.jsx";
-import Page2HousingPreferences from "./component/ProgressiveBar/Page2HousingPreferences.jsx";
-import ProgressiveBar from "./component/ProgressiveBar/index.jsx";
-import Page3HouseRules from "./component/ProgressiveBar/Page3HouseRules.jsx";
+import Page1PersonalData from "./component/StudentDetails/Page1PersonalData.jsx";
+import Page2HousingPreferences from "./component/StudentDetails/Page2HousingPreferences.jsx";
+import Page3HouseRules from "./component/StudentDetails/Page3HouseRules.jsx";
+import AdditionalStudentDetails from "./component/AdditionalStudentDetails/AdditionalStudentDetails.jsx";
+import Page2LivingAndSocialPreferences from "./component/StudentDetails/Page2LivingAndSocialPreferences.jsx";
+import Page3CompatibilityAndCommunication from "./component/StudentDetails/Page3CompatibilityAndCommunication.jsx";
 import HomeStudent from "./component/HomeStudent/HomeStudent.jsx";
 import StudentDetail from "./component/StudentDetail/StudentDetail.jsx";
 import Roommates from "./component/Roommates/index.jsx";
@@ -155,15 +157,25 @@ function App() {
       element: <Page1PersonalData />,
     },
     {
+      path: "/page-2-living-social",
+      element: <Page2LivingAndSocialPreferences />,
+    },
+    {
+      path: "/page-3-compatibility-communication",
+      element: <Page3CompatibilityAndCommunication />,
+    },
+    
+    {
+      path: "/additional-student-data",
+      element: <AdditionalStudentDetails />,
+    },
+    {
       path: "/page-2-housing-preferences",
       element: <Page2HousingPreferences />,
     },
     {
       path: "/page-3-home-rules",
       element: <Page3HouseRules />,
-    },
-    {
-      element: <ProgressiveBar />,
     },
     {
       path: "/404",
