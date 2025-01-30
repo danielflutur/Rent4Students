@@ -1,0 +1,58 @@
+.page-form-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content; /* Prevents stretching */
+  max-width: 100%;
+}
+
+.page-form-checkbox input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px !important; /* Explicit size */
+  height: 20px !important;
+  border: 1px solid #333;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  display: inline-block; /* Prevents flex-related stretching */
+  position: relative; /* Needed for the pseudo-element */
+}
+
+input[type="checkbox"]:checked {
+  background: #7166f0;
+  border-color: #7166f0;
+}
+
+input[type="checkbox"]:checked::before {
+  content: "\f00c";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  color: #fff;
+  font-size: 11px;
+  
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); /* Center the checkmark */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.page-form-checkbox label {
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.page-form-label {
+  color: #7e8ba0;
+  font-size: 16px;
+}
+
+.page-form-checkbox input:checked + .page-form-label {
+  color: #1a1a1a;
+}

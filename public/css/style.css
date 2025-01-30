@@ -1726,7 +1726,6 @@ input[type="checkbox"]:checked::before {
   .select2-selection--single {
   background: transparent;
   border: none;
-  padding: ;
   padding: 0;
   min-height: initial;
   height: initial;
