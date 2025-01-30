@@ -1,7 +1,8 @@
 import ProtoTypes from "prop-types";
 import { Link } from "react-router-dom";
+import "../ListingSliderSlide/ListingSliderSlide.css"
 
-function HeroSliderSlide({
+function ListingSliderSlide({
   link,
   img,
   price,
@@ -13,20 +14,20 @@ function HeroSliderSlide({
   return (
     <div className="swiper-slide" style={{ marginBottom: "50px" }}>
       {/* Single property */}
-      <Link to={link} className="homec-property homec-property__card">
+      <Link to={link} className="listing-property listing-property__card">
         {/* Property Head */}
-        <div className="Listing-property__head">
-          <div className="homec-overlay"></div>
+        <div className="listing-property__head">
+          <div className="listing-overlay"></div>
           <img src={img} alt="#" />
         </div>
         {/* Property Body  */}
         <div className="listing-property__body">
-          <div className="homec-property__body--inside">
-            <div className="homec-property__price">
+          <div className="listing-property__body--inside">
+            <div className="listing-property__price">
               ${price} <span>/{pricePeriod}</span>
             </div>
-            <h3 className="homec-property__title">{title}</h3>
-            <div className="homec-property__text">
+            <h3 className="listing-property__title">{title}</h3>
+            <div className="listing-property__text">
               <img src={propertyImg} alt="#" />
               <p>{propertyText}</p>
             </div>
@@ -38,7 +39,7 @@ function HeroSliderSlide({
   );
 }
 
-HeroSliderSlide.propTypes = {
+ListingSliderSlide.propTypes = {
   link: ProtoTypes.string.isRequired,
   img: ProtoTypes.string.isRequired,
   price: ProtoTypes.string.isRequired,
@@ -48,4 +49,4 @@ HeroSliderSlide.propTypes = {
   propertyImg: ProtoTypes.string.isRequired,
 };
 
-export default HeroSliderSlide;
+export default ListingSliderSlide;

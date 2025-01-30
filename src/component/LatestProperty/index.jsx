@@ -13,6 +13,7 @@ function LatestProperty() {
       .then((response) => setData(response.data))
       .catch((error) => console.error("Error fetching data:", error));
   }, []);
+
   return (
     <section
       className="homec-properties homec-bg-cover pd-top-120 pd-btm-120"
@@ -29,7 +30,6 @@ function LatestProperty() {
       <div className="container">
         <div className="row">
           <div className="col-12">
-            {/* Section TItle */}
             <Title
               firstText="View All 329 New Listings"
               secondText=" Latest Properties"

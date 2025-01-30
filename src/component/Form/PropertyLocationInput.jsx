@@ -1,84 +1,168 @@
 import ProtoTypes from "prop-types";
-import PropertyTextInput from "./PropertyTextInput";
 import PropertyTextAreaV2 from "./PropertyTextAreaV2";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Select from "react-dropdown-select";
+import AddressApiService from "../../services/AddressApiService";
+import Preloader from "../Loader";
+import LocationPicker from "../LocationPicker/LocationPicker";
 
-function PropertyLocationInput({ location, handleLocation }) {
-  const [value, setValue] = useState({
-    id: 1,
-    name: "Dhaka",
-  });
+function PropertyLocationInput({ address, handleLocation }) {
+  const [selectedCounty, setSelectedCounty] = useState(null);
+  const [counties, setCounties] = useState([]);
+  const [localities, setLocalities] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isFetchingLocalities, setIsFetchingLocalities] = useState(false);
+  const [selectedLocality, setSelectedLocality] = useState(null);
+
+  useEffect(() => {
+    setIsLoading(true);
+    AddressApiService.get("geonameId=798549")
+      .then((response) => {
+        setCounties(response.data.geonames);
+        setIsLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching counties:", error);
+        setIsLoading(false);
+      });
+  }, []);
+
+  const fetchLocalities = (countyId) => {
+    setIsFetchingLocalities(true);
+    AddressApiService.get(`geonameId=${countyId}`)
+      .then((response) => {
+        const filteredLocalities = response.data.geonames
+          .filter(
+            (locality) =>
+              locality.toponymName.startsWith("Municipiul") ||
+              locality.toponymName.startsWith("Oraș")
+          )
+          .map((locality) => {
+            const nameParts = locality.toponymName.split(" ");
+            return {
+              name: nameParts.slice(1).join(" "),
+              id: locality.geonameId,
+              lat: parseFloat(locality.lat),
+              lng: parseFloat(locality.lng),
+            };
+          });
+        setLocalities(filteredLocalities);
+        setIsFetchingLocalities(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching localities:", error);
+        setIsFetchingLocalities(false);
+      });
+  };
+
+  const handleCountyChange = (selected) => {
+    const selectedCounty = selected[0];
+    setSelectedCounty(selectedCounty);
+    if (selectedCounty?.id) {
+      fetchLocalities(selectedCounty.id);
+      handleLocation({
+        county: selectedCounty.name, // Update only the county field
+      });
+    }
+  };
+
+  const handleLocalityChange = (selected) => {
+    const locality = selected[0];
+    setSelectedLocality(locality);
+    handleLocation({
+      city: locality.name, // Update only the city field
+    });
+  };
+
+  const handleMapLocationChange = (location) => {
+    handleLocation({
+      googleMap: location, // Update only the googleMap field
+    });
+  };
+  
+  const handleTextArea = (data) => {
+    handleLocation({
+        addressDetails: data.target.value // Update only the addressDetails field
+    });
+  };
+  
+  if (isLoading) {
+    return <Preloader />;
+  }
+
   return (
     <div className="homec-submit-form mg-top-40">
-      <h4 className="homec-submit-form__title">Property Location</h4>
+      <h4 className="homec-submit-form__title">Adresa Proprietatii</h4>
       <div className="homec-submit-form__inner">
         <div className="row">
           <div className="col-lg-6 col-md-6 col-12">
-            {/* Single Form Element   */}
             <div className="mg-top-20">
-              <h4 className="homec-submit-form__heading">City*</h4>
-              <div className="form-group homec-form-input">
-                <Select
-                  values={[value]}
-                  options={[
-                    {
-                      id: 1,
-                      name: "Dhaka",
-                    },
-                    {
-                      id: 2,
-                      name: "Chittagong",
-                    },
-                    {
-                      id: 2,
-                      name: "Khulna",
-                    },
-                  ]}
-                  labelField="name"
-                  valueField="id"
-                  onChange={(values) => setValue(values)}
-                  searchBy="name"
-                  searchable={true}
-                  handle={true}
-                  placeholder="Select"
-                  closeOnSelect={true}
-                  dropdownPosition="auto"
-                  className="homec-form-select homec-border"
-                />
-              </div>
+              <h4 className="homec-submit-form__heading">Județul*</h4>
+              <Select
+                values={selectedCounty ? [selectedCounty] : []}
+                options={counties.map((county) => ({
+                  name: county.toponymName,
+                  id: county.geonameId,
+                }))}
+                labelField="name"
+                valueField="id"
+                onChange={handleCountyChange}
+                searchable={true}
+                placeholder="Select County"
+                closeOnSelect={true}
+                dropdownPosition="auto"
+                className="homec-form-select homec-border"
+              />
             </div>
           </div>
-          <PropertyTextInput
-            size="col-lg-6 col-md-6"
-            title="Total Unit*"
-            name="address"
-            value={location.address}
-            handleChange={handleLocation}
-            placeholder="10/13 Link Road, Badda Dhaka"
-          />
+          <div className="col-lg-6 col-md-6 col-12">
+            <div className="mg-top-20">
+              <h4 className="homec-submit-form__heading">Orașul*</h4>
+              <Select
+                values={selectedLocality ? [selectedLocality] : []}
+                options={localities.map((locality) => ({
+                  name: locality.name,
+                  id: locality.id,
+                  lat: locality.lat,
+                  lng: locality.lng,
+                }))}
+                labelField="name"
+                valueField="id"
+                onChange={handleLocalityChange}
+                searchable={true}
+                placeholder={
+                  isFetchingLocalities ? "Loading..." : "Select Locality"
+                }
+                closeOnSelect={true}
+                dropdownPosition="auto"
+                className="homec-form-select homec-border"
+                disabled={isFetchingLocalities || !selectedCounty}
+              />
+            </div>
+          </div>
           <PropertyTextAreaV2
-            title="Address Details*"
-            value={location.addressDetails}
-            handleChange={handleLocation}
+            title="Detalii Adresa(strada, numar, etc.)*"
+            value={address.addressDetails}
+            handleChange={handleTextArea}
             name="addressDetails"
-            placeHolder="10/13 Link Road, Badda Dhaka"
+            placeHolder="Alexandru cel Bun, 12, Bl. B1, Sc. C, Ap.4"
           />
-          <PropertyTextAreaV2
-            title="Google Map*"
-            value={location.googleMap}
-            handleChange={handleLocation}
-            name="googleMap"
-          />
+          <div className="col-12">
+            <h4 className="homec-submit-form__heading">Pinpoint Location*</h4>
+            <LocationPicker
+              initialLocation={address.googleMap}
+              onLocationChange={handleMapLocationChange}
+              center={
+                selectedLocality
+                  ? { lat: selectedLocality.lat, lng: selectedLocality.lng }
+                  : null
+              }
+            />
+          </div>
         </div>
       </div>
     </div>
   );
 }
-
-PropertyLocationInput.propTypes = {
-  location: ProtoTypes.object.isRequired,
-  handleLocation: ProtoTypes.func.isRequired,
-};
 
 export default PropertyLocationInput;

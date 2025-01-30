@@ -4,7 +4,7 @@ import PropertyTextArea from "./PropertyTextArea";
 import ImageInput from "./ImageInput";
 import PropertyVideoInput from "./PropertyVideoInput";
 import PropertyLocationInput from "./PropertyLocationInput";
-import PropertyAminitiesInput from "./PropertyAminitiesInput";
+import PropertyAmenitiesInput from "./PropertyAmenitiesInput";
 import KeyValueInput from "./KeyValueInput";
 import PropertyPlan from "./PropertyPlan";
 import PropertyTextAreaV2 from "./PropertyTextAreaV2";
@@ -319,8 +319,8 @@ function PropertyFrom() {
                 location={input.location}
                 handleLocation={handleLocationChange}
               />
-              <PropertyAminitiesInput
-                aminities={input.aminities}
+              <PropertyAmenitiesInput
+                amenities={input.aminities}
                 handleChange={handleCheckBox}
               />
               <KeyValueInput
