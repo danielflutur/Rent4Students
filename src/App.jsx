@@ -37,6 +37,10 @@ import Page3HouseRules from "./component/StudentDetails/Page3HouseRules.jsx";
 import AdditionalStudentDetails from "./component/AdditionalStudentDetails/AdditionalStudentDetails.jsx";
 import Page2LivingAndSocialPreferences from "./component/StudentDetails/Page2LivingAndSocialPreferences.jsx";
 import Page3CompatibilityAndCommunication from "./component/StudentDetails/Page3CompatibilityAndCommunication.jsx";
+import HomeStudent from "./component/HomeStudent/HomeStudent.jsx";
+import StudentDetail from "./component/StudentDetail/StudentDetail.jsx";
+import Roommates from "./component/Roommates/index.jsx";
+import ApplyForRentHelp from "./component/ApplyForRentHelp/ApplyForRentHelp.jsx";
 
 function App() {
   useEffect(() => {
@@ -53,8 +57,20 @@ function App() {
       element: <HomeUniversity />,
     },
     {
+      path: "/home-student",
+      element: <HomeStudent />,
+    },
+    {
       path: "/property",
       element: <Property />,
+    },
+    {
+      path: "/roommates",
+      element: <Roommates />,
+    },
+    {
+      path: "/apply-for-rent-help",
+      element: <ApplyForRentHelp/>,
     },
     {
       path: "/property-single/:id",
@@ -83,6 +99,10 @@ function App() {
     {
       path: "/blog",
       element: <News />,
+    },
+    {
+      path: "/student-detail",
+      element: <StudentDetail />,
     },
     {
       path: "/agent-detail",

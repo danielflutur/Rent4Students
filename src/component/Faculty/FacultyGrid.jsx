@@ -35,7 +35,7 @@ function FacultyGrid() {
       <div className="container">
         <FacultyBar gridStyle={gridStyle} handleGridStyle={handleGridStyle} />
         <div className="row">
-          <div className="col-lg-8 col-12">
+          <div className="col-lg-18 col-12">
             <div className="tab-content" id="nav-tabContent">
               {/* <!-- Grid Tab --> */}
               <div

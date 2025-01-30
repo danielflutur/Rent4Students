@@ -95,13 +95,8 @@ function WelcomeStudents() {
                         <div className="ecom-wc__card">
                           <div className="ecom-wc__card-body text-center">
                             <div className="ecom-wc__button">
-                              <a
-                                href="/home-university"
-                                className="homec-btn explore-yourself"
-                              >
-                                <span>
-                                  {t("welcome_students.explore_yourself")}
-                                </span>
+                              <a href="/home-student" className="homec-btn explore-yourself">
+                                <span>{t("welcome_students.explore_yourself")}</span>
                               </a>
                             </div>
                             <div className="ecom-wc__bottom">

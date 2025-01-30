@@ -162,7 +162,9 @@
     "news_list": "News",
     "news_single": "News Single",
     "contact": "Contact",
-    "validate_phone": "Validate Phone Number"
+    "validate_phone": "Validate Phone Number",
+    "roommates": "Roommates",
+    "renthelp": "Apply For Rent Help"
   },
 
   "welcome_students": {
@@ -244,10 +246,25 @@
     "petOwnership": "Deținere animale",
     "petPreferences": "Preferințe animale",
     "nextPage": "Urmatoarea pagină"
-  }
+  },
 
-
-  
-  
+  "rent_help_title": "Apply for Rent Help",
+  "faculty_and_secretary_info": "Faculty and Secretary Information",
+  "university_label": "University",
+  "faculty_label": "Faculty",
+  "secretary_label": "Secretary",
+  "download_pdf_button": "Download the PDF with the required documents",
+  "required_documents_title": "Required Documents",
+  "pre_filled_request_title": "Pre-filled Request",
+  "upload_documents_title": "Upload Required Documents",
+  "submit_application_button": "Submit Application",
+  "application_status_title": "Application Status",
+  "application_sent_message": "Your application has been sent successfully!",
+  "application_processing_by_secretary_title": "Application will be processed by the Secretary",
+  "application_processing_by_secretary_message": "Your application will be evaluated by the secretary, and you will receive a notification with the final result.",
+  "application_error_message": "There was an error with your application.",
+  "application_processing_message": "Your application is being processed.",
+  "choose_files_button": "Choose Files",
+  "uploaded_pdf_preview": "Preview of the uploaded PDF"
 
 }

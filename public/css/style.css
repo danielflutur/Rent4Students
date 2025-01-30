@@ -908,6 +908,11 @@ input[type="checkbox"]:checked::before {
   width: 100%;
   border-radius: 4px;
 }
+.homec-property__head_v2 img {
+  width: 100%;
+  height: 400px;
+  border-radius: 4px;
+}
 .homec-property__hsticky {
   position: absolute;
   width: 100%;
@@ -4185,9 +4190,11 @@ blockquote::before {
   gap: 15px;
 }
 .breadcrumb__title {
-  color: #ffffff;
+  color: #F5F5F5; /* Culoarea textului */
   font-size: 42px;
-}
+  -webkit-text-stroke: 2x #001529; /* Contur de 1px cu culoarea dorită */
+  }
+
 .breadcrumb__menu {
   display: flex;
   gap: 10px;
@@ -7530,3 +7537,300 @@ div.ck-editor.ck-rounded-corners {
 /*======================================
 	End Global
 ========================================*/
+
+
+/* Page Container */
+.page-form-container {
+  padding: 2rem;
+}
+
+/* Secțiuni */
+.section_form_rent {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background-color: #F5F5F5; /* Folosim un fundal deschis (F5F5F5) pentru secțiuni */
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #C3BFFE; /* Linie subțire de margine cu nuanță deschisă de violet */
+}
+
+.section_form_rent-header {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #001529;
+  margin-bottom: 1rem;
+}
+
+.section_form_rent-content {
+  font-size: 1rem;
+  color: #5F5F9F;
+}
+
+/* Status */
+.status {
+  padding: 1rem;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.status.success {
+  background-color: #F2C94C;
+  color: #001529;
+  box-shadow: 0 0 5px rgba(242, 201, 76, 0.7);
+}
+
+.status.error {
+  background-color: #F2C94C;
+  color: #001529;
+  box-shadow: 0 0 5px rgba(242, 201, 76, 0.7);
+}
+
+.status.processing {
+  background-color: #5F5F9F;
+  color: white;
+  box-shadow: 0 0 5px rgba(95, 95, 159, 0.7);
+}
+
+/* Secțiune Procesare de către Secretar */
+.status.processing-by-secretary {
+  background-color: #C3BFFE; /* Fond deschis, dar ușor diferit pentru procesare */
+  color: #001529;
+  font-weight: bold;
+  padding: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status.processing-by-secretary p {
+  font-size: 1rem;
+  color: #5F5F9F;
+}
+
+/* Secțiune Documente Necesare */
+.section_form_rent-content embed {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Stil pentru încărcare documente */
+.form-control {
+  border-radius: 4px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  width: 100%;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+  border-color: #C3BFFE;
+  box-shadow: 0 0 8px rgba(195, 191, 254, 0.5);
+  outline: none;
+}
+
+/* Custom File Input Styling */
+.custom-file-input {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+.custom-file-input input[type="file"] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.custom-file-input-label {
+  display: block;
+  padding: 10px 15px;
+  background-color: #C3BFFE;
+  color: #001529;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.custom-file-input-label:hover {
+  background-color: #A8A4FF;
+}
+
+.custom-file-input-label:active {
+  background-color: #8C88FF;
+}
+
+/* Table Container */
+/* Table Container */
+.table-container {
+  padding: 1.5rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+/* Table Header */
+.ant-table-thead > tr > th {
+  background-color: #7166F0 !important;
+  font-weight: bold !important;
+  color: #fff !important;
+  border-bottom: 2px solid #001529 !important;
+  padding: 12px;
+  text-align: center;
+  font-size: 18px; /* Am mărit dimensiunea fontului în capul de tabel */
+  letter-spacing: 0.5px;
+}
+
+/* Table Rows */
+.ant-table-tbody > tr > td {
+  border-bottom: none !important;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+/* Alternating Row Colors */
+.ant-table-tbody > tr:nth-child(odd) {
+  background-color: #F5F5F5;
+}
+.ant-table-tbody > tr:nth-child(even) {
+  background-color: #C3BFFE;
+}
+
+/* Hover Effect on Rows */
+.ant-table-tbody > tr:hover > td {
+  background-color: #FFDD76 !important;
+  cursor: pointer;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Tag Styling */
+.ant-tag {
+  font-weight: bold;
+  padding: 4px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+}
+
+/* Status Colors */
+.ant-tag-green {
+  background-color: #D4EDDA;
+  color: #155724;
+}
+
+.ant-tag-purple {
+  background-color: #E8DAEF;
+  color: #6C3483;
+}
+
+.ant-tag-blue {
+  background-color: #DDEFFD;
+  color: #2C73D2;
+}
+
+.ant-tag-red {
+  background-color: #F8D7DA;
+  color: #721C24;
+}
+
+/* Button Styling */
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 16px; /* Dimensiune pentru text */
+}
+
+/* Butonul verde */
+.action-btn-green {
+  background-color: #28a745;
+  color: #fff;
+}
+
+.action-btn-green:hover {
+  background-color: #218838;
+}
+
+/* Butonul roșu */
+.action-btn-red {
+  background-color: #FF4D4F;
+  color: #fff;
+}
+
+.action-btn-red:hover {
+  background-color: #FF7875;
+}
+
+
+/* Stiluri pentru butonul de Edit */
+.edit-btn {
+  background-color: #4CAF50; /* Verde */
+  color: white;
+  padding: 15px 20px;  /* Mărim padding-ul pentru a le face mai înalte */
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  width: auto;
+  min-width: 120px;
+  margin-top: 5px;
+  height: 60px;  /* Setăm o înălțime fixă pentru uniformitate */
+}
+
+.edit-btn:hover {
+  background-color: #45a049;
+}
+
+.edit-btn span {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Stiluri pentru butonul de Delete */
+.delete-btn {
+  background-color: #f44336; /* Roșu */
+  color: white;
+  padding: 15px 20px;  /* Mărim padding-ul pentru a le face mai înalte */
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+  width: auto;
+  min-width: 120px;
+  margin-top: 5px;
+  height: 60px;  /* Setăm o înălțime fixă pentru uniformitate */
+}
+
+.delete-btn:hover {
+  background-color: #e53935;
+}
+
+.delete-btn span {
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
