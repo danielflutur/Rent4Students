@@ -2157,3 +2157,106 @@ object {
 .white-submenu .ant-menu-submenu-arrow {
   color: white !important; /* Schimbă culoarea săgeții la alb */
 }
+
+.profile-student-container {
+  position: fixed;
+  z-index: 1000;
+  top: 20px; /* Ajustează distanța de la marginea de sus a ecranului */
+  width: 700px;
+}
+
+.compatibility-container {
+  text-align: center;
+  margin: 20px auto;
+  max-width: 300px;
+  font-family: "Arial", sans-serif;
+}
+
+.compatibility-title {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.compatibility-percentage {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4caf50; /* Culoare verde pentru compatibilitate */
+}
+
+.progress-bar-container {
+  background-color: #e0e0e0; /* Gri deschis pentru fundal */
+  border-radius: 20px;
+  overflow: hidden;
+  height: 20px;
+  position: relative;
+}
+
+.progress-bar-fill {
+  background: linear-gradient(90deg, #4caf50, #81c784); /* Gradient verde */
+  height: 100%;
+  transition: width 0.5s ease-in-out; /* Animație pentru lățime */
+  border-radius: 20px 0 0 20px; /* Colțuri rotunjite pe partea stângă */
+}
+
+/* Stiluri Generale */
+.custom-card {
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #007bff;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.card-body {
+  background-color: #f9f9f9;
+  padding: 20px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.info-row p {
+  font-size: 1rem;
+  color: #333;
+}
+
+.btn-light {
+  background-color: #f8f9fa;
+  color: #007bff;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.btn-light:hover {
+  background-color: #e2e6ea;
+}
+
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  padding: 10px;
+  width: 100%;
+}
+
+button.btn-primary {
+  background-color: #28a745;
+  border: none;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #218838;
+}
+

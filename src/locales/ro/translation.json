@@ -163,7 +163,9 @@
     "news_list": "Știri",
     "news_single": "Știre Unică",
     "contact": "Contact",
-    "validate_phone": "Verifică Numărul de Telefon"
+    "validate_phone": "Verifică Numărul de Telefon",
+    "roommates": "Colegi apartament",
+    "renthelp": "Aplica pentru ajutor chirie"
   },
 
   "welcome_students": {
@@ -244,7 +246,34 @@
     "title": "Verifică numărul de telefon",
     "validation_code": "Codul de validare*",
     "validate_button": "Validare"
-  }
+  },
+
+  "hero_student_welcome": "Bine ați venit la RENT4STUDENTS",
+"hero_student_subtitle": "Aplicația ideală pentru studenți în găsirea soluțiilor perfecte de cazare.",
+"hero_student_list_item_1": "Găsirea colegului ideal pentru cazare.",
+"hero_student_list_item_2": "Acces rapid la cele mai bune apartamente disponibile.",
+"hero_student_list_item_3": "Aplicare simplificată pentru ajutorul de chirie.",
+
+
+"rent_help_title": "Aplica pentru Ajutor de Chirie",
+"faculty_and_secretary_info": "Informații Facultate și Secretar",
+"university_label": "Universitatea",
+"faculty_label": "Facultatea",
+"secretary_label": "Secretar",
+"download_pdf_button": "Descarcă PDF-ul cu documentele necesare",
+"required_documents_title": "Documente Necesare",
+"pre_filled_request_title": "Cererea Precompletată",
+"upload_documents_title": "Încarcă Documentele Necesare",
+"submit_application_button": "Trimite Cererea",
+"application_status_title": "Statusul Cererii",
+"application_sent_message": "Cererea a fost trimisă cu succes!",
+"application_processing_by_secretary_title": "Cererea va fi procesată de Secretar",
+"application_processing_by_secretary_message": "Cererea dumneavoastră va fi evaluată de secretar și vă veți primi notificare cu rezultatul final.",
+"application_error_message": "A apărut o eroare cu cererea dumneavoastră.",
+"application_processing_message": "Cererea dumneavoastră este în procesare.",
+"choose_files_button": "Alege Fișierele",
+"uploaded_pdf_preview": "Previzualizare PDF încărcat"
+
 
 }
   
