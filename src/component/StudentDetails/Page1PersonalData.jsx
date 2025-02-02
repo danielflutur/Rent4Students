@@ -32,10 +32,6 @@ function Page1PersonalData() {
     setisLoading(false);
   }, []);
 
-  useEffect(() => {
-    console.log("Updated attributesIds:", data.attributesIds);
-  }, [data.attributesIds]);
-
   const handleAttributeChange = (attributeId) => {
     setData((prevInput) => {
       const updatedAttributes = prevInput.attributesIds

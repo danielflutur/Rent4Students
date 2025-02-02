@@ -11,11 +11,10 @@ const axiosInstance = axios.create({
 });
 
 const ApiService = {
-  get: (endpoint, params = {}) => {
+  get: (endpoint, params = {}, config = {}) => {
     const queryString = new URLSearchParams(params).toString();
     const url = queryString ? `${endpoint}?${queryString}` : endpoint;
-
-    return axiosInstance.get(url);
+    return axiosInstance.get(url, config);
   },
   
   post: (endpoint, data) => {

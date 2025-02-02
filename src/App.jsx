@@ -32,8 +32,6 @@ import Faculty from "./component/Faculty/index.jsx";
 import EditFaculty from "./component/EditFaculty/index.jsx";
 import WelcomeStudents from "./component/WelcomeStudents/index.jsx";
 import Page1PersonalData from "./component/StudentDetails/Page1PersonalData.jsx";
-import Page2HousingPreferences from "./component/StudentDetails/Page2HousingPreferences.jsx";
-import Page3HouseRules from "./component/StudentDetails/Page3HouseRules.jsx";
 import AdditionalStudentDetails from "./component/AdditionalStudentDetails/AdditionalStudentDetails.jsx";
 import Page2LivingAndSocialPreferences from "./component/StudentDetails/Page2LivingAndSocialPreferences.jsx";
 import Page3CompatibilityAndCommunication from "./component/StudentDetails/Page3CompatibilityAndCommunication.jsx";
@@ -41,6 +39,7 @@ import HomeStudent from "./component/HomeStudent/HomeStudent.jsx";
 import StudentDetail from "./component/StudentDetail/StudentDetail.jsx";
 import Roommates from "./component/Roommates/index.jsx";
 import ApplyForRentHelp from "./component/ApplyForRentHelp/ApplyForRentHelp.jsx";
+import AppLogin from "./component/AppLogin/AppLogin.jsx";
 
 function App() {
   useEffect(() => {
@@ -101,7 +100,7 @@ function App() {
       element: <News />,
     },
     {
-      path: "/student-detail",
+      path: "/student-detail/:id",
       element: <StudentDetail />,
     },
     {
@@ -164,18 +163,9 @@ function App() {
       path: "/page-3-compatibility-communication",
       element: <Page3CompatibilityAndCommunication />,
     },
-    
     {
       path: "/additional-student-data",
       element: <AdditionalStudentDetails />,
-    },
-    {
-      path: "/page-2-housing-preferences",
-      element: <Page2HousingPreferences />,
-    },
-    {
-      path: "/page-3-home-rules",
-      element: <Page3HouseRules />,
     },
     {
       path: "/404",
@@ -200,6 +190,10 @@ function App() {
     {
       path: "/faculty",
       element: <Faculty />,
+    },
+    {
+      path: "/app-login",
+      element: <AppLogin />,
     },
     {
       path: "/edit-faculty/:id",  // Define dynamic route with the ID parameter

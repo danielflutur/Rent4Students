@@ -3,7 +3,6 @@ import "react-multi-carousel/lib/styles.css";
 import { responsiveHeroSlider } from "../../utils/responsiveSlider";
 import { CustomDot } from "../CustomDot/CustomDot";
 import HeroSliderSlideStudent from "./HeroSliderSlideStudent";
-import ProfileStudent from "../Students/ProfileStudent";
 
 function HeroSliderStudent() {
   return (

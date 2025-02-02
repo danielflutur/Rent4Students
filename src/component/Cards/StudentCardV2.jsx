@@ -2,7 +2,7 @@ import ProtoTypes from "prop-types";
 import { Link } from "react-router-dom";
 import CompatibilityBar from "./CompatibilityBar";
 
-function StudentCardV2({ img, propertiesLink, name, campatibility, position, detailsLink }) {
+function StudentCardV2({ img, name, campatibility, detailsLink }) {
   return (
     <div
       className="col-lg-4 col-md-6 col-12 mg-top-30"
@@ -14,15 +14,14 @@ function StudentCardV2({ img, propertiesLink, name, campatibility, position, det
           <img src={img} alt="#" />
         </div>
         <div className="homec-agent__body">
-          <Link className="homec-agent__body--btn" to={detailsLink}>
+          <a className="homec-agent__body--btn" href={detailsLink}>
             Vezi Profilul
-          </Link>
+          </a>
           <CompatibilityBar compatibility={campatibility} />
           <h4 className="homec-agent__title">
-            <Link to={detailsLink}>
+            <a href={detailsLink}>
               {name}
-              <span>{detailsLink}</span>
-            </Link>
+            </a>
           </h4>
         </div>
       </div>
@@ -32,10 +31,8 @@ function StudentCardV2({ img, propertiesLink, name, campatibility, position, det
 
 StudentCardV2.propTypes = {
   img: ProtoTypes.string.isRequired,
-  propertiesLink: ProtoTypes.string.isRequired,
   campatibility:  ProtoTypes.string.isRequired,
   name: ProtoTypes.string.isRequired,
-  position: ProtoTypes.string.isRequired,
   detailsLink: ProtoTypes.string.isRequired,
 };
 

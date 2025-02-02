@@ -14,6 +14,7 @@ function StudentCard({
   fullWidth,
   widthClasses,
   classes,
+  detailsLink
 }) {
   return (
     <div
@@ -95,10 +96,10 @@ function StudentCard({
         {/* Agent Body */}
         <div className="homec-agent__body">
           <h4 className="homec-agent__title">
-            <Link to="/student-detail">
+            <a href={detailsLink}>
               {name}
               <span>{desc}</span>
-            </Link>
+            </a>
           </h4>
           <CompatibilityBar compatibility={campatibility} />
         </div>

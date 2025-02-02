@@ -4,10 +4,10 @@ import PageLayout from "../PageLayout/PageLayout";
 import Breadcrumbs from "../Breadcrumbs";
 import Preloader from "../Loader";
 import GoTopBtn from "../Button/GoTopBtn";
-import { Worker, Viewer } from '@react-pdf-viewer/core';
-import '@react-pdf-viewer/core/lib/styles/index.css';
-import { PDFDocument } from 'pdf-lib';
-import { jsPDF } from 'jspdf';
+import "@react-pdf-viewer/core/lib/styles/index.css";
+import { useAuth } from "../../context/AuthProvider";
+import ApiService from "../../services/ApiService";
+import { PDFDocument } from "pdf-lib";
 
 function ApplyForRentHelp() {
   const { t } = useTranslation();
@@ -16,42 +16,99 @@ function ApplyForRentHelp() {
   const [isProcessedBySecretary, setIsProcessedBySecretary] = useState(false);
   const [pdfDocument, setPdfDocument] = useState(null);
   const [formData, setFormData] = useState({
-    university: 'Universitatea Suceava',
-    faculty: 'FIESC',
-    secretary: 'Popescu Maria',
-    email: 'maria.popescu@usv.ro',
+    university: "Universitatea Suceava",
+    faculty: "FIESC",
+    secretary: "Popescu Maria",
+    email: "maria.popescu@usv.ro",
   });
   const [file, setFile] = useState(null); // State for the uploaded file
   const [filePreview, setFilePreview] = useState(null); // State for file preview
-  const [isDocumentUploaded, setIsDocumentUploaded] = useState(false);  // Tracks document upload status
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false);  // Tracks form submission status
+  const [isDocumentUploaded, setIsDocumentUploaded] = useState(false); // Tracks document upload status
+  const [isFormSubmitted, setIsFormSubmitted] = useState(false); // Tracks form submission status
+  const { user } = useAuth();
+  const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
-  }, []);
+    const fetchPreFilledPdf = async () => {
+      if (!user || !user.facultyId || !user.id) return;
+      try {
+        const response = await ApiService.get(
+          `FinancialHelpDocument/download-template/`,
+          {
+            facultyId: user.facultyId,
+            studentId: user.id,
+          },
+          {
+            responseType: "arraybuffer", // Ensure we get binary data
+            headers: { Accept: "application/pdf" },
+          }
+        );
+        const blob = new Blob([response.data], { type: "application/pdf" });
+        const pdfObjectUrl = URL.createObjectURL(blob);
+        setPdfUrl(pdfObjectUrl);
+      } catch (error) {
+        console.error("Error fetching the pre-filled PDF:", error);
+      }
+    };
 
-  const handleFormSubmit = () => {
-    setIsFormSubmitted(true); // Set form submission status to true
-    setApplicationStatus("success"); // Example: success status when form is submitted
-    setIsProcessedBySecretary(true);
+    fetchPreFilledPdf();
+    setIsLoading(false);
+  }, [user]);
+
+  const handleFormSubmit = async () => {
+    if (!file) {
+      alert("Please upload a file before submitting.");
+      return;
+    }
+
+    try {
+      const reqData = new FormData();
+      reqData.append("studentId", user.id);
+      reqData.append("file", file); // Attach the uploaded file
+
+      const response = await ApiService.post(
+        "FinancialHelpDocument/student-documents",
+        reqData
+      );
+
+      setIsFormSubmitted(true);
+      setApplicationStatus("success");
+      setIsProcessedBySecretary(true);
+
+      console.log("Upload successful:", response.data);
+    } catch (error) {
+      console.error("Error uploading document:", error);
+      setApplicationStatus("error");
+    }
   };
 
   const handlePdfLoad = async () => {
     try {
-      const response = await fetch("https://fiesc.usv.ro/wp-content/uploads/sites/17/2023/01/Declaratie-subventie-cazare-septtembrie-2022.pdf");
+      const response = await fetch(
+        "https://fiesc.usv.ro/wp-content/uploads/sites/17/2023/01/Declaratie-subventie-cazare-septtembrie-2022.pdf"
+      );
       const buffer = await response.arrayBuffer();
-      
+
       const pdfDoc = await PDFDocument.load(buffer);
       const form = pdfDoc.getForm();
-      
-      const field = form.createTextField('universityName');
-      field.setText(formData.university);
-      field.addToPage(pdfDoc.getPages()[0], { x: 50, y: 500, width: 200, height: 20 });
 
-      const field2 = form.createTextField('facultyName');
+      const field = form.createTextField("universityName");
+      field.setText(formData.university);
+      field.addToPage(pdfDoc.getPages()[0], {
+        x: 50,
+        y: 500,
+        width: 200,
+        height: 20,
+      });
+
+      const field2 = form.createTextField("facultyName");
       field2.setText(formData.faculty);
-      field2.addToPage(pdfDoc.getPages()[0], { x: 50, y: 450, width: 200, height: 20 });
+      field2.addToPage(pdfDoc.getPages()[0], {
+        x: 50,
+        y: 450,
+        width: 200,
+        height: 20,
+      });
 
       const pdfBytes = await pdfDoc.save();
       setPdfDocument(pdfBytes);
@@ -67,11 +124,11 @@ function ApplyForRentHelp() {
   const handleFileChange = (event) => {
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
-    
+
     // If a document is uploaded, set `isDocumentUploaded` to true
     if (selectedFile) {
       setIsDocumentUploaded(true);
-      
+
       // Create a preview if it's a PDF
       if (selectedFile && selectedFile.type === "application/pdf") {
         const reader = new FileReader();
@@ -81,23 +138,6 @@ function ApplyForRentHelp() {
         reader.readAsDataURL(selectedFile); // Read the PDF as Data URL for preview
       }
     }
-  };
-
-  const handleFormChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handlePdfGeneration = () => {
-    const doc = new jsPDF();
-    
-    doc.text('Cerere pentru subvenție cazare', 20, 10);
-    doc.text(`Universitatea: ${formData.university}`, 20, 30);
-    doc.text(`Facultatea: ${formData.faculty}`, 20, 40);
-    doc.text(`Secretar: ${formData.secretary}`, 20, 50);
-    doc.text(`Email: ${formData.email}`, 20, 60);
-    
-    doc.save('cerere-subventie.pdf');
   };
 
   let component = undefined;
@@ -113,21 +153,33 @@ function ApplyForRentHelp() {
         />
 
         <div className="page-form-container">
-
           {/* Informații Facultate */}
           <section className="section_form_rent">
-            <div className="section_form_rent-header">{t("faculty_and_secretary_info")}</div>
+            <div className="section_form_rent-header">
+              {t("faculty_and_secretary_info")}
+            </div>
             <div className="section_form_rent-content">
-              <p><strong>{t("university_label")}:</strong> Universitatea Suceava</p>
-              <p><strong>{t("faculty_label")}:</strong> FIESC</p>
-              <p><strong>{t("secretary_label")}:</strong> Popescu Maria</p>
-              <p><strong>{t("email_label")}:</strong> <a href="mailto:maria.popescu@usv.ro">maria.popescu@usv.ro</a></p>
+              <p>
+                <strong>{t("university_label")}:</strong> Universitatea Suceava
+              </p>
+              <p>
+                <strong>{t("faculty_label")}:</strong> FIESC
+              </p>
+              <p>
+                <strong>{t("secretary_label")}:</strong> Popescu Maria
+              </p>
+              <p>
+                <strong>{t("email_label")}:</strong>{" "}
+                <a href="mailto:maria.popescu@usv.ro">maria.popescu@usv.ro</a>
+              </p>
             </div>
           </section>
 
           {/* Documente Necesare - Preview PDF */}
           <section className="section_form_rent">
-            <div className="section_form_rent-header">{t("required_documents_title")}</div>
+            <div className="section_form_rent-header">
+              {t("required_documents_title")}
+            </div>
             <div className="section_form_rent-content">
               <embed
                 src="https://fiesc.usv.ro/wp-content/uploads/sites/17/2024/09/Informatii-subventie-sept.pdf"
@@ -141,51 +193,62 @@ function ApplyForRentHelp() {
 
           {/* Cererea Precompletată - Vizualizare Editabilă */}
           <section className="section_form_rent">
-            <div className="section_form_rent-header">{t("pre_filled_request_title")}</div>
+            <div className="section_form_rent-header">
+              {t("pre_filled_request_title")}
+            </div>
             <div className="section_form_rent-content">
-              {pdfDocument ? (
-                <div style={{ height: '500px' }}>
-                  <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
-                    <Viewer fileUrl={URL.createObjectURL(new Blob([pdfDocument]))} />
-                  </Worker>
-                </div>
+              {isLoading ? (
+                <Preloader />
+              ) : pdfUrl ? (
+                <embed
+                  src={pdfUrl}
+                  type="application/pdf"
+                  width="100%"
+                  height="600px"
+                  style={{ border: "none", borderRadius: "8px" }}
+                />
               ) : (
-                <p>Încărcare document...</p>
+                <p>{t("error_loading_pdf")}</p>
               )}
             </div>
           </section>
 
           {/* Încărcare Documente */}
           <section className="section_form_rent">
-            <div className="section_form_rent-header">{t("upload_documents_title")}</div>
+            <div className="section_form_rent-header">
+              {t("upload_documents_title")}
+            </div>
             <div className="section_form_rent-content">
               <div className="custom-file-input">
-                <input 
-                  type="file" 
-                  multiple 
-                  id="fileInput" 
+                <input
+                  type="file"
+                  multiple
+                  id="fileInput"
                   className="form-control mb-3"
                   onChange={handleFileChange} // Handle file change
                 />
-                <label htmlFor="fileInput" className="homec-btn homec-btn__second">
+                <label
+                  htmlFor="fileInput"
+                  className="homec-btn homec-btn__second"
+                >
                   {t("choose_files_button")}
                 </label>
               </div>
               {file && file.type === "application/pdf" && filePreview && (
                 <div style={{ marginTop: "20px" }}>
-                   <h5>{t("uploaded_pdf_preview")}</h5>
-                  <embed 
-                    src={filePreview} 
-                    type="application/pdf" 
-                    width="100%" 
-                    height="600px" 
+                  <h5>{t("uploaded_pdf_preview")}</h5>
+                  <embed
+                    src={filePreview}
+                    type="application/pdf"
+                    width="100%"
+                    height="600px"
                     style={{ borderRadius: "8px" }}
                   />
+                  <button className="homec-btn" onClick={handleFormSubmit}>
+                    <span>{t("submit_application_button")}</span>
+                  </button>
                 </div>
               )}
-              <button className="homec-btn" onClick={handleFormSubmit}>
-                <span>{t("submit_application_button")}</span>
-              </button>
             </div>
           </section>
 
@@ -204,15 +267,19 @@ function ApplyForRentHelp() {
           {/* Statusul Cererii */}
           {isDocumentUploaded && isFormSubmitted && (
             <section className="section_form_rent">
-              <div className="section_form_rent-header">{t("application_status_title")}</div>
+              <div className="section_form_rent-header">
+                {t("application_status_title")}
+              </div>
               <div className={`status ${applicationStatus}`}>
-                {applicationStatus === "success" && t("application_sent_message")}
-                {applicationStatus === "error" && t("application_error_message")}
-                {applicationStatus === "processing" && t("application_processing_message")}
+                {applicationStatus === "success" &&
+                  t("application_sent_message")}
+                {applicationStatus === "error" &&
+                  t("application_error_message")}
+                {applicationStatus === "processing" &&
+                  t("application_processing_message")}
               </div>
             </section>
           )}
-
         </div>
         <GoTopBtn />
       </PageLayout>
