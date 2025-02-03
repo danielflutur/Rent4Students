@@ -8,12 +8,24 @@ import Preloader from "../Loader";
 import { useEffect, useState } from "react";
 import GoTopBtn from "../Button/GoTopBtn";
 import PageLayout from "../PageLayout/PageLayout";
-import students from "../../data/students";
+import { useAuth } from "../../context/AuthProvider";
+import ApiService from "../../services/ApiService";
 
 function Roommates() {
-  // page handle
+  const { user } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
   const totalPage = 24;
+  const [compatibleStudents, setCompatibleStudents] = useState([]);
+  const [isLoading, setisLoading] = useState(true);
+
+  useEffect(() => {
+    ApiService.get(`Students/matching/${user?.id}`)
+      .then((response) => {
+        setCompatibleStudents(response.data);
+        setisLoading(false);
+      })
+      .catch((error) => console.error("Error fetching students:", error));
+  }, []);
 
   const handelPage = (page) => {
     if (page === "prev") {
@@ -29,12 +41,6 @@ function Roommates() {
     }
   };
 
-  // loading handle
-  const [isLoading, setisLoadingg] = useState(true);
-  useEffect(() => {
-    setisLoadingg(false);
-  }, []);
-
   let component = undefined;
   if (isLoading) {
     component = <Preloader />;
@@ -42,25 +48,24 @@ function Roommates() {
     component = (
       <>
         <PageLayout>
-          <Breadcrumbs title="Colegi de apartament" titlePosition="bottom">
-          </Breadcrumbs>
+          <Breadcrumbs
+            title="Colegi de apartament"
+            titlePosition="bottom"
+          ></Breadcrumbs>
 
           <section className="pd-top-70 pd-btm-100">
             <div className="container">
               <div className="row">
-                {students?.map((student) => (
+                {compatibleStudents?.map((compatibleStudent) => (
                   <StudentCard
-                    key={student.id}
-                    img={student.img3}
-                    phone={student.phone}
-                    linkedin={student.linkedin}
-                    twitter={student.twitter}
-                    insta={student.insta}
-                    name={student.name}
-                    campatibility={student.campatibility}
-                    desc={student.position}
+                    key={compatibleStudent.student.id}
+                    img={compatibleStudent.student.profilePhoto}
+                    phone={compatibleStudent.student.phone}
+                    name={`${compatibleStudent.student.firstName} ${compatibleStudent.student.lastName}`}
+                    campatibility={compatibleStudent.score}
                     widthClasses="col-lg-3 col-md-6 col-12"
                     classes="homec-agent__grid homec-border mg-top-30"
+                    detailsLink={`student-detail/${compatibleStudent.student.id}`}
                   />
                 ))}
               </div>

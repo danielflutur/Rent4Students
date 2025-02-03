@@ -1,190 +1,62 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropertyTextInput from "./PropertyTextInput";
-import PropertyTextArea from "./PropertyTextArea";
-import ImageInput from "./ImageInput";
-import PropertyVideoInput from "./PropertyVideoInput";
-import PropertyLocationInput from "./PropertyLocationInput";
-import PropertyAmenitiesInput from "./PropertyAmenitiesInput";
-import KeyValueInput from "./KeyValueInput";
-import PropertyPlan from "./PropertyPlan";
-import PropertyTextAreaV2 from "./PropertyTextAreaV2";
-import SwitcherBtn from "./SwitcherBtn";
+import { useLocation, useNavigate } from "react-router-dom";
+import Preloader from "../Loader";
+import { Modal } from "antd";
+import ApiService from "../../services/ApiService";
 
 function EditFacultyFrom() {
-  const [input, setInput] = useState({
-    title: "",
-    slug: "",
-    propertyType: "",
-    purpose: "",
-    rentPeriod: "",
-    propertyPrice: "",
-    area: "",
-    unit: "",
-    bedroom: "",
-    bathroom: "",
-    garage: "",
-    kitchen: "",
-    description: "",
-    propertyImage: [
-      { id: 1, img: "https://placehold.co/165x205" },
-      { id: 2, img: "https://placehold.co/165x205" },
-      { id: 3, img: "https://placehold.co/165x205" },
-    ],
-    video: { video: "", description: "", YTVideoId: "" },
-    location: { city: "", address: "", addressDetails: "", googleMap: "" },
-    aminities: {
-      Breakfast: true,
-      Lunch: false,
-      ["Free Wifi"]: false,
-      ["Swimming Pool"]: false,
-      Cleaning: false,
-    },
-    nearestLocation: [
-      { id: 1, key: "", value: "" },
-      { id: 2, key: "", value: "" },
-      { id: 3, key: "", value: "" },
-    ],
-    additionalInformation: [
-      { id: 1, key: "", value: "" },
-      { id: 2, key: "", value: "" },
-      { id: 3, key: "", value: "" },
-    ],
-    propertyPlan: [
-      {
-        id: 1,
-        videoId: "",
-        thumbnail: "https://placehold.co/528x196",
-        desc: "",
-      },
-      {
-        id: 2,
-        videoId: "",
-        thumbnail: "https://placehold.co/528x196",
-        desc: "",
-      },
-      {
-        id: 3,
-        videoId: "",
-        thumbnail: "https://placehold.co/528x196",
-        desc: "",
-      },
-    ],
-    seoInfo: {
-      title: "",
-      desc: "",
-      status: true,
-      urgentProperty: false,
-      featured: true,
-      topProperty: false,
-    },
-  });
-
-  // handle property information
-
+  const { state: inputData} = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  
+    const navigate = useNavigate();
+  const [isLoading, setisLoading] = useState(true);
+const [input, setInput] = useState({
+  name: inputData.name,
+  secretaryName: inputData.secretary,
+  email: inputData.email
+});
   const handleTextChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
 
-  // handle editable textarea
-  const handleTextArea = (e) => {
-    setInput({ ...input, [e.name]: e.value });
-  };
-
-  // delete property image
-
-  const handleImageDelete = (id) => {
-    setInput({
-      ...input,
-      propertyImage: input.propertyImage.filter((image) => image.id !== id),
-    });
-  };
-
-  // handle property video input sector
-
-  const handleVideoChange = (e) => {
-    setInput({
-      ...input,
-      video: { ...input.video, [e.target.name]: e.target.value },
-    });
-  };
-
-  // handle property location input sector
-
-  const handleLocationChange = (e) => {
-    setInput({
-      ...input,
-      location: { ...input.location, [e.target.name]: e.target.value },
-    });
-  };
-
-  // handle property image input sector
-
-  const handleImageInput = (img) => {
-    const updatedImg = [...input.propertyImage];
-    updatedImg.push({
-      id: updatedImg.reduce((total, current) => total > current.id, 0) + 1,
-      img,
-    });
-  };
-
-  // handle aminities
-
-  const handleCheckBox = (e) => {
-    setInput({
-      ...input,
-      aminities: { ...input.aminities, [e.target.name]: e.target.checked },
-    });
-  };
-  // handle Property Plan, additionalInformation, nearestLocation add new item or delete item
-
-  const handleAddOrDelete = (type, id, keyType) => {
-    if (type === "add") {
-      const newId =
-        input[keyType].reduce(
-          (max, current) => (max < current.id ? current.id : max),
-          0
-        ) + 1;
-      setInput({
-        ...input,
-        [keyType]: [{ id: newId, key: "", value: "" }, ...input[keyType]],
-      });
-    } else {
-      setInput({
-        ...input,
-        [keyType]: input[keyType].filter((item) => item.id != id),
-      });
-    }
-  };
-  // handle Property Plan, additionalInformation, nearestLocation input filled
-  const handleKeyValueChange = ({ id, keyType, inputType, value }) => {
-    setInput({
-      ...input,
-      [keyType]: input[keyType].map((item) =>
-        item.id === id ? { ...item, [inputType]: value } : item
-      ),
-    });
-  };
-  //handle SEO Sector input
-  const handleSEO = (e, value) => {
-    if (typeof value === "undefined") {
-      setInput({
-        ...input,
-        seoInfo: { ...input.seoInfo, [e.target.name]: e.target.value },
-      });
-    } else {
-      setInput({
-        ...input,
-        seoInfo: { ...input.seoInfo, [e]: value },
-      });
-    }
-  };
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(input);
+    try {
+      const response = await ApiService.put(`Faculties/${inputData.key}`, input);
+      showModal(response.data);
+      console.log(response.data);
+    } catch (error) {
+      console.error(
+        "Error updating faculty:",
+        error.response?.data || error.message
+      );
+    }
   };
 
-  return (
+  const showModal = (record) => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    console.log("Facultatea a fost editata cu success!");
+    setIsModalOpen(false);
+    navigate("/faculty");
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+    useEffect(() => {
+      setisLoading(false);
+    }, [inputData]);
+
+  let component = undefined;
+  if (isLoading) {
+    component = <Preloader />;
+  } else {
+    component = (
     <section className="pd-top-80 pd-btm-80">
       <div className="container">
         <div className="row">
@@ -198,15 +70,15 @@ function EditFacultyFrom() {
                   <div className="row">
                     <PropertyTextInput
                       title="Nume Facultate*"
-                      name="title"
-                      value={input.title}
+                      name="name"
+                      value={input.name}
                       handleChange={handleTextChange}
                       placeholder="Nume"
                     />
                     <PropertyTextInput
                       title="Secretar*"
-                      name="name_secretary"
-                      value={input.name}
+                      name="secretaryName"
+                      value={input.secretaryName}
                       handleChange={handleTextChange}
                       placeholder="Nume și Prenume Secretar"
                     />
@@ -230,9 +102,23 @@ function EditFacultyFrom() {
             </form>
           </div>
         </div>
+        {/* Modal for Delete Confirmation */}
+      <Modal
+        title={"Succes"}
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        okText={"OK"}
+      >
+        <p>
+          "Editarea facultații a fost facuta cu success"
+        </p>
+      </Modal>
       </div>
     </section>
   );
 }
 
+return component;
+}
 export default EditFacultyFrom;

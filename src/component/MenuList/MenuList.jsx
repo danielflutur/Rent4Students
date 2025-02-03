@@ -96,7 +96,7 @@ const MenuList = () => {
         <Menu.Item key="faqs">
           <Link to="/faq">{t("menu.faqs")}</Link>
         </Menu.Item>
-        <Menu.Item key="login">
+        <Menu.Item key="login-old">
           <Link to="/login">{t("menu.login")}</Link>
         </Menu.Item>
         <Menu.Item key="sign_up">
@@ -142,10 +142,12 @@ const MenuList = () => {
         <Link to="/contact">{t("menu.contact")}</Link>
       </Menu.Item>
       
-      <Menu.Item key="role_selection">
-        <Button>
+      <Menu.Item key="role_selection" style={{backgroundColor:"#fff", color:"#001529"}}>
           <Link to="/role-selection">{t("menu.signup")}</Link>
-        </Button>
+      </Menu.Item>
+
+      <Menu.Item key="login" style={{backgroundColor:"#fff", color:"#001529"}}>
+          <Link to="/app-login">{t("menu.login")}</Link>
       </Menu.Item>
     </Menu>
   );

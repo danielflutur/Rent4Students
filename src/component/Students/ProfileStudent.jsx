@@ -1,16 +1,12 @@
 import ProtoTypes from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useUser } from "../../context/AuthDetailsProvider";
 
 function ProfileStudent({ image, name, position }) {
-  const [input, setInput] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    message: "",
-  });
-  const handleChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
+  const { user } = useUser();
+  const profilePicture = user?.profilePhoto || "/img/user-icon.png";
+  const displayName = user?.firstName || "No data";
+
   return (
     <div className="col-lg-4">
       <div
@@ -20,11 +16,11 @@ function ProfileStudent({ image, name, position }) {
         <h3 className="homec-property-ag__title">Student</h3>
         <div className="homec-property-ag__author">
           <div className="homec-property-ag__author--img">
-            <img src={image} alt="#" />
+            <img src={profilePicture} alt="#" />
           </div>
           <div className="homec-property-ag__author--content">
             <h4 className="homec-property-ag__author--title">
-              {name}
+              {displayName}
             </h4>
           </div>
         </div>

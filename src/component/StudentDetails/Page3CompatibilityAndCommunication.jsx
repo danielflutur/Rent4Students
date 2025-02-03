@@ -9,11 +9,13 @@ import { allergies } from "../../data/allergies";
 import StudentHobbiesInput from "../StudentHobbiesInput/StudentHobbiesInput";
 import StudentAllergiesInput from "../StudentAllergiesInput/StudentAllergiesInput";
 import ApiService from "../../services/ApiService";
+import { useAuth } from "../../context/AuthProvider";
 
 function Page3CompatibilityAndCommunication() {
   const { t } = useTranslation();
   const { state: inputData } = useLocation();
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
   const [data, setData] = useState(inputData || {});
   const [isLoading, setisLoading] = useState(true);
@@ -93,8 +95,12 @@ function Page3CompatibilityAndCommunication() {
       };
 
       const response = await ApiService.put(`Students/update-details/${data.id}`, formData);
-      console.log('Student updated successfully:', response.data);
-      navigate("/home-university", { state: response.data });
+      const authData = {
+        id:response.data.id,
+        role:"Student"
+      };
+      setAuth(authData);
+      navigate("/home-student", { state: response.data });
     } catch (error) {
       console.error('Error updating student:', error.response?.data || error.message);
     }

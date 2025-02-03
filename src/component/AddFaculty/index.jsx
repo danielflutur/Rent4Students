@@ -1,7 +1,4 @@
 import Breadcrumbs from "../Breadcrumbs";
-import HistoryLinks from "../Breadcrumbs/HistoryLinks";
-import PropertyFrom from "../Form/PropertyFrom";
-import DownloadApp from "../DownloadApp";
 import Footer from "../Footer";
 import Preloader from "../Loader";
 import { useEffect, useState } from "react";

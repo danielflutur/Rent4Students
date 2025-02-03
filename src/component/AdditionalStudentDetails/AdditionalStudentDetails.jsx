@@ -11,11 +11,13 @@ import { genders } from "../../data/genders";
 import ApiService from "../../services/ApiService";
 import SelectDropDown from "../SelectDropDown/SelectDropDown";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/AuthProvider";
 
 function AdditionalStudentDetails() {
   const { t } = useTranslation();
   const { state: inputData } = useLocation();
   const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
   const [formData, setFormData] = useState(inputData || {});
   const [isLoading, setisLoading] = useState(true);
@@ -86,6 +88,11 @@ function AdditionalStudentDetails() {
         livingPreferencesIds: [],
       };
       const response = await ApiService.post('Students', data);
+      const authData = {
+        id:response.data.id,
+        role:"Student"
+      };
+      setAuth(authData);
       navigate("/welcome-students", { state: response.data });
     } catch (error) {
       console.error(

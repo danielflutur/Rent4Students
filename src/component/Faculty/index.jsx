@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import Preloader from "../Loader";
 import Breadcrumbs from "../Breadcrumbs";
 import GoTopBtn from "../Button/GoTopBtn";
-import Footer from "../Footer";
 import FacultyGrid from "./FacultyGrid";
 import PageLayout from "../PageLayout/PageLayout";
 import { useTranslation } from "react-i18next";
@@ -23,7 +22,7 @@ function Faculty() {
       <>
         <PageLayout>
           <Breadcrumbs title={t("manage_faculties")} />
-          <FacultyGrid />
+            <FacultyGrid />
           <GoTopBtn />
         </PageLayout>
       </>

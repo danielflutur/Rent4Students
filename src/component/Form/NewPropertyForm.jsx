@@ -187,21 +187,16 @@ function NewPropertyFrom() {
       data.append('Surface', input.surface);
       data.append('ListingTypeId', input.listingTypeId);
 
-      // Address as a nested object
       data.append('Address.AddressDetails', input.address.addressDetails);
       data.append('Address.City', input.address.city);
       data.append('Address.County', input.address.county);
 
       data.append('OwnerId', input.ownerId);
 
-      // Append photos
-      // data.append('Photos', input.photos);
-
       input.photos.forEach((photo) => {
         data.append('Photos', photo.image);
       });
-
-      // Append amenities as array
+      
       input.amenitiesIds.forEach((id) => {
         data.append('AmenitiesIds', id);
       });
