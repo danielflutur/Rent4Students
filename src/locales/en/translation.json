@@ -164,7 +164,8 @@
     "contact": "Contact",
     "validate_phone": "Validate Phone Number",
     "roommates": "Roommates",
-    "renthelp": "Apply For Rent Help"
+    "renthelp": "Apply For Rent Help",
+    "myproperties": "My properties"
   },
 
   "welcome_students": {
@@ -265,6 +266,41 @@
   "application_error_message": "There was an error with your application.",
   "application_processing_message": "Your application is being processed.",
   "choose_files_button": "Choose Files",
-  "uploaded_pdf_preview": "Preview of the uploaded PDF"
+  "uploaded_pdf_preview": "Preview of the uploaded PDF",
+
+  "createAccount": "Create Account",
+  "emailPrivacyNote": "Your email address will not be published. Required fields are marked *",
+  "firstName": "First Name*",
+  "lastName": "Last Name*",
+  "phoneNumber": "Phone Number*",
+  "emailAddress": "Email Address*",
+  "confirmPassword": "Confirm Password*",
+  "signUp": "Sign Up",
+  "signUpWithGoogle": "Sign Up with Google",
+  "alreadyHaveAccount": "Already have an account?",
+  "logIn": "Log In",
+
+  "hero_owner_welcome": "Welcome to RENT4sTUDENTS",
+"hero_owner_subtitle": "The perfect app for landlords to efficiently manage tenants and properties.",
+"hero_owner_list_item_1": "Quickly find students interested in renting.",
+"hero_owner_list_item_2": "Efficiently manage apartments and listings.",
+"hero_owner_list_item_3": "Easily handle bills and payments directly in the app.",
+
+"pricing_owner_title": "Subscription Plans for Owners",
+    "pricing_owner_subtitle": "Choose the right plan to efficiently manage your apartments and tenants.",
+    "free_plan_title": "Free Plan",
+    "free_plan_price": "Free",
+    "free_plan_period": "Lifetime",
+    "standard_plan_title": "Standard Plan",
+    "standard_plan_period": "Per month",
+    "premium_plan_title": "Premium Plan",
+    "premium_plan_period": "Per month",
+    "feature_add_apartment": "Add an apartment",
+    "feature_add_two_apartment": "Add more apartments",
+    "feature_visibility": "Visibility on the platform",
+    "feature_manage_bills": "Bill management",
+    "feature_premium_support": "Priority support 24/7",
+    "my_properties_title": "My Properties"
+
 
 }

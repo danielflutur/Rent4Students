@@ -44,7 +44,7 @@ function RoleSelection() {
                   img="img/role_owner.png"
                   role={t("owner")}
                   info={t("owner_info")}
-                  link="/signup"
+                  link="/signup-owner"
                 />
                 <RoleCard
                   img="img/role_agency.png"
