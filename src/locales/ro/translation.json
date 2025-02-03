@@ -30,7 +30,7 @@
   "last_name": "Nume*",
   "student_email": "Email*",
   "student_university_name": "Nume Universitate*",
-  "faculty_name": "Nume Facultate*",
+  "faculty_name": "Nume Facultate",
   "student_password": "Parolă*",
   "student_confirm_password": "Confirmă Parola*",
   "student_signup": "Înregistrează-te",

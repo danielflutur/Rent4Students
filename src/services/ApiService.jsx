@@ -26,6 +26,10 @@ const ApiService = {
     const headers = data instanceof FormData ? { 'Content-Type': 'multipart/form-data' } : {};
     return axiosInstance.put(endpoint, data, { headers });
   },
+
+  delete: (endpoint, config = {}) => {
+    return axiosInstance.delete(endpoint, config);
+  },
 };
 
 export default ApiService;

@@ -1,9 +1,5 @@
 import { useState } from "react";
 import FacultyBar from "./FacultyBar";
-import Sidebar from "../Sidebar";
-import LatestPropertyCard from "../Cards/LatestPropertyCard";
-import Pagination from "../Pagination";
-import properties from "../../data/property";
 import TableSecretary from "../TableFaculty";
 
 function FacultyGrid() {
@@ -43,7 +39,7 @@ function FacultyGrid() {
                 id="homec-grid"
                 role="tabpanel"
               >
-                <TableSecretary/>
+                <TableSecretary />
               </div>
             </div>
           </div>

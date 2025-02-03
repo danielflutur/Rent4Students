@@ -26,7 +26,7 @@
   "last_name": "Last Name*",
   "student_email": "Email*",
   "student_university_name": "University Name*",
-  "faculty_name": "Faculty Name*",
+  "faculty_name": "Faculty Name",
   "student_password": "Password*",
   "student_confirm_password": "Confirm Password*",
   "student_signup": "Sign Up",

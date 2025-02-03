@@ -96,7 +96,7 @@ const MenuList = () => {
         <Menu.Item key="faqs">
           <Link to="/faq">{t("menu.faqs")}</Link>
         </Menu.Item>
-        <Menu.Item key="login">
+        <Menu.Item key="login-old">
           <Link to="/login">{t("menu.login")}</Link>
         </Menu.Item>
         <Menu.Item key="sign_up">
