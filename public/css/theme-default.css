@@ -1419,9 +1419,9 @@ object {
   background-color: #111111;
 }
 
-/* .homec-btn.homec-btn__thrid:hover{
+.homec-btn.homec-btn__thrid:hover{
     background-color: #7166F0;
-}*/
+}
 .homec-bg-cover {
   background-position: center;
   background-size: cover;

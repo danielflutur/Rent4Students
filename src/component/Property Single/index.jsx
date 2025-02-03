@@ -75,10 +75,11 @@ function PropertySingle() {
       <ListingFeaturesProvider>
         <PropertyDetails listing={property} />
       </ListingFeaturesProvider>
-      <Footer />
-      <GoTopBtn />
     </PageLayout>
   );
 }
+
+  //<Footer />
+  //<GoTopBtn />
 
 export default PropertySingle;

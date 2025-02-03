@@ -165,7 +165,8 @@
     "contact": "Contact",
     "validate_phone": "Verifică Numărul de Telefon",
     "roommates": "Colegi apartament",
-    "renthelp": "Aplica pentru ajutor chirie"
+    "renthelp": "Aplica pentru ajutor chirie",
+    "myproperties": "Proprietățile mele"
   },
 
   "welcome_students": {
@@ -310,8 +311,40 @@
 "application_error_message": "A apărut o eroare cu cererea dumneavoastră.",
 "application_processing_message": "Cererea dumneavoastră este în procesare.",
 "choose_files_button": "Alege Fișierele",
-"uploaded_pdf_preview": "Previzualizare PDF încărcat"
+"uploaded_pdf_preview": "Previzualizare PDF încărcat",
 
+"createAccount": "Creează cont",
+  "emailPrivacyNote": "Adresa ta de email nu va fi publicată. Câmpurile obligatorii sunt marcate *",
+  "firstName": "Prenume*",
+  "lastName": "Nume*",
+  "phoneNumber": "Număr de telefon*",
+  "emailAddress": "Adresă de email*",
+  "confirmPassword": "Confirmă parola*",
+  "signUp": "Înregistrează-te",
+  "signUpWithGoogle": "Înregistrează-te cu Google",
+  "alreadyHaveAccount": "Ai deja un cont?",
+  "logIn": "Autentificare",
 
+"hero_owner_welcome": "Bine ați venit la RENT4STUDENTS",
+"hero_owner_subtitle": "Aplicația ideală pentru proprietari pentru gestionarea eficientă a chiriașilor și locuințelor.",
+"hero_owner_list_item_1": "Găsirea rapidă a studenților interesați de închiriere.",
+"hero_owner_list_item_2": "Gestionarea eficientă a apartamentelor și anunțurilor.",
+"hero_owner_list_item_3": "Administrarea simplificată a facturilor și plăților direct în aplicație.",
+
+    "pricing_owner_title": "Planuri de Abonament pentru Proprietari",
+    "pricing_owner_subtitle": "Alege planul potrivit pentru gestionarea eficientă a apartamentelor și chiriașilor tăi.",
+    "free_plan_title": "Plan Gratuit",
+    "free_plan_price": "Gratuit",
+    "free_plan_period": "Permanent",
+    "standard_plan_title": "Plan Standard",
+    "standard_plan_period": "Pe lună",
+    "premium_plan_title": "Plan Premium",
+    "premium_plan_period": "Pe lună",
+    "feature_add_apartment": "Adăugarea unui apartament",
+    "feature_add_two_apartment": "Adăugarea mai multor apartamente",
+    "feature_visibility": "Vizibilitate în platformă",
+    "feature_manage_bills": "Gestionarea facturilor",
+    "feature_premium_support": "Suport prioritar 24/7",
+    "my_properties_title": "Proprietățile mele"
 }
   

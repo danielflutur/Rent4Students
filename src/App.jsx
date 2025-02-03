@@ -41,6 +41,14 @@ import HomeStudent from "./component/HomeStudent/HomeStudent.jsx";
 import StudentDetail from "./component/StudentDetail/StudentDetail.jsx";
 import Roommates from "./component/Roommates/index.jsx";
 import ApplyForRentHelp from "./component/ApplyForRentHelp/ApplyForRentHelp.jsx";
+import SignUpOwner from "./component/SignUpOwner/index.jsx";
+import HomeOwner from "./component/HomeOwner/HomeOwner.jsx";
+import PricingOwner from "./component/PricingOwner/index.jsx";
+import MyPropertiesOwner from "./component/Dashboard/MyPropertisOwner.jsx";
+import DashboardCompOwner from "./component/Dashboard/DashboardCompOwner.jsx";
+import TableDataOwnerPropertyAssociation from "./component/Dashboard/TableDataOwnerPropertyAssociation.jsx";
+import InvoiceTableOwnerPropertyAssociation from "./component/Dashboard/InvoiceTableOwnerPropertyAssociation.jsx";
+import ValidatePhoneNumberOwner from "./component/ValidatePhoneNumberOwner/ValidatePhoneNumberOwner.jsx";
 
 function App() {
   useEffect(() => {
@@ -59,6 +67,10 @@ function App() {
     {
       path: "/home-student",
       element: <HomeStudent />,
+    },
+    {
+      path: "/home-owner",
+      element: <HomeOwner />,
     },
     {
       path: "/property",
@@ -121,6 +133,22 @@ function App() {
       element: <PricingUniversity />,
     },
     {
+      path: "/pricing-owner",
+      element: <PricingOwner />,
+    },
+    {
+      path: "/my-properties-owner",
+      element: <MyPropertiesOwner />,
+    },
+    {
+      path: "/dashboard-owner",
+      element: <DashboardCompOwner />,
+    },
+    {
+      path: "/owner-property-association",
+      element: <InvoiceTableOwnerPropertyAssociation />,
+    },
+    {
       path: "/pricing",
       element: <Pricing />,
     },
@@ -147,6 +175,10 @@ function App() {
     {
       path: "/signup-student",
       element: <SignUpStudent />,
+    },
+    {
+      path: "/signup-owner",
+      element: <SignUpOwner />,
     },
     {
       path: "/welcome-students",
@@ -192,6 +224,10 @@ function App() {
     {
       path: "/validate-phone",
       element: <ValidatePhoneNumber />,
+    },
+    {
+      path: "/validate-phone-owner",
+      element: <ValidatePhoneNumberOwner />,
     },
     {
       path: "/add-faculty",
