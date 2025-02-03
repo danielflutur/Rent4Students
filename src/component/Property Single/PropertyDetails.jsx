@@ -5,6 +5,7 @@ import DetailsTabFeatures from "./DetailsTabFeatures";
 import PropertyLocation from "../PropertyLocation";
 import PropertyReview from "../PropertyReview";
 import PropertyAgents from "../Agents/PropertyAgents";
+import PropertyOwners from "../Owners/PropertyOwners";
 import { useData } from "../../context/ListingFeaturesProvider";  // Importing context to access features
 
 function PropertyDetails({ listing }) {
@@ -78,10 +79,10 @@ function PropertyDetails({ listing }) {
               </div>
             </div>
           </div>
-          <PropertyAgents
+          <PropertyOwners
             image="https://placehold.co/90x90"
-            name="Wade De Warren"
-            position="Real Estate Broker"
+            name="Ciprian Marius"
+            position="Owner"
           />
         </div>
       </div>

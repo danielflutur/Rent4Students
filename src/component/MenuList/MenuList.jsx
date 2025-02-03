@@ -115,6 +115,10 @@ const MenuList = () => {
       <Link to="/apply-for-rent-help">{t("menu.renthelp")}</Link>
       </Menu.Item>
 
+      <Menu.Item key="mypropertiesowner" icon={<ContactsOutlined />}>
+      <Link to="/my-properties-owner">{t("menu.myproperties")}</Link>
+      </Menu.Item>
+
 
       <Menu.SubMenu key="agents" icon={<ContactsOutlined />} title={t("menu.agents")}>
         <Menu.Item key="our_agent">
