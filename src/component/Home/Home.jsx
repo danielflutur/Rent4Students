@@ -15,6 +15,7 @@ import ApiService from "../../services/ApiService";
 import { ListingsProvider } from "../../context/ListingsProvider";
 import { ListingFeaturesProvider } from "../../context/ListingFeaturesProvider";
 
+
 function Home() {
   const [lisitngs, setListings] = useState([]);
   const [isLoading, setisLoadingg] = useState(true);
@@ -43,8 +44,10 @@ function Home() {
               <Features />
               <Agents />
               <FaqSection />
+              {/* Comentat niste pagini
               <DownloadApp />
               <Blog />
+              */}
               <Footer />
               <GoTopBtn />
             </ListingFeaturesProvider>

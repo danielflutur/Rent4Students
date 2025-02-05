@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
-import WelcomeCard from "../Cards/WelcomeCard";
+import WelcomeCardLogin from "../Cards/WelcomeCardLogin";
 import PropertyTextInput from "../Form/PropertyTextInput";
 import Preloader from "../Loader";
 import ApiService from "../../services/ApiService";
 import { useAuth } from "../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 function AppLogin() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const { setAuth } = useAuth();
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
+
   const handleChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -29,43 +32,36 @@ function AppLogin() {
     }
   };
 
-const handleRoleNavigation = (role) =>{
-  if (role === "Student") {
-    navigate("/home-student");
-  }
-  else if (role === "University") {
-    navigate("/home-university");
-  } else {
-    navigate("/");
-  }
-};
+  const handleRoleNavigation = (role) => {
+    if (role === "Student") {
+      navigate("/home-student");
+    } else if (role === "University") {
+      navigate("/home-university");
+    } else {
+      navigate("/");
+    }
+  };
 
   // loading handler
-  const [isLoading, setisLoadingg] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
-    setisLoadingg(false);
+    setIsLoading(false);
   }, []);
 
-  let component = undefined;
+  let component;
   if (isLoading) {
     component = <Preloader />;
   } else {
     component = (
-      <section
-        className="ecom-wc ecom-wc__full ecom-bg-cover"
-        // style={{ backgroundImage: "url('img/credential-bg.svg')" }}
-      >
+      <section className="ecom-wc ecom-wc__full ecom-bg-cover">
         <div className="container-fluid">
           <div className="row">
             <div className="col-lg-6 col-12">
               <div className="ecom-wc__form">
                 <div className="ecom-wc__form-inner">
                   <h3 className="ecom-wc__form-title ecom-wc__form-title__one">
-                    Login
-                    <span>
-                      Your email address will not be published. Required fields
-                      are marked *
-                    </span>
+                    {t("login.title")}
+                    <span>{t("login.subtitle")}</span>
                   </h3>
                   {/* Sign in Form  */}
                   <form
@@ -73,18 +69,18 @@ const handleRoleNavigation = (role) =>{
                     onSubmit={handleSubmit}
                   >
                     <PropertyTextInput
-                      title="Email*"
+                      title={t("login.emailLabel")}
                       name="email"
                       value={input.email}
                       handleChange={handleChange}
-                      placeholder="demo3243@gmail.com"
+                      placeholder={t("login.emailPlaceholder")}
                     />
                     <PropertyTextInput
-                      title="Password*"
+                      title={t("login.passwordLabel")}
                       name="password"
                       value={input.password}
                       handleChange={handleChange}
-                      placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+                      placeholder={t("login.passwordPlaceholder")}
                       type="password"
                     />
                     <div className="form-group form-mg-top-30">
@@ -93,7 +89,7 @@ const handleRoleNavigation = (role) =>{
                           className="homec-btn homec-btn__second"
                           type="submit"
                         >
-                          <span>Login</span>
+                          <span>{t("login.loginButton")}</span>
                         </button>
                       </div>
                     </div>
@@ -101,8 +97,8 @@ const handleRoleNavigation = (role) =>{
                     <div className="form-group mg-top-20">
                       <div className="ecom-wc__bottom">
                         <p className="ecom-wc__text">
-                          Dont’t have an account ?{" "}
-                          <a href="signup">Create Account</a>
+                          {t("login.noAccount")}{" "}
+                          <a href="signup">{t("login.createAccount")}</a>
                         </p>
                       </div>
                     </div>
@@ -111,17 +107,7 @@ const handleRoleNavigation = (role) =>{
                 </div>
               </div>
             </div>
-            <WelcomeCard
-              languages={["English", "Bengali", "Frances"]}
-              links={[
-                { link: "#", name: "Terms & Condition" },
-                { link: "#", name: "Privacy Policy" },
-                { link: "#", name: "Help" },
-              ]}
-              image="https://placehold.co/600x600"
-              brunches="120"
-              builtHouse="150k"
-            />
+            <WelcomeCardLogin image="img/role_login.png" />
           </div>
         </div>
       </section>

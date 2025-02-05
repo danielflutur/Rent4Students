@@ -4,6 +4,7 @@ import Preloader from "../Loader";
 import SelectDropDown from "../SelectDropDown/SelectDropDown";
 import { useNavigate, useLocation } from "react-router-dom";
 import { attributes } from "../../data/attributes";
+import WelcomeCardOwner from "../Cards/WelcomeCardOwner";
 
 function Page2LivingAndSocialPreferences() {
   const { t } = useTranslation();
@@ -59,11 +60,11 @@ function Page2LivingAndSocialPreferences() {
           ></div>
         </div> */}
 
-        <div className="container-fluid p-0">
-          <div className="row g-0">
-            <div className="col-lg-12 col-12">
-              <div className="ecom-wc__form">
-                <div className="ecom-wc__form-inner">
+<div className="container-fluid p-0">
+        <div className="row g-0">
+          <div className="col-lg-6 col-12">
+            <div className="ecom-wc__form">
+              <div className="ecom-wc__form-inner">
                   <h3 className="ecom-wc__form-title ecom-wc__form-title__one">
                     {t("personal_data_form.living_and_social")}
                     <span>{t("personal_data_form.personal_and_lifestyle_description")}</span>
@@ -194,6 +195,7 @@ function Page2LivingAndSocialPreferences() {
                 </div>
               </div>
             </div>
+            <WelcomeCardOwner image="img/page-2.png" brunches="120" builtHouse="150k" />
           </div>
         </div>
       </section>

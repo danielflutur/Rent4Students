@@ -1,5 +1,6 @@
 .menu-bar{
     height: 88vh;
+    width: 200px;
     margin-top: 2rem;
     display: flex;
     flex-direction: column;

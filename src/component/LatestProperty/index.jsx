@@ -3,16 +3,17 @@ import Title from "../Title";
 import TitleBtn from "../Button/TitleBtn";
 import LatestPropertyCard from "../Cards/LatestPropertyCard";
 import ApiService from "../../services/ApiService";
-
+import { useTranslation } from 'react-i18next';
 
 function LatestProperty() {
+  const { t } = useTranslation();
   const [data, setData] = useState([]);
 
   useEffect(() => {
     ApiService.get("Listings")
       .then((response) => setData(response.data))
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+      .catch((error) => console.error(t('latestProperty.errorFetchingData'), error));
+  }, [t]);
 
   return (
     <section
@@ -31,8 +32,8 @@ function LatestProperty() {
         <div className="row">
           <div className="col-12">
             <Title
-              firstText="View All 329 New Listings"
-              secondText=" Latest Properties"
+              firstText={t('latestProperty.viewAll')}
+              secondText={t('latestProperty.latestProperties')}
               marginSize="30"
               styleSecond={{ color: "#ffff" }}
             />
@@ -53,7 +54,7 @@ function LatestProperty() {
           ))}
         </div>
         <div className="row">
-          <TitleBtn delay="600" link="/property" text="See all Properties" />
+          <TitleBtn delay="600" link="/property" text={t('latestProperty.seeAllProperties')} />
         </div>
       </div>
     </section>

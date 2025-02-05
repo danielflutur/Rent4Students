@@ -45,18 +45,14 @@ const MenuList = () => {
         <Link to="/">{t("menu.home")}</Link>
       </Menu.Item>
 
-      <Menu.SubMenu
-        key="faculty_menu"
-        icon={<ShopOutlined />}
-        title={t("menu.faculties")}
-      >
-        <Menu.Item key="add_faculty">
-          <Link to="/add-faculty">{t("menu.add_faculty")}</Link>
-        </Menu.Item>
-        <Menu.Item key="faculty">
-          <Link to="/faculty">{t("menu.manage_faculties")}</Link>
-        </Menu.Item>
-      </Menu.SubMenu>
+      <Menu.Item key="add_faculty" icon={<img src="img/add_faculty.png"  style={{ width: 20, height: 20}} />} >
+        <Link to="/add-faculty">{t("menu.add_faculty")}</Link>
+      </Menu.Item>
+
+      <Menu.Item key="faculty" icon={<img src="img/manage_faculty.png"  style={{ width: 20, height: 20 }} />} >
+        <Link to="/faculty">{t("menu.manage_faculties")}</Link>
+      </Menu.Item>
+
 
       <Menu.SubMenu
         key="properties_menu"
@@ -107,15 +103,28 @@ const MenuList = () => {
         </Menu.Item>
       </Menu.SubMenu>
 
-      <Menu.Item key="roommates" icon={<ContactsOutlined />}>
+      <Menu.Item key="manage-students" icon={<img src="img/manage_students.png"  style={{ width: 20, height: 20}} />}>
+        <Link to="/manage-students">{t("menu.manage-students")}</Link>
+      </Menu.Item>
+
+      <Menu.Item key="manage-students-applications" icon={<img src="img/manage_documents.png"  style={{ width: 20, height: 20}} />}>
+        <Link to="/manage-students-applications">{t("menu.manage-students-applications")}</Link>
+      </Menu.Item>
+
+      <Menu.Item key="add-documents"  icon={<img src="img/upload_documents.png"  style={{ width: 20, height: 20}} />}>
+        <Link to="/add-documents">{t("menu.add-documents")}</Link>
+      </Menu.Item>
+
+
+      <Menu.Item key="roommates" icon={<img src="img/roommate.png"  style={{ width: 20, height: 20}} />}>
         <Link to="/roommates">{t("menu.roommates")}</Link>
       </Menu.Item>
 
-      <Menu.Item key="renthelp" icon={<ContactsOutlined />}>
+      <Menu.Item key="renthelp" icon={<img src="img/request.png"  style={{ width: 20, height: 20}} />}>
       <Link to="/apply-for-rent-help">{t("menu.renthelp")}</Link>
       </Menu.Item>
 
-      <Menu.Item key="mypropertiesowner" icon={<ContactsOutlined />}>
+      <Menu.Item key="mypropertiesowner" icon={<img src="img/my-properties.png"  style={{ width: 20, height: 20}} />}>
       <Link to="/my-properties-owner">{t("menu.myproperties")}</Link>
       </Menu.Item>
 

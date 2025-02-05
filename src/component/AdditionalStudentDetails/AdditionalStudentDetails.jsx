@@ -12,6 +12,7 @@ import ApiService from "../../services/ApiService";
 import SelectDropDown from "../SelectDropDown/SelectDropDown";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthProvider";
+import WelcomeCardPage3 from "../Cards/WelcomeCardPage3";
 
 function AdditionalStudentDetails() {
   const { t } = useTranslation();
@@ -111,17 +112,16 @@ function AdditionalStudentDetails() {
     component = <Preloader />;
   } else {
     component = (
-      <section className="ecom-wc ecom-wc__full ecom-bg-cover">
+      <section >
         <div className="container-fluid p-0">
           <div className="row g-0">
-            <div className="col-lg-12 col-12">
-              <div className="ecom-wc__form">
+            <div className="col-lg-6 col-12">
+            <div className="homec-submit-form">
                 <div className="ecom-wc__form-inner">
-                  <h3 className="ecom-wc__form-title ecom-wc__form-title__one">
+                  <h4 className="homec-submit-form__title">
                     {t("form.additional_info")}
+                    </h4>
                     <span>{t("form.additional_info_description")}</span>
-                  </h3>
-
                   <form
                     className="ecom-wc__form-main p-0"
                     onSubmit={(e) => handleSubmit(e)}
@@ -215,6 +215,15 @@ function AdditionalStudentDetails() {
                 </div>
               </div>
             </div>
+            <div className="col-lg-6 col-12">
+                  <div className="welcome-card">
+                    <WelcomeCardPage3
+                      image="img/personal-data.png"
+                      brunches="120"
+                      builtHouse="150k"
+                    />
+                  </div>
+                </div>
           </div>
         </div>
       </section>
