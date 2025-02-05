@@ -8171,3 +8171,64 @@ input[type="text"] {
   border-radius: 5px;
   cursor: pointer;
 }
+
+.upload-label {
+  font-size: 1.1rem; /* Mărirea fontului pentru mai multă claritate */
+  font-weight: 600; /* Fontul va fi îngroșat pentru a atrage atenția */
+  color: #333; /* Culoare mai închisă pentru un contrast mai bun */
+  margin-bottom: 8px; /* Adăugăm puțin spațiu sub etichetă */
+  display: block; /* Eticheta ocupă întreaga lățime disponibilă */
+}
+
+
+.upload-label-small {
+  font-size: 0.9rem; /* Text mai mic pentru subtitluri sau descriere */
+  font-weight: 400; /* Greutate normală pentru subtitluri */
+  color: #666; /* Culoare gri pentru un contrast mai moale */
+  margin-bottom: 12px; /* Mai mult spațiu pentru a separa */
+}
+
+.upload-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  font-size: 1.1rem;
+  border-radius: 5px;
+  background-color: #007bff; /* Culoarea de fundal pentru buton */
+  color: #fff; /* Culoarea textului */
+  border: none; /* Elimină bordura implicită */
+  transition: background-color 0.3s ease; /* Adaugă o tranziție lină la schimbarea culorii */
+}
+
+
+.upload-button:hover {
+  background-color: #0056b3; /* Culoarea la hover */
+  color:#000 !important;
+}
+
+.upload-button:focus, .upload-button:active {
+  background-color: #007bff; /* Culoarea de fundal la focus și click */
+  outline: none; /* Înlătură conturul implicit la focus */
+  box-shadow: none; /* Elimină orice umbră nedorită */
+  color:#000 !important;
+}
+
+.upload-button .anticon {
+  font-size: 1.5rem;
+}
+
+.upload-button:hover .anticon {
+  font-size: 1.6rem;
+}
+
+.welcome-card {
+  position: sticky; /* Rămâne lipicios în interiorul containerului său */
+  top: 20px;       /* Distanța de la partea de sus a viewport-ului */
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-left: 30px; /* Spațiu între formular și card */
+  min-width: 150px;  /* Asigură o lățime minimă */
+}

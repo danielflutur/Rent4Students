@@ -166,7 +166,10 @@
     "validate_phone": "Verifică Numărul de Telefon",
     "roommates": "Colegi apartament",
     "renthelp": "Aplica pentru ajutor chirie",
-    "myproperties": "Proprietățile mele"
+    "myproperties": "Proprietățile mele",
+    "manage-students": "Gestioneaza Studentii",
+    "manage-students-applications": "Gestioneaza Cereriele Studentilor",
+    "add-documents":"Adauga Documente"
   },
 
   "welcome_students": {
@@ -345,6 +348,89 @@
     "feature_visibility": "Vizibilitate în platformă",
     "feature_manage_bills": "Gestionarea facturilor",
     "feature_premium_support": "Suport prioritar 24/7",
-    "my_properties_title": "Proprietățile mele"
+    "my_properties_title": "Proprietățile mele",
+
+  
+      "login": {
+        "title": "Autentificare",
+        "subtitle": "Adresa ta de email nu va fi publicată. Câmpurile obligatorii sunt marcate cu *",
+        "emailLabel": "Email*",
+        "emailPlaceholder": "demo3243@gmail.com",
+        "passwordLabel": "Parolă*",
+        "passwordPlaceholder": "••••••",
+        "loginButton": "Autentificare",
+        "noAccount": "Nu ai un cont?",
+        "createAccount": "Creează cont"
+      },
+
+        "hero_secretary_subtitle": "Soluția ideală pentru gestionarea rapidă și eficientă a documentelor și cererilor studenților.",
+        "hero_secretary_list_item_1": "Procesarea rapidă a cererilor studenților pentru cazare.",
+        "hero_secretary_list_item_2": "Gestionarea eficientă a documentelor administrative.",
+        "hero_secretary_list_item_3": "Trimiterea rapidă și simplă a răspunsurilor către studenți.",
+        "search_students_placeholder": "Cauta Studenti",
+
+        "students_table_first_name": "Prenume",
+  "students_table_last_name": "Nume",
+  "students_table_email": "Email",
+  "students_table_student_id": "Număr Matricol",
+  "students_table_edit": "Editează",
+  "students_table_delete": "Șterge",
+  "students_table_confirm_delete": "Confirmare Ștergere",
+  "students_table_are_you_sure_delete": "Sigur doriți să ștergeți studentul",
+  "upload_excel": "Încarcă Excel",
+  "manageapplications": {
+    "first_name": "Prenume",
+    "last_name": "Nume",
+    "email": "Email",
+    "access_document": "Accesează documentul",
+    "set_status": "Setează statutul",
+    "document_preview": "Previzualizare document",
+    "set_status_for_documents": "Setează statutul pentru documente",
+    "choose_status_for_the_document": "Alege statutul pentru document",
+    "approved": "Aprobat",
+    "rejected": "Respins",
+    "submit": "Trimite",
+    "cancel": "Anulează"
+  },
+
+  "manage_students": "Gestioneaza Studentii",
+  "manage_applications": "Gestioneaza Cererile Studentii",
+  "manage_documents": "Gestioneaza Documente",
+
+  "documents_upload_title": "Încărcare documente",
+  "upload_documents_label": "Alegeți documentele necesare pentru aplicarea la Sucventia de Ajutor de Chirie",
+  "upload_documents_button": "Încarcă documente",
+  "upload_request_letter_label": "Alegeți cererea în format Word",
+  "upload_request_letter_button": "Încarcă cererea",
+  "submit_button": "Trimite",
+  "success_modal_title": "Succes",
+  "success_modal_message": "Documentele au fost încărcate cu succes!",
+
+  "hero": {
+    "title": "Bun venit în Rent4Students!",
+    "description": "Aplicația perfectă pentru universități, studenți, proprietari și agenții imobiliare.",
+    "university": "Universitatea - Administrarea studenților și cererilor",
+    "students": "Studenți - Găsirea apartamentului sau colegului de apartament",
+    "owners": "Proprietar - Găsirea chiriașilor și gestionarea apartamentelor",
+    "agencies": "Agenție Imobiliară - Gestionarea apartamentelor într-un mod ușor",
+    "viewAllProperties": "Vezi toate proprietățile"
+  },
+  "latestProperty": {
+    "viewAll": "Vizualizați toate cele 329 de oferte noi",
+    "latestProperties": "Cele mai noi proprietăți",
+    "seeAllProperties": "Vezi toate proprietățile",
+    "errorFetchingData": "Eroare la preluarea datelor:"
+  },
+
+  "students": {
+    "viewAll": "Vizualizați toți cei 234 de studenți",
+    "findRoommates": "Întâlniți posibili colegi de apartament"
+  },
+
+   "seeprofile":"Vezi Profilul"
+
+
+
+      
 }
   

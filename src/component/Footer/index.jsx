@@ -7,38 +7,36 @@ function Footer() {
     <footer className="footer-area p-relative">
       <div className="homec-shape">
         <div className="homec-shape-single homec-shape-10">
-          <img src="/img/anim-shape-6.svg" alt="#" />
+          <img src="/img/anim-shape-6.svg" alt="Decorative shape" />
         </div>
       </div>
       <div className="container">
         <div className="row">
           <div className="col-12">
-            {/* Subscribe Form   */}
+            {/* Subscribe Form */}
             <SubscribeForm />
-            {/* End Subscribe Form   */}
+            {/* End Subscribe Form */}
           </div>
         </div>
         <div className="row">
           <div className="col-12">
             <div className="footer-top-inner pd-top-30 pd-btm-100">
               <div className="row">
+                {/* Footer About Widget */}
                 <div className="col-lg-4 col-md-3 col-12">
-                  {/* Footer Widget  */}
                   <div className="footer-about-widget">
                     <div className="footer-logo homec-header__logo">
-                      <Link className="logo" href="/">
-                        <img src="/img/logo-footer.png" alt="#" />
+                      <Link className="logo" to="/">
+                        <img src="/img/rent4students-logo-footer.png" alt="Rent4Students Logo" />
                       </Link>
                     </div>
                     <p className="footer-about-text">
-                      There are many variatons of pass Ipsum available, but the
-                      majority alteration in some form, by inject randomised
-                      words
+                      Rent4Students conectează studenții cu oferte de locuințe accesibile și adaptate nevoilor lor, pentru o experiență de trai fără stres.
                     </p>
-                    {/* Social   */}
+                    {/* Social Media */}
                     <ul className="homec-social homec-social__v2">
                       <li>
-                        <Link href="#">
+                        <Link to="https://facebook.com/rent4students" target="_blank" rel="noopener noreferrer">
                           <svg
                             width="24"
                             height="24"
@@ -46,13 +44,11 @@ function Footer() {
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <g clipPath="url(#clip0_1)">
+                            <g clipPath="url(#clip0_fb)">
                               <path d="M3.24 0.200195C2.36002 0.200195 1.56 0.520211 0.96 1.12021C0.320016 1.7602 0 2.56016 0 3.40016C0 4.28015 0.36 5.08016 0.96 5.68016C1.56 6.28016 2.4 6.64016 3.20002 6.60018C3.20002 6.60018 3.24 6.60018 3.28003 6.60018C4.08005 6.60018 4.84003 6.28016 5.44003 5.68016C6.04003 5.08016 6.40003 4.28015 6.40003 3.40016C6.44002 2.56016 6.08002 1.76015 5.48002 1.16015C4.88002 0.520164 4.08 0.200195 3.24 0.200195ZM4.88002 5.1202C4.44 5.56021 3.84 5.8402 3.20002 5.80021C2.60002 5.80021 1.96003 5.56021 1.52002 5.1202C1.04002 4.68018 0.800016 4.0402 0.800016 3.40021C0.800016 2.76023 1.04002 2.16023 1.52002 1.68023C1.96003 1.24021 2.56003 1.00021 3.24 1.00021C3.84 1.00021 4.44 1.24021 4.88002 1.68023C5.36002 2.16023 5.60002 2.76023 5.60002 3.40021C5.60002 4.0402 5.36002 4.68018 4.88002 5.1202Z" />
-                              <path d="M4.80001 7.40039H1.56001C0.920025 7.40039 0.399994 7.92037 0.399994 8.60039V22.6004C0.399994 23.2404 0.960009 23.8004 1.59999 23.8004H4.80001C5.43999 23.8004 6.00001 23.2404 6.00001 22.6404V8.60039C6.00001 7.96036 5.43999 7.40039 4.80001 7.40039ZM5.19999 22.6404C5.19999 22.8404 4.99998 23.0004 4.80001 23.0004H1.59999C1.39998 23.0004 1.20001 22.8004 1.20001 22.6004V8.60039C1.20001 8.40037 1.35999 8.20041 1.56001 8.20041H4.80001C5.00003 8.20041 5.19999 8.40042 5.19999 8.60039V22.6404Z" />
-                              <path d="M18.4 7H17.56C16 7 14.52 7.68002 13.56 8.76002V8.2C13.56 7.80002 13.16 7.39998 12.76 7.39998H8.76001C8.40001 7.39998 7.95999 7.72 7.95999 8.15997V23.08C7.95999 23.52 8.40001 23.8 8.76001 23.8H13.16C13.52 23.8 13.96 23.52 13.96 23.08V14.44C13.96 13.12 14.92 12.0799 16.16 12.0799C16.8 12.0799 17.4 12.3199 17.84 12.76C18.24 13.12 18.4 13.68 18.4 14.4V23C18.4 23.4 18.8 23.8 19.2001 23.8H23.2C23.6 23.8 24.0001 23.4 24.0001 23V12.68C24 9.48002 21.56 7 18.4 7ZM23.2 22.96L23.16 23H19.24L19.2 14.4C19.2 13.44 18.96 12.72 18.44 12.2C17.84 11.6 17.04 11.28 16.2 11.28C14.52 11.32 13.2 12.68 13.2 14.44V23H8.79999V8.2H12.76L12.8 8.23998V10.76L13.88 9.67998L13.92 9.64C14.72 8.52002 16.1199 7.80002 17.6 7.80002H18.44C21.12 7.80002 23.2 9.96002 23.2 12.68V22.96Z" />
                             </g>
                             <defs>
-                              <clipPath id="clip0_1">
+                              <clipPath id="clip0_fb">
                                 <rect width="24" height="24" />
                               </clipPath>
                             </defs>
@@ -60,7 +56,7 @@ function Footer() {
                         </Link>
                       </li>
                       <li>
-                        <Link to="#">
+                        <Link to="https://instagram.com/rent4students" target="_blank" rel="noopener noreferrer">
                           <svg
                             width="24"
                             height="24"
@@ -72,148 +68,95 @@ function Footer() {
                           </svg>
                         </Link>
                       </li>
-                      <li>
-                        <Link to="#">
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g clipPath="url(#clip0_2)">
-                              <path d="M15.6942 10.9214L10.392 8.02027C10.0871 7.85346 9.72675 7.85968 9.42792 8.03675C9.12891 8.21399 8.95056 8.5271 8.95056 8.87464V14.6271C8.95056 14.973 9.12781 15.2855 9.4248 15.463C9.57989 15.5556 9.75183 15.6021 9.92413 15.6021C10.082 15.6021 10.2402 15.5631 10.3857 15.4847L15.6881 12.6336C16.0029 12.4642 16.1993 12.137 16.2008 11.7794C16.2021 11.4218 16.008 11.0931 15.6942 10.9214ZM10.357 13.9034V9.60413L14.3198 11.7725L10.357 13.9034Z" />
-                              <path d="M23.8235 7.19659L23.8224 7.18561C23.8021 6.99243 23.5997 5.27417 22.7644 4.40021C21.7989 3.37225 20.7043 3.24738 20.1779 3.1875C20.1343 3.18256 20.0944 3.17798 20.0587 3.17322L20.0167 3.16882C16.8439 2.93811 12.0522 2.90662 12.0042 2.90643L12 2.90625L11.9958 2.90643C11.9478 2.90662 7.15613 2.93811 3.95471 3.16882L3.91241 3.17322C3.87836 3.1778 3.84082 3.18201 3.79999 3.18677C3.2796 3.24683 2.19672 3.37189 1.22845 4.43701C0.432861 5.30164 0.202881 6.98309 0.17926 7.17206L0.176514 7.19659C0.169373 7.27698 0 9.19061 0 11.1118V12.9077C0 14.8288 0.169373 16.7424 0.176514 16.823L0.177795 16.8351C0.19812 17.0251 0.400269 18.7119 1.23175 19.5862C2.13959 20.5798 3.28748 20.7112 3.90491 20.7819C4.0025 20.7931 4.08655 20.8026 4.14386 20.8127L4.19934 20.8204C6.03131 20.9947 11.7751 21.0806 12.0187 21.084L12.026 21.0842L12.0333 21.084C12.0813 21.0839 16.8728 21.0524 20.0457 20.8217L20.0876 20.8173C20.1277 20.812 20.1727 20.8072 20.2222 20.8021C20.7396 20.7471 21.8167 20.6331 22.7715 19.5824C23.5671 18.7176 23.7973 17.0361 23.8207 16.8474L23.8235 16.8228C23.8306 16.7422 24.0002 14.8288 24.0002 12.9077V11.1118C24 9.19061 23.8306 7.27716 23.8235 7.19659ZM22.5936 12.9077C22.5936 14.6858 22.4383 16.517 22.4236 16.6851C22.364 17.1482 22.1213 18.212 21.7337 18.6334C21.136 19.2909 20.5221 19.3561 20.0739 19.4035C20.0197 19.4092 19.9695 19.4147 19.9241 19.4203C16.8552 19.6423 12.2444 19.6763 12.032 19.6776C11.7938 19.6741 6.13403 19.5875 4.35791 19.4225C4.26691 19.4077 4.16858 19.3964 4.06494 19.3846C3.53925 19.3244 2.81964 19.242 2.2663 18.6334L2.2533 18.6194C1.87244 18.2227 1.63678 17.2278 1.5769 16.6906C1.56573 16.5635 1.40643 14.7107 1.40643 12.9077V11.1118C1.40643 9.33563 1.56134 7.50641 1.57635 7.33484C1.64758 6.78937 1.89478 5.78998 2.2663 5.38605C2.88226 4.70856 3.53174 4.63348 3.9613 4.58386C4.00232 4.5791 4.04059 4.57471 4.07593 4.57013C7.18945 4.34711 11.8334 4.31396 12 4.31268C12.1666 4.31378 16.8089 4.34711 19.8948 4.57013C19.9327 4.57489 19.9741 4.57965 20.0186 4.58478C20.4604 4.63513 21.1282 4.7113 21.741 5.36499L21.7467 5.37103C22.1276 5.76782 22.3632 6.78003 22.4231 7.32806C22.4337 7.448 22.5936 9.30487 22.5936 11.1118V12.9077Z" />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_2">
-                                <rect width="24.0001" height="24" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-                        </Link>
-                      </li>
-                      <li>
-                        <Link to="#">
-                          <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <g clipPath="url(#clip0_3)">
-                              <path d="M13.5938 23.9531H9.75037C9.1084 23.9531 8.58618 23.4309 8.58618 22.7889V14.12H6.34387C5.7019 14.12 5.17969 13.5976 5.17969 12.9558V9.24115C5.17969 8.59918 5.7019 8.07697 6.34387 8.07697H8.58618V6.2168C8.58618 4.37238 9.16534 2.80316 10.2609 1.67908C11.3613 0.549866 12.8992 -0.046875 14.7083 -0.046875L17.6395 -0.0421143C18.2803 -0.0410156 18.8016 0.481201 18.8016 1.12207V4.57105C18.8016 5.21301 18.2796 5.73523 17.6378 5.73523L15.6643 5.73596C15.0624 5.73596 14.9092 5.85663 14.8764 5.89362C14.8224 5.95496 14.7581 6.12836 14.7581 6.60718V8.07678H17.4895C17.6951 8.07678 17.8944 8.1275 18.0656 8.22308C18.4349 8.42944 18.6645 8.81964 18.6645 9.24133L18.663 12.956C18.663 13.5976 18.1408 14.1198 17.4988 14.1198H14.7581V22.7889C14.7581 23.4309 14.2357 23.9531 13.5938 23.9531ZM9.99316 22.5461H13.351V13.4901C13.351 13.0615 13.6998 12.7128 14.1282 12.7128H17.256L17.2573 9.48395H14.1281C13.6996 9.48395 13.351 9.13532 13.351 8.70667V6.60718C13.351 6.0575 13.4068 5.43237 13.8217 4.96252C14.3231 4.39453 15.1132 4.32898 15.6639 4.32898L17.3947 4.32825V1.3645L14.7072 1.36011C11.7999 1.36011 9.99316 3.22119 9.99316 6.2168V8.70667C9.99316 9.13513 9.64453 9.48395 9.21607 9.48395H6.58667V12.7128H9.21607C9.64453 12.7128 9.99316 13.0615 9.99316 13.4901V22.5461Z" />
-                            </g>
-                            <defs>
-                              <clipPath id="clip0_3">
-                                <rect width="23.9531" height="24" />
-                              </clipPath>
-                            </defs>
-                          </svg>
-                        </Link>
-                      </li>
+                      {/* Alte rețele sociale pot fi adăugate aici */}
                     </ul>
-                    {/* End Social  */}
+                    {/* End Social Media */}
                   </div>
-                  {/*  End Footer Widget  */}
                 </div>
+                {/* Footer Link Widgets */}
                 <div className="col-lg-8 col-md-9">
                   <div className="row">
+                    {/* Prima coloană: Listing */}
                     <div className="col-lg-4 col-md-4 col-12">
-                      {/* Footer Widget   */}
                       <div className="single-widget footer-useful-links">
                         <h3 className="widget-title">Listing</h3>
                         <ul className="f-useful-links-inner list-none">
-                          <FooterList link="/property" title="Properties" />
-                          <FooterList
-                            link="/add-property"
-                            title="Add Properties"
-                          />
-                          <FooterList
-                            link="/submit-property"
-                            title="Submit Property"
-                          />
-                          <FooterList link="/login" title="Login" />
-                          <FooterList link="/signup" title="Signup" />
+                          <FooterList link="/rentals" title="Locuințe" />
+                          <FooterList link="/submit-rental" title="Adaugă anunț" />
+                          <FooterList link="/student-listings" title="Anunțuri studențești" />
+                          <FooterList link="/login" title="Autentificare" />
+                          <FooterList link="/signup" title="Înregistrează-te" />
                         </ul>
                       </div>
-                      {/* End Footer Widget  */}
                     </div>
+                    {/* A doua coloană: Informații */}
                     <div className="col-lg-4 col-md-4 col-12">
-                      {/* Footer Widget  */}
                       <div className="single-widget footer-need-helps">
-                        <h3 className="widget-title">Importants</h3>
+                        <h3 className="widget-title">Informații</h3>
                         <ul className="f-need-helps-inner list-none">
-                          <FooterList link="/about" title="About Us" />
-                          <FooterList link="/pricing" title="Pricing" />
+                          <FooterList link="/about" title="Despre Noi" />
+                          <FooterList link="/pricing" title="Tarife" />
                           <FooterList link="/blog" title="Blog" />
-                          <FooterList link="/faq" title="Faq's" />
-                          <FooterList link="/contact" title="Contact Us" />
+                          <FooterList link="/faq" title="FAQ" />
+                          <FooterList link="/contact" title="Contact" />
                         </ul>
                       </div>
-                      {/* End Footer Widget  */}
                     </div>
+                    {/* A treia coloană: Contact */}
                     <div className="col-lg-4 col-md-4 col-12">
-                      {/* Footer Widget   */}
                       <div className="single-widget footer-contact">
-                        <h3 className="widget-title">Contact Us</h3>
+                        <h3 className="widget-title">Contactează-ne</h3>
                         <div className="f-contact__form-top">
                           <ul className="f-contact-list list-none">
                             <li>
-                              <img src="/img/footer-phone.svg" alt="#" />
-                              <a href="tel:+(323)750-1234">+(323) 750-1234</a>
+                              <img src="/img/footer-phone.svg" alt="Telefon" />
+                              <a href="tel:+401234567890">+40 123 456 7890</a>
                             </li>
                             <li>
-                              <img src="/img/footer-message.png" alt="#" />
-                              <a href="mailto:infoyour@gmail.com">
-                                infoyour@gmail.com
+                              <img src="/img/footer-message.png" alt="Email" />
+                              <a href="mailto:contact@rent4students.com">
+                                contact@rent4students.com
                               </a>
                             </li>
                             <li>
-                              <img src="/img/footer-location.png" alt="#" />
-                              <p>374 FA Tower, William S Blvd 2721, IL, USA</p>
+                              <img src="/img/footer-location.png" alt="Locație" />
+                              <p>Bd. Studenților, Nr. 10, București, România</p>
                             </li>
                           </ul>
                         </div>
                       </div>
-                      {/* End Footer Widget   */}
                     </div>
+                    {/* End coloane Link Widgets */}
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* Copyright   */}
-      <div className="copyright">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 col-12">
-              {/* Copyright Text   */}
-              <p className="copyright-text">
-                © 2023 Homeco. All rights reserved by
-                <a href="#" target="_blank">
-                  QuomodoTheme
-                </a>
-              </p>
-            </div>
-            <div className="col-lg-6 col-12">
-              {/* Footer Page List   */}
-              <ul className="footer-pages list-none">
-                <li>
-                  <a href="about.html">About Company</a>
-                </li>
-                <li>
-                  <a href="contact-us.html">Contact Us</a>
-                </li>
-              </ul>
+        {/* Copyright */}
+        <div className="copyright">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-6 col-12">
+                <p className="copyright-text">
+                  &copy; {new Date().getFullYear()} Rent4Students. Toate drepturile rezervate.
+                </p>
+              </div>
+              <div className="col-lg-6 col-12">
+                <ul className="footer-pages list-none">
+                  <li>
+                    <Link to="/about">Despre Companie</Link>
+                  </li>
+                  <li>
+                    <Link to="/contact">Contact</Link>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
+        {/* End Copyright */}
       </div>
-      {/* End Copyright  */}
     </footer>
   );
 }

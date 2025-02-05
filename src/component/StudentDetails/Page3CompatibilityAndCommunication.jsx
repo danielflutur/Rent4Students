@@ -10,6 +10,7 @@ import StudentHobbiesInput from "../StudentHobbiesInput/StudentHobbiesInput";
 import StudentAllergiesInput from "../StudentAllergiesInput/StudentAllergiesInput";
 import ApiService from "../../services/ApiService";
 import { useAuth } from "../../context/AuthProvider";
+import WelcomeCardPage3 from "../Cards/WelcomeCardPage3";
 
 function Page3CompatibilityAndCommunication() {
   const { t } = useTranslation();
@@ -112,6 +113,8 @@ function Page3CompatibilityAndCommunication() {
     component = <Preloader />;
   } else {
     component = (
+      <>
+      
       <section className="pd-top-80 pd-btm-80">
         {/* <div
           className="progress-bar-container"
@@ -134,9 +137,9 @@ function Page3CompatibilityAndCommunication() {
           ></div>
         </div> */}
 
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
+          <div className="container-fluid p-0">
+          <div className="row g-0">
+          <div className="col-lg-6 col-12">
               <div className="homec-submit-form">
                 <h3 className="ecom-wc__form-title ecom-wc__form-title__one p-3 ">
                   {t("personal_data_form.compatibility_and_communication")}
@@ -230,9 +233,19 @@ function Page3CompatibilityAndCommunication() {
                 </form>
               </div>
             </div>
+            <div className="col-lg-6 col-12">
+      <div className="welcome-card">
+        <WelcomeCardPage3
+          image="img/page-3.png"
+          brunches="120"
+          builtHouse="150k"
+        />
+      </div>
+    </div>
           </div>
         </div>
       </section>
+      </>
     );
   }
 

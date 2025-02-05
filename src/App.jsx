@@ -48,6 +48,10 @@ import DashboardCompOwner from "./component/Dashboard/DashboardCompOwner.jsx";
 import TableDataOwnerPropertyAssociation from "./component/Dashboard/TableDataOwnerPropertyAssociation.jsx";
 import InvoiceTableOwnerPropertyAssociation from "./component/Dashboard/InvoiceTableOwnerPropertyAssociation.jsx";
 import ValidatePhoneNumberOwner from "./component/ValidatePhoneNumberOwner/ValidatePhoneNumberOwner.jsx";
+import HomeSecretary from "./component/HomeSecretary/HomeSecretary.jsx";
+import ManageStudents from "./component/ManageStudents/index.jsx";
+import ManageStudentsApplicationsForRent from "./component/ManageStudentsApplicationsForRent/index.jsx";
+import AddDocumentsPage from "./component/AddDocumentsPage/index.jsx";
 
 function App() {
   useEffect(() => {
@@ -64,12 +68,20 @@ function App() {
       element: <HomeUniversity />,
     },
     {
+      path: "/home-secretary",
+      element: <HomeSecretary />,
+    },
+    {
       path: "/home-student",
       element: <HomeStudent />,
     },
     {
       path: "/home-owner",
       element: <HomeOwner />,
+    },
+    {
+      path: "/add-documents",
+      element: <AddDocumentsPage />,
     },
     {
       path: "/property",
@@ -226,6 +238,14 @@ function App() {
     {
       path: "/faculty",
       element: <Faculty />,
+    },
+    {
+      path: "/manage-students",
+      element: <ManageStudents />,
+    },
+    {
+      path: "/manage-students-applications",
+      element: <ManageStudentsApplicationsForRent />,
     },
     {
       path: "/app-login",

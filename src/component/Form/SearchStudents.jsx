@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-function SearchFaculty() {
+function SearchStudents() {
   const { t } = useTranslation(); // Hook pentru traducere
   const [search, setSearch] = useState("");
   
@@ -23,7 +23,7 @@ function SearchFaculty() {
       <input
         type="text"
         name="search"
-        placeholder={t("search_faculty_placeholder")} // Folosim traducerea pentru placeholder
+        placeholder={t("search_students_placeholder")} // Folosim traducerea pentru placeholder
         required=""
         value={search}
         onChange={(e) => {
@@ -37,4 +37,4 @@ function SearchFaculty() {
   );
 }
 
-export default SearchFaculty;
+export default SearchStudents;
