@@ -12,7 +12,6 @@ import PropertyDetails from "./PropertyDetails";
 import PageLayout from "../PageLayout/PageLayout";
 import { ListingFeaturesProvider } from "../../context/ListingFeaturesProvider";
 
-
 function PropertySingle() {
   const { id } = useParams(); // Extract id from the route
   const [isLoading, setIsLoading] = useState(true);
@@ -20,35 +19,31 @@ function PropertySingle() {
   const [error, setError] = useState(null); // Add error state
 
   useEffect(() => {
-    if (!id) return; // Prevent fetching if id is missing
+    if (!id) return; 
 
-    // Fetch listing details based on id
-    setIsLoading(true); // Ensure loading state is true before fetching
+    setIsLoading(true);
     ApiService.get(`Listings/${id}`)
       .then((response) => {
         setProperty(response.data);
-        setIsLoading(false); // Set loading to false when data is fetched
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching property details:", error);
-        setError("Failed to load property details"); // Set error message
-        setIsLoading(false); // Set loading to false on error
+        setError("Failed to load property details"); 
+        setIsLoading(false);
       });
   }, [id]);
 
-  // Show the loader until the property data is loaded or the request fails
   if (isLoading) {
     return <Preloader />;
   }
 
-  // If there's an error, display it
   if (error) {
-    return <div>{error}</div>; // Display error message if there is one
+    return <div>{error}</div>;
   }
 
-  // If property is null, show a fallback message
   if (!property) {
-    return <div>Property not found</div>; // Display message if property is null
+    return <div>Property not found</div>;
   }
 
   return (

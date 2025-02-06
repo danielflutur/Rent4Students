@@ -4,18 +4,20 @@ import PageLayout from "../PageLayout/PageLayout";
 import Breadcrumbs from "../Breadcrumbs";
 import Preloader from "../Loader";
 import GoTopBtn from "../Button/GoTopBtn";
-import Layout from "./Layout";
 import properties from "../../data/property";
 import Pagination from "../Pagination";
 import DashboardPropertyCardOwner from "../Cards/DashboardPropertyCardOwner";
+import ApiService from "../../services/ApiService";
+import { useAuth } from "../../context/AuthProvider";
 
 function MyPropertiesOwner() {
   const { t } = useTranslation();
   const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const totalPage = 24;
+  const {auth} = useAuth();
+  const [listings, setListings] = useState([]);
 
-  // Funcția de paginare
   const handelPage = (page) => {
     if (page === "prev" && currentPage > 1) {
       setCurrentPage(currentPage - 1);
@@ -26,13 +28,20 @@ function MyPropertiesOwner() {
     }
   };
 
-  // Simulează încărcarea
   useEffect(() => {
-    const timer = setTimeout(() => setIsLoading(false), 1500);
-    return () => clearTimeout(timer);
+    if (auth) {
+      ApiService.get(`Listings/ownedBy/${auth.id}`)
+        .then((response) => {
+          setListings(response.data);
+          setIsLoading(false);
+          console.log(response.data);
+        })
+        .catch((error) =>
+          console.error("Error fetching listing details:", error)
+        );
+    }
   }, []);
 
-  // Renderizare componentă
   const component = isLoading ? (
     <Preloader />
   ) : (
@@ -44,18 +53,18 @@ function MyPropertiesOwner() {
       />
 
       <div className="page-form-container">
-        {properties?.map((property) => (
+        {listings?.map((property) => (
           <DashboardPropertyCardOwner
             key={property.id}
-            status={property.status}
-            image={property.img2}
-            why={property.whatFor}
-            title={property.name}
-            location={property.address}
-            rating={property.rating}
-            totalRating={property.totalRating}
-            // Pentru exemplu, să presupunem că proprietatea cu id-ul 1 are o cerere activă
-            hasRequest={property.id === 1}
+            status={property.isRented ? "Rented" : "Active"}
+            image={property.photo}
+            why={"Rent"}
+            title={property.title}
+            location={`${property.address.addressDetails}, ${property.address.city}, ${property.address.county}`}
+            rating={5}
+            totalRating={10}
+            hasRequest={property.rentRequestDetails.rentStatusId === 3}
+            requestDetails = {property.rentRequestDetails}
           />
         ))}
       </div>

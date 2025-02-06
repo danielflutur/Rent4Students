@@ -35,7 +35,10 @@ const handleRoleNavigation = (role) =>{
   }
   else if (role === "University") {
     navigate("/home-university");
-  } else {
+  } if (role === "PropertyOwner") {
+    navigate("/home-owner");
+  }
+  else {
     navigate("/");
   }
 };

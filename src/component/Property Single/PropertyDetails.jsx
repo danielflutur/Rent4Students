@@ -80,9 +80,8 @@ function PropertyDetails({ listing }) {
             </div>
           </div>
           <PropertyOwners
-            image="https://placehold.co/90x90"
-            name="Ciprian Marius"
-            position="Owner"
+            ownerId = {listing.ownerId}
+            listingId={listing.id}
           />
         </div>
       </div>

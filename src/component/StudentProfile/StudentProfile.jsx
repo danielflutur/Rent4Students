@@ -1,56 +1,52 @@
-import PropTypes from "prop-types";
+import ProtoTypes from "prop-types";
 import { useEffect, useState } from "react";
-import RentalRequestModal from "./RentalRequestModal"; // Importă componenta RentalRequestModal
 import { useUser } from "../../context/AuthDetailsProvider";
 import ApiService from "../../services/ApiService";
 
-function PropertyOwners({ image, name, position, ownerId, listingId }) {
+function StudentProfile({roommateId}) {
+  const { user } = useUser();
+  const profilePicture = user?.profilePhoto || "/img/user-icon.png";
+  const displayName = user?.firstName || "No data";
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: "agent", text: "Bună! Cum te pot ajuta?", avatar: image },
+    { sender: "agent", text: "Bună! Cum te pot ajuta?", avatar: profilePicture }
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { user } = useUser();
-  const [owner, setOwner] = useState();
 
   const handleSendMessage = () => {
     if (inputMessage.trim() !== "") {
       setMessages([
         ...messages,
-        { sender: "user", text: inputMessage, avatar: user?.profilePhoto },
+        { sender: "user", text: inputMessage, avatar: user?.profilePhoto }
       ]);
       setInputMessage("");
     }
   };
 
-  const handleRentalSubmit = (rentalData) => {
-    console.log("Date formular închiriere:", rentalData);
-  };
-
-  useEffect(() => {
-    ApiService.get(`PropertyOwners/${ownerId}`)
-      .then((response) => {
-        setOwner(response.data);
-      })
-      .catch((error) => console.error("Error fetching owner details:", error));
-  }, []);
+  const handleAddRoommate = async () => {
+    const data = {
+      studentId: user.id,
+      roommateId: roommateId
+    }
+    const response = await ApiService.post("Students/add-roommate", data);
+    console.log(response);
+  }
 
   return (
-    <div className="col-lg-4 col-12">
+    <div className="col-lg-4">
       <div
         className="homec-property-ag homec-property-ag--side homec-bg-cover"
         style={{ backgroundImage: "url('/img/property-ag-bg.svg')" }}
       >
-        <h3 className="homec-property-ag__title">Proprietar</h3>
+        <h3 className="homec-property-ag__title">Student</h3>
         <div className="homec-property-ag__author">
           <div className="homec-property-ag__author--img">
-            <img src={owner?.profilePhoto} alt="Agent" />
+            <img src={profilePicture} alt="#" />
           </div>
           <div className="homec-property-ag__author--content">
             <h4 className="homec-property-ag__author--title">
-              {`${owner?.firstName} ${owner?.lastName}`}
-              <span>{position}</span>
+              {displayName}
             </h4>
           </div>
         </div>
@@ -58,9 +54,9 @@ function PropertyOwners({ image, name, position, ownerId, listingId }) {
           <button
             type="button"
             className="homec-btn homec-btn__thrid homec-property-ag__button"
-            onClick={() => setIsModalOpen(true)}
+            onClick={handleAddRoommate}
           >
-            <span>Solicită închiriere</span>
+            <span>Adaugă coleg</span>
           </button>
 
           <button
@@ -71,16 +67,13 @@ function PropertyOwners({ image, name, position, ownerId, listingId }) {
             <span>Lasă un mesaj</span>
           </button>
         </form>
-      </div>
 
+      </div>
       {isChatOpen && (
         <div className="chat-box">
           <div className="chat-header">
             <h4>Chat Rent4Students</h4>
-            <button
-              className="chat-close-btn"
-              onClick={() => setIsChatOpen(false)}
-            >
+            <button className="chat-close-btn" onClick={() => setIsChatOpen(false)}>
               ✖
             </button>
           </div>
@@ -103,16 +96,8 @@ function PropertyOwners({ image, name, position, ownerId, listingId }) {
           </div>
         </div>
       )}
-
-      {/* Modalul pentru solicitarea închiriierii */}
-      <RentalRequestModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        onSubmit={handleRentalSubmit}
-        listingId={listingId}
-      />
     </div>
   );
 }
 
-export default PropertyOwners;
+export default StudentProfile;
