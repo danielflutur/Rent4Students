@@ -165,7 +165,11 @@
     "validate_phone": "Validate Phone Number",
     "roommates": "Roommates",
     "renthelp": "Apply For Rent Help",
-    "myproperties": "My properties"
+    "myproperties": "My properties",
+     "manage-students": "Manage Students",
+     "manage-students-applications": "Manage Students Applications",
+     "add-documents":"Add Documents"
+
   },
 
   "welcome_students": {
@@ -300,7 +304,85 @@
     "feature_visibility": "Visibility on the platform",
     "feature_manage_bills": "Bill management",
     "feature_premium_support": "Priority support 24/7",
-    "my_properties_title": "My Properties"
+    "my_properties_title": "My Properties",
+
+      "login": {
+        "title": "Login",
+        "subtitle": "Your email address will not be published. Required fields are marked *",
+        "emailLabel": "Email*",
+        "emailPlaceholder": "demo3243@gmail.com",
+        "passwordLabel": "Password*",
+        "passwordPlaceholder": "••••••",
+        "loginButton": "Login",
+        "noAccount": "Don't have an account?",
+        "createAccount": "Create Account"
+      },
+      
+    "hero_secretary_subtitle": "The ideal solution for fast and efficient management of student documents and requests.",
+  "hero_secretary_list_item_1": "Quick processing of student accommodation requests.",
+  "hero_secretary_list_item_2": "Efficient management of administrative documents.",
+  "hero_secretary_list_item_3": "Fast and simple sending of responses to students.",
+  "search_students_placeholder": "Search Students",
+  "students_table_first_name": "First Name",
+  "students_table_last_name": "Last Name",
+  "students_table_email": "Email",
+  "students_table_student_id": "Student ID",
+  "students_table_edit": "Edit",
+  "students_table_delete": "Delete",
+  "students_table_confirm_delete": "Confirm Deletion",
+  "students_table_are_you_sure_delete": "Are you sure you want to delete the student",
+  "upload_excel": "Upload Excel",
+  "manageapplications": {
+    "first_name": "First Name",
+    "last_name": "Last Name",
+    "email": "Email",
+    "access_document": "Access Document",
+    "set_status": "Set Status",
+    "document_preview": "Document Preview",
+    "set_status_for_documents": "Set Status for Documents",
+    "choose_status_for_the_document": "Choose Status for the Document",
+    "approved": "Approved",
+    "rejected": "Rejected",
+    "submit": "Submit",
+    "cancel": "Cancel"
+  },
+
+  "manage_students": "Manage Students",
+"manage_applications": "Manage Student Applications",
+"manage_documents": "Manage Documents",
+
+"documents_upload_title": "Document Upload",
+  "upload_documents_label": "Select the necessary documents for your application",
+  "upload_documents_button": "Upload Documents",
+  "upload_request_letter_label": "Select the application letter in Word format",
+  "upload_request_letter_button": "Upload Application Letter",
+  "submit_button": "Submit",
+  "success_modal_title": "Success",
+  "success_modal_message": "Documents have been successfully uploaded!",
+
+  "hero": {
+    "title": "Welcome to the Rent4Students App!",
+    "description": "The perfect app for universities, students, landlords, and real estate agencies.",
+    "university": "University - Manage students and requests",
+    "students": "Students - Find apartments or roommates",
+    "owners": "Owners - Find tenants and manage apartments",
+    "agencies": "Real Estate Agencies - Manage apartments easily",
+    "viewAllProperties": "See all properties"
+  },
+
+  "latestProperty": {
+    "viewAll": "View All 329 New Listings",
+    "latestProperties": "Latest Properties",
+    "seeAllProperties": "See all Properties",
+    "errorFetchingData": "Error fetching data:"
+  },
+  "students": {
+    "viewAll": "View All 234 Students",
+    "findRoommates": "Meet potential roommates"
+  },
+  "seeprofile":"See Profile"
+
+
 
 
 }

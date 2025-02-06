@@ -1,7 +1,9 @@
 import ProtoTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
 function AgentCardV2({ img, propertiesLink, name, position, detailsLink }) {
+  const { t } = useTranslation();
   return (
     <div
       className="col-lg-4 col-md-6 col-12 mg-top-30"
@@ -17,7 +19,7 @@ function AgentCardV2({ img, propertiesLink, name, position, detailsLink }) {
         {/* Agent Body */}
         <div className="homec-agent__body">
           <Link className="homec-agent__body--btn" to={propertiesLink}>
-            See Properties
+          {t('seeprofile')}
           </Link>
           <ul className="homec-agent__social list-none">
             <li>

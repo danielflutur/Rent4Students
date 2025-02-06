@@ -1,8 +1,11 @@
 import AgentCardV2 from "../Cards/AgentCardV2";
 import AboutShapeImg from "../About/AboutShapeImg";
-import agents from "../../data/agents";
+import students from "../../data/students";
+import { useTranslation } from 'react-i18next';
 
 function Agents() {
+  const { t } = useTranslation();
+
   return (
     <section className="homec-about homec-bg-third-color pd-top-120 pd-btm-120">
       <div className="homec-shape">
@@ -23,20 +26,20 @@ function Agents() {
                 data-aos="fade-in"
                 data-aos-delay="300"
               >
-                View All 234 Agent
+                {t('students.viewAll')}
               </span>
               <h2
                 className="homec-section__title"
                 data-aos="fade-in"
                 data-aos-delay="400"
               >
-                Meet Properties Agents
+                {t('students.findRoommates')}
               </h2>
             </div>
           </div>
         </div>
         <div className="row">
-          {agents?.map((agent) => (
+          {students?.map((agent) => (
             <AgentCardV2
               key={agent.id}
               img={agent.img}
