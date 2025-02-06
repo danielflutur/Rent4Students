@@ -32,15 +32,20 @@ function AppLogin() {
     }
   };
 
-  const handleRoleNavigation = (role) => {
-    if (role === "Student") {
-      navigate("/home-student");
-    } else if (role === "University") {
-      navigate("/home-university");
-    } else {
-      navigate("/");
-    }
-  };
+const handleRoleNavigation = (role) =>{
+  if (role === "Student") {
+    navigate("/home-student");
+  }
+  else if (role === "University") {
+    navigate("/home-university");
+  }
+  else if (role === "PropertyOwner") {
+    navigate("/home-owner");
+  }
+  else {
+    navigate("/");
+  }
+};
 
   // loading handler
   const [isLoading, setIsLoading] = useState(true);

@@ -1,20 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CompatibleStudentsContext } from "../../context/CompatibleStudentsProvider";
+import { useEffect } from "react";
 
-function SearchColleagues() {
+function SearchColleagues({ onSelectedChange }) {
   const [search, setSearch] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedColleagues, setSelectedColleagues] = useState([]);
+  const compatibleStudents = useContext(CompatibleStudentsContext);
+  const [filteredColleagues, setFilteredColleagues] = useState([]);
 
-  // Lista de colegi
-  const colleagues = [
-    { id: 1, name: "Ion Popescu", image: "/img/user1.png" },
-    { id: 2, name: "Maria Ionescu", image: "/img/user2.png" },
-    { id: 3, name: "Andrei Georgescu", image: "/img/user3.png" },
-    { id: 4, name: "Elena Dobre", image: "/img/user4.png" },
-    { id: 5, name: "Mariana Popa", image: "/img/user5.png" },
-  ];
-
-  // Actualizare input + ascundere dropdown
   const handleChange = (e) => {
     setSearch(e.target.value);
     setShowDropdown(true);
@@ -26,24 +20,36 @@ function SearchColleagues() {
     setShowDropdown(true);
   };
 
-  // Selectare coleg și adăugare în lista selectată
-  const handleSelectColleague = (colleague) => {
-    if (!selectedColleagues.some((c) => c.id === colleague.id)) {
-      setSelectedColleagues([...selectedColleagues, colleague]);
+// Select a colleague and add to the selected list
+const handleSelectColleague = (colleague) => {
+  if (!selectedColleagues.some((c) => c.id === colleague.id)) {
+    const newSelected = [...selectedColleagues, colleague];
+    setSelectedColleagues(newSelected);
+    // If a callback is provided, call it with the new list
+    if (onSelectedChange) onSelectedChange(newSelected);
+  }
+  setSearch(""); // Clear the input after selection
+  setShowDropdown(false);
+};
+
+ // Remove a selected colleague
+ const handleRemoveColleague = (id) => {
+  const newSelected = selectedColleagues.filter((c) => c.id !== id);
+  setSelectedColleagues(newSelected);
+  if (onSelectedChange) onSelectedChange(newSelected);
+};
+
+  useEffect(() => {
+    if (compatibleStudents) {
+      const filtered = compatibleStudents
+        .map((stud) => stud.student)
+        .filter((student) =>
+          student.firstName.toLowerCase().includes(search.toLowerCase())
+        );
+      setFilteredColleagues(filtered);
     }
-    setSearch(""); // Golește input-ul după selecție
-    setShowDropdown(false);
-  };
-
-  // Ștergere coleg selectat
-  const handleRemoveColleague = (id) => {
-    setSelectedColleagues(selectedColleagues.filter((c) => c.id !== id));
-  };
-
-  // Filtrare colegi după input
-  const filteredColleagues = colleagues.filter((colleague) =>
-    colleague.name.toLowerCase().includes(search.toLowerCase())
-  );
+  }, [search, compatibleStudents]);
+  
 
   return (
     <div className="search-container">
@@ -67,20 +73,28 @@ function SearchColleagues() {
               className="colleague-item"
               onClick={() => handleSelectColleague(colleague)}
             >
-              <img src={colleague.image} alt={colleague.name} />
-              <span>{colleague.name}</span>
+              <img
+                src={colleague.profilePhoto}
+                alt={`${colleague.firstName} ${colleague.lastName}`}
+              />
+              <span>{`${colleague.firstName} ${colleague.lastName}`}</span>
             </div>
           ))}
         </div>
       )}
 
-      {/* Lista colegilor selectați */}
+      {/* List of selected colleagues */}
       <div className="selected-colleagues">
         {selectedColleagues.map((colleague) => (
           <div key={colleague.id} className="selected-item">
-            <img src={colleague.image} alt={colleague.name} />
-            <span>{colleague.name}</span>
-            <button onClick={() => handleRemoveColleague(colleague.id)}>X</button>
+            <img
+              src={colleague.profilePhoto}
+              alt={`${colleague.firstName} ${colleague.lastName}`}
+            />
+            <span>{`${colleague.firstName} ${colleague.lastName}`}</span>
+            <button onClick={() => handleRemoveColleague(colleague.id)}>
+              X
+            </button>
           </div>
         ))}
       </div>

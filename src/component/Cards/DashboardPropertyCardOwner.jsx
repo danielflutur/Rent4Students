@@ -11,22 +11,30 @@ function DashboardPropertyCardOwner({
   totalRating,
   location,
   hasRequest, // Noua proprietate
+  requestDetails
 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const stud1 = requestDetails?.studentRequests?.[0]?.name || "Student X";
+  const stud2 = requestDetails?.studentRequests?.[1]?.name || "Student Y";
+  const img1 = requestDetails?.studentRequests?.[0]?.studentIdPhoto || "Student Y";
+  const img2 = requestDetails?.studentRequests?.[1]?.studentIdPhoto || "Student Y";
+
   // Datele de preview pentru modal
   const previewData = {
-    student1: "Studentul X",
-    student2: "Studentul Y",
+    student1: stud1,
+    student2: stud2,
     durata: "1an",
     contractANAF: "yes",
     title,
     status,
-    image,
+    image1: img1,
+    image2: img2,
     why,
     rating,
     totalRating,
     location,
+    requestDetails: requestDetails
   };
 
   return (

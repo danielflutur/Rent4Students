@@ -10,6 +10,7 @@ import ApiService from "../../services/ApiService";
 import { attributes } from "../../data/attributes";
 import { hobbies } from "../../data/hobbies";
 import { allergies } from "../../data/allergies";
+import StudentProfile from "../StudentProfile/StudentProfile";
 
 function StudentDetail() {
   const { id } = useParams(); // Extract id from the route
@@ -107,7 +108,7 @@ function StudentDetail() {
               instagram="#"
               text={formatStudentDetails()}
             />
-            <ProfileStudent />
+            <StudentProfile roommateId={id} />
           </div>
         </div>
       </section>
