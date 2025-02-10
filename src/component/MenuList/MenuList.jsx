@@ -11,10 +11,11 @@ import "../MenuList/MenuList.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Flag from "react-world-flags";
-import { GlobalOutlined } from '@ant-design/icons';
+import { GlobalOutlined } from "@ant-design/icons";
+import { useAuth } from "../../context/AuthProvider";
 
 const MenuList = () => {
-
+  const { auth, setAuth } = useAuth();
   const { i18n, t } = useTranslation(); // Folosește i18next pentru traducere
 
   // Funcția care schimbă limba
@@ -24,18 +25,17 @@ const MenuList = () => {
 
   return (
     <Menu theme="dark" mode="inline" className="menu-bar">
-
       <Menu.SubMenu
         key="translate_menu"
         icon={<GlobalOutlined />}
         title={t("menu.translate")}
-        style={{ color: 'white' }} 
+        style={{ color: "white" }}
       >
-        <Menu.Item key="en" onClick={() => handleLanguageChange('en')}>
+        <Menu.Item key="en" onClick={() => handleLanguageChange("en")}>
           <Flag code="GB" style={{ width: 20, height: 15, marginRight: 10 }} />
           English
         </Menu.Item>
-        <Menu.Item key="ro" onClick={() => handleLanguageChange('ro')}>
+        <Menu.Item key="ro" onClick={() => handleLanguageChange("ro")}>
           <Flag code="RO" style={{ width: 20, height: 15, marginRight: 10 }} />
           Română
         </Menu.Item>
@@ -45,119 +45,191 @@ const MenuList = () => {
         <Link to="/">{t("menu.home")}</Link>
       </Menu.Item>
 
-      <Menu.Item key="add_faculty" icon={<img src="img/add_faculty.png"  style={{ width: 20, height: 20}} />} >
-        <Link to="/add-faculty">{t("menu.add_faculty")}</Link>
-      </Menu.Item>
+      {auth?.role === "University" && (
+        <>
+          <Menu.Item
+            key="add_faculty"
+            icon={
+              <img
+                src="/img/add_faculty.png"
+                style={{ width: 20, height: 20 }}
+              />
+            }
+          >
+            <Link to="/add-faculty">{t("menu.add_faculty")}</Link>
+          </Menu.Item>
 
-      <Menu.Item key="faculty" icon={<img src="img/manage_faculty.png"  style={{ width: 20, height: 20 }} />} >
-        <Link to="/faculty">{t("menu.manage_faculties")}</Link>
-      </Menu.Item>
+          <Menu.Item
+            key="faculty"
+            icon={
+              <img
+                src="/img/manage_faculty.png"
+                style={{ width: 20, height: 20 }}
+              />
+            }
+          >
+            <Link to="/faculty">{t("menu.manage_faculties")}</Link>
+          </Menu.Item>
+        </>
+      )}
+      {auth?.role === "PropertyOwner" && (
+        <>
+          <Menu.Item 
+          key="properties"
+          icon={
+            <img
+              src="/img/properties.png"
+              style={{ width: 20, height: 20 }}
+            />
+          }>
+            <Link to="/property">{t("menu.properties_list")}</Link>
+          </Menu.Item>
+          <Menu.Item 
+          key="submit_property"
+          icon={
+            <img
+              src="/img/add-property.png"
+              style={{ width: 20, height: 20 }}
+            />
+          }>
+            <Link to="/submit-property">{t("menu.add_property")}</Link>
+          </Menu.Item>
 
+          <Menu.Item
+            key="mypropertiesowner"
+            icon={
+              <img
+                src="/img/my-properties.png"
+                style={{ width: 20, height: 20 }}
+              />
+            }
+          >
+            <Link to="/my-properties-owner">{t("menu.myproperties")}</Link>
+          </Menu.Item>
+        </>
+      )}
 
-      <Menu.SubMenu
-        key="properties_menu"
-        icon={<ShopOutlined />}
-        title={t("menu.properties")}
+      {auth?.role === "Faculty" && (
+        <>
+          <Menu.Item
+            key="manage-students"
+            icon={
+              <img
+                src="/img/manage_students.png"
+                style={{ width: 20, height: 20 }}
+              />
+            }
+          >
+            <Link to="/manage-students">{t("menu.manage-students")}</Link>
+          </Menu.Item>
+
+          <Menu.Item
+            key="manage-students-applications"
+            icon={
+              <img
+                src="/img/manage_documents.png"
+                style={{ width: 20, height: 20 }}
+              />
+            }
+          >
+            <Link to="/manage-students-applications">
+              {t("menu.manage-students-applications")}
+            </Link>
+          </Menu.Item>
+
+          <Menu.Item
+            key="add-documents"
+            icon={
+              <img
+                src="/img/upload_documents.png"
+                style={{ width: 20, height: 20 }}
+              />
+            }
+          >
+            <Link to="/add-documents">{t("menu.add-documents")}</Link>
+          </Menu.Item>
+        </>
+      )}
+
+      {auth?.role === "Student" && (
+        <>
+          <Menu.Item 
+          key="properties"
+          icon={
+            <img
+              src="/img/properties.png"
+              style={{ width: 20, height: 20 }}
+            />
+          }>
+            <Link to="/property">{t("menu.properties_list")}</Link>
+          </Menu.Item>
+          <Menu.Item
+            key="roommates"
+            icon={
+              <img src="/img/roommate.png" style={{ width: 20, height: 20 }} />
+            }
+          >
+            <Link to="/roommates">{t("menu.roommates")}</Link>
+          </Menu.Item>
+
+          <Menu.Item
+            key="renthelp"
+            icon={
+              <img src="/img/request.png" style={{ width: 20, height: 20 }} />
+            }
+          >
+            <Link to="/apply-for-rent-help">{t("menu.renthelp")}</Link>
+          </Menu.Item>
+        </>
+      )}
+
+{!auth && (
+  <>
+      <Menu.Item
+        key="role_selection"
+        icon={
+          <img
+            src="/img/sign-in-role.png"
+            style={{ width: 20, height: 20 }}
+          />
+        }
+        style={{ backgroundColor: "#fff", color: "#001529" }}
       >
-        <Menu.Item key="properties">
-          <Link to="/property">{t("menu.properties_list")}</Link>
-        </Menu.Item>
-        <Menu.Item key="property_single">
-          <Link to="/property-single">{t("menu.property_single")}</Link>
-        </Menu.Item>
-        <Menu.Item key="add_property">
-          <Link to="/add-property">{t("menu.add_property")}</Link>
-        </Menu.Item>
-        <Menu.Item key="dashboard">
-          <Link to="/dashboard">{t("menu.dashboard")}</Link>
-        </Menu.Item>
-        <Menu.Item key="submit_property">
-          <Link to="/submit-property">{t("menu.submit_property")}</Link>
-        </Menu.Item>
-        <Menu.Item key="edit_property">
-          <Link to="/edit-property">{t("menu.edit_property")}</Link>
-        </Menu.Item>
-      </Menu.SubMenu>
-
-      <Menu.SubMenu key="pages" icon={<PushpinOutlined />} title={t("menu.pages")}>
-        <Menu.Item key="about">
-          <Link to="/about">{t("menu.about_us")}</Link>
-        </Menu.Item>
-        <Menu.Item key="pricing">
-          <Link to="/pricing">{t("menu.pricing")}</Link>
-        </Menu.Item>
-        <Menu.Item key="payment_method">
-          <Link to="/payment-method">{t("menu.payment_method")}</Link>
-        </Menu.Item>
-        <Menu.Item key="faqs">
-          <Link to="/faq">{t("menu.faqs")}</Link>
-        </Menu.Item>
-        <Menu.Item key="login-old">
-          <Link to="/login">{t("menu.login")}</Link>
-        </Menu.Item>
-        <Menu.Item key="sign_up">
-          <Link to="/signup">{t("menu.signup")}</Link>
-        </Menu.Item>
-        <Menu.Item key="error_page">
-          <Link to="/404">{t("menu.error_page")}</Link>
-        </Menu.Item>
-      </Menu.SubMenu>
-
-      <Menu.Item key="manage-students" icon={<img src="img/manage_students.png"  style={{ width: 20, height: 20}} />}>
-        <Link to="/manage-students">{t("menu.manage-students")}</Link>
+        <Link to="/role-selection">{t("menu.signup")}</Link>
       </Menu.Item>
 
-      <Menu.Item key="manage-students-applications" icon={<img src="img/manage_documents.png"  style={{ width: 20, height: 20}} />}>
-        <Link to="/manage-students-applications">{t("menu.manage-students-applications")}</Link>
+      <Menu.Item
+        key="login"
+        icon={
+          <img
+            src="/img/sign-in.png"
+            style={{ width: 20, height: 20 }}
+          />
+        }
+        style={{ backgroundColor: "#fff", color: "#001529" }}
+      >
+        <Link to="/app-login">{t("menu.login")}</Link>
       </Menu.Item>
+  </>
+)}
 
-      <Menu.Item key="add-documents"  icon={<img src="img/upload_documents.png"  style={{ width: 20, height: 20}} />}>
-        <Link to="/add-documents">{t("menu.add-documents")}</Link>
+{auth &&(
+  <>
+  <Menu.Item
+        key="logout"
+        icon={
+          <img
+            src="/img/log-out.png"
+            style={{ width: 20, height: 20 }}
+          />
+        }
+        style={{ backgroundColor: "#fff", color: "#001529" }}
+        onClick={() => setAuth(null)}
+      >
+        <Link to="/">{t("menu.logout")}</Link>
       </Menu.Item>
-
-
-      <Menu.Item key="roommates" icon={<img src="img/roommate.png"  style={{ width: 20, height: 20}} />}>
-        <Link to="/roommates">{t("menu.roommates")}</Link>
-      </Menu.Item>
-
-      <Menu.Item key="renthelp" icon={<img src="img/request.png"  style={{ width: 20, height: 20}} />}>
-      <Link to="/apply-for-rent-help">{t("menu.renthelp")}</Link>
-      </Menu.Item>
-
-      <Menu.Item key="mypropertiesowner" icon={<img src="img/my-properties.png"  style={{ width: 20, height: 20}} />}>
-      <Link to="/my-properties-owner">{t("menu.myproperties")}</Link>
-      </Menu.Item>
-
-
-      <Menu.SubMenu key="agents" icon={<ContactsOutlined />} title={t("menu.agents")}>
-        <Menu.Item key="our_agent">
-          <Link to="/our-agent">{t("menu.our_agent")}</Link>
-        </Menu.Item>
-        <Menu.Item key="agent_details">
-          <Link to="/agent-detail">{t("menu.agent_details")}</Link>
-        </Menu.Item>
-      </Menu.SubMenu>
-
-      <Menu.SubMenu key="news_menu" icon={<ReadOutlined />} title={t("menu.news")}>
-        <Menu.Item key="news">
-          <Link to="/blog">{t("menu.news_list")}</Link>
-        </Menu.Item>
-        <Menu.Item key="news_single">
-          <Link to="/blog-single">{t("menu.news_single")}</Link>
-        </Menu.Item>
-      </Menu.SubMenu>
-
-      <Menu.Item key="contact" icon={<CommentOutlined />}>
-        <Link to="/contact">{t("menu.contact")}</Link>
-      </Menu.Item>
-      
-      <Menu.Item key="role_selection" style={{backgroundColor:"#fff", color:"#001529"}}>
-          <Link to="/role-selection">{t("menu.signup")}</Link>
-      </Menu.Item>
-
-      <Menu.Item key="login" style={{backgroundColor:"#fff", color:"#001529"}}>
-          <Link to="/app-login">{t("menu.login")}</Link>
-      </Menu.Item>
+  </>
+)}
     </Menu>
   );
 };

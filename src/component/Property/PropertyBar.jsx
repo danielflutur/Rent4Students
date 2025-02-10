@@ -9,7 +9,6 @@ function PropertyBar({ gridStyle, handleGridStyle }) {
       <div className="homec-property-bar__single">
         <Search />
         {/* Show Results   */}
-        <ShowingResult currentPage="1-2" totalPages="17" />
         {/* End Show Results  */}
       </div>
       <div className="homec-property-bar__single">

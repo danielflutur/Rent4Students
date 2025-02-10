@@ -27,7 +27,7 @@ function Footer() {
                   <div className="footer-about-widget">
                     <div className="footer-logo homec-header__logo">
                       <Link className="logo" to="/">
-                        <img src="/img/rent4students-logo-footer.png" alt="Rent4Students Logo" />
+                        <img src="/img/logo-footer.svg" alt="Rent4Students Logo" />
                       </Link>
                     </div>
                     <p className="footer-about-text">

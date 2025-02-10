@@ -21,11 +21,11 @@ function Property() {
     component = (
       <>
         <PageLayout>
-          <Breadcrumbs title="Latest Properties">
-            <HistoryLinks link="home" text="Home" />
+          <Breadcrumbs title="Proprietăți">
+            <HistoryLinks link="home" text="Acasa" />
             <HistoryLinks
               link="property"
-              text="Latest Properties"
+              text="Proprietăți"
               isActive={true}
             />
           </Breadcrumbs>

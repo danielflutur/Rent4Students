@@ -3,13 +3,13 @@ import { useEffect, useState } from "react";
 import { useUser } from "../../context/AuthDetailsProvider";
 import ApiService from "../../services/ApiService";
 
-function StudentProfile({roommateId}) {
+function StudentProfile({roommateId, roommatePhoto}) {
   const { user } = useUser();
   const profilePicture = user?.profilePhoto || "/img/user-icon.png";
   const displayName = user?.firstName || "No data";
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { sender: "agent", text: "Bună! Cum te pot ajuta?", avatar: profilePicture }
+    { sender: "agent", text: "Bună! Cum te pot ajuta?", avatar: roommatePhoto }
   ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);

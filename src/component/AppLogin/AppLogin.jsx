@@ -42,7 +42,10 @@ const handleRoleNavigation = (role) =>{
   else if (role === "PropertyOwner") {
     navigate("/home-owner");
   }
-  else {
+  else if (role === "Faculty") {
+    navigate("/home-secretary");
+  }
+  else{
     navigate("/");
   }
 };

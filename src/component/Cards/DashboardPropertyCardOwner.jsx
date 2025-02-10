@@ -25,7 +25,6 @@ function DashboardPropertyCardOwner({
     student1: stud1,
     student2: stud2,
     durata: "1an",
-    contractANAF: "yes",
     title,
     status,
     image1: img1,

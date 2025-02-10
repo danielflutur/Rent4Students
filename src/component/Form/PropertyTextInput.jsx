@@ -30,6 +30,7 @@ function PropertyTextInput({
               handleChange(e);
             }}
             required
+            style={{color: "#000"}}
           />
         </div>
       </div>

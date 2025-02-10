@@ -6,7 +6,7 @@ function WelcomeCardPage3({ languages, links, image, brunches, builtHouse }) {
       {/* Logo */}
       <div className="ecom-wc__logo">
         <a href="/">
-          <img src="img/welcome-logo.png" alt="#" />
+          <img src="img/welcome-logo.svg" alt="#" />
         </a>
       </div>
       <div className="ecom-wc__inside">

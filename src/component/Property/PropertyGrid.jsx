@@ -95,11 +95,6 @@ function PropertyGrid() {
                     />
                   ))}
                 </div>
-                <Pagination
-                  totalPage={totalPage}
-                  handlePage={handelPage}
-                  currentPage={currentPage}
-                />
               </div>
             </div>
           </div>

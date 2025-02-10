@@ -13,12 +13,12 @@
   "fields_required": "Fields marked with * are required",
   "university_name": "University Name*",
   "email": "Email*",
-  "cif_validation": "CIF Validation*",
+  "cif_validation": "Fiscal Identification Code",
   "ci_validation": "CI Validation*",
   "password": "Password*",
   "confirm_password": "Confirm Password*",
   "signup": "Sign Up",
-  "already_have_account": "Already have an account? Sign In",
+  "already_have_account": "Already have an account?",
 
   "student_create_account": "Create an account as Student",
   "student_fields_required": "Fields marked with * are required",
@@ -30,8 +30,9 @@
   "student_password": "Password*",
   "student_confirm_password": "Confirm Password*",
   "student_signup": "Sign Up",
-  "already_have_account_student": "Already have an account? Sign In",
+  "already_have_account_student": "Already have an account?",
 
+  "sign_in":"Sign In",
 
 
     "hero_welcome": "Welcome to the RENT4STUDENTS application",
@@ -168,7 +169,8 @@
     "myproperties": "My properties",
      "manage-students": "Manage Students",
      "manage-students-applications": "Manage Students Applications",
-     "add-documents":"Add Documents"
+     "add-documents":"Add Documents",
+    "logout": "Logout"
 
   },
 
@@ -354,7 +356,7 @@
 "documents_upload_title": "Document Upload",
   "upload_documents_label": "Select the necessary documents for your application",
   "upload_documents_button": "Upload Documents",
-  "upload_request_letter_label": "Select the application letter in Word format",
+  "upload_request_letter_label": "Select the application letter",
   "upload_request_letter_button": "Upload Application Letter",
   "submit_button": "Submit",
   "success_modal_title": "Success",

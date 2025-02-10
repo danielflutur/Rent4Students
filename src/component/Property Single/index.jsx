@@ -48,12 +48,12 @@ function PropertySingle() {
 
   return (
     <PageLayout>
-      <Breadcrumbs title="Property Details">
+      <Breadcrumbs title="Detalii Proprietate">
         <HistoryLinks link="home" text="Home" />
-        <HistoryLinks link="property" text="Latest Properties" />
+        <HistoryLinks link="property" text="Cele mai recente proprietati" />
         <HistoryLinks
           link={`property-single/${id}`}
-          text={property?.title || "Property Details"}
+          text={property?.title || "Detalii Proprietate"}
           isActive
         />
       </Breadcrumbs>

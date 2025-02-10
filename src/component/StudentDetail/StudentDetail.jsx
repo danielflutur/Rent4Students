@@ -108,7 +108,7 @@ function StudentDetail() {
               instagram="#"
               text={formatStudentDetails()}
             />
-            <StudentProfile roommateId={id} />
+            <StudentProfile roommateId={id} roommatePhoto={student?.profilePhoto} />
           </div>
         </div>
       </section>

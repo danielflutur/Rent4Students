@@ -88,10 +88,10 @@ function AdditionalStudentDetails() {
         attributesIds: [],
         livingPreferencesIds: [],
       };
-      const response = await ApiService.post('Students', data);
+      const response = await ApiService.post("Students", data);
       const authData = {
-        id:response.data.id,
-        role:"Student"
+        id: response.data.id,
+        role: "Student",
       };
       setAuth(authData);
       navigate("/welcome-students", { state: response.data });
@@ -112,16 +112,16 @@ function AdditionalStudentDetails() {
     component = <Preloader />;
   } else {
     component = (
-      <section >
+      <section>
         <div className="container-fluid p-0">
           <div className="row g-0">
             <div className="col-lg-6 col-12">
-            <div className="homec-submit-form">
+              <div className="homec-submit-form">
                 <div className="ecom-wc__form-inner">
                   <h4 className="homec-submit-form__title">
                     {t("form.additional_info")}
-                    </h4>
-                    <span>{t("form.additional_info_description")}</span>
+                  </h4>
+                  <span>{t("form.additional_info_description")}</span>
                   <form
                     className="ecom-wc__form-main p-0"
                     onSubmit={(e) => handleSubmit(e)}
@@ -183,16 +183,14 @@ function AdditionalStudentDetails() {
                         <label htmlFor="birthDate" className="form-label">
                           {t("form.birthDate")}
                         </label>
-                        <div className="col-lg-6 col-md-6">
-                          <DatePicker
-                            selected={formData.birthDate}
-                            onChange={handleDateChange}
-                            className="form-control"
-                            dateFormat="yyyy-MM-dd"
-                            showYearDropdown
-                            scrollableYearDropdown
-                          />
-                        </div>
+                        <DatePicker
+                          style={{ color: "#000" }}
+                          selected={formData.birthDate}
+                          onChange={handleDateChange}
+                          dateFormat="dd.MM.yyyy"
+                          showYearDropdown
+                          scrollableYearDropdown
+                        />
                       </div>
                     </div>
                     <StudentAddressInput
@@ -216,14 +214,14 @@ function AdditionalStudentDetails() {
               </div>
             </div>
             <div className="col-lg-6 col-12">
-                  <div className="welcome-card">
-                    <WelcomeCardPage3
-                      image="img/personal-data.png"
-                      brunches="120"
-                      builtHouse="150k"
-                    />
-                  </div>
-                </div>
+              <div className="welcome-card">
+                <WelcomeCardPage3
+                  image="img/personal-data.png"
+                  brunches="120"
+                  builtHouse="150k"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>

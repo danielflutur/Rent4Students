@@ -96,7 +96,7 @@ function SignUpStudent() {
       <section className="ecom-wc ecom-wc__full ecom-bg-cover">
         <div className="container-fluid p-0">
           <div className="row g-0">
-            <div className="col-lg-6 col-12">
+            <div className="col-lg-6 col-14">
               <div className="ecom-wc__form">
                 <div className="ecom-wc__form-inner">
                   <h3 className="ecom-wc__form-title ecom-wc__form-title__one">
@@ -138,7 +138,7 @@ function SignUpStudent() {
                       />
 
                       <SelectDropDown
-                        size="col-lg-6 col-md-6"
+                        size="col-lg-6 col-md-8"
                         title={t("student_university_name")}
                         name="universityId"
                         value={input.universityId}
@@ -152,7 +152,7 @@ function SignUpStudent() {
                       />
 
                       <SelectDropDown
-                        size="col-lg-6 col-md-6"
+                        size="col-lg-6 col-md-12"
                         title={t("faculty_name")}
                         name="facultyId"
                         value={input.facultyId}

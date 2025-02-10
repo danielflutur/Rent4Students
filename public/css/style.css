@@ -4958,6 +4958,7 @@ blockquote::before {
   display: flex;
   align-items: center;
   resize: none;
+  color: #000;
 }
 .homec-submit-form__heading {
   font-size: 16px;
@@ -8231,4 +8232,14 @@ input[type="text"] {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-left: 30px; /* Spațiu între formular și card */
   min-width: 150px;  /* Asigură o lățime minimă */
+}
+.ant-picker {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.ant-picker-panel {
+  position: absolute;
+  z-index: 1000;
 }

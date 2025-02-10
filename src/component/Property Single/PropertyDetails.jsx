@@ -9,7 +9,7 @@ import PropertyOwners from "../Owners/PropertyOwners";
 import { useData } from "../../context/ListingFeaturesProvider";  // Importing context to access features
 
 function PropertyDetails({ listing }) {
-  const [activeTab, setActiveTab] = useState("Property Details");
+  const [activeTab, setActiveTab] = useState("Detalii Proprietate");
   const handleActive = (title) => {
     setActiveTab(title);
   };
@@ -41,12 +41,12 @@ function PropertyDetails({ listing }) {
               role="tablist"
             >
               <PropertyDetailsBtn
-                title="Property Details"
+                title="Detalii Proprietate"
                 active={activeTab}
                 handleActive={handleActive}
               />
               <PropertyDetailsBtn
-                title="Locations"
+                title="Locatie"
                 active={activeTab}
                 handleActive={handleActive}
               />
@@ -60,11 +60,11 @@ function PropertyDetails({ listing }) {
             <div className="homec-pdetails-tab">
               <div className="tab-content">
                 <DetailsTab
-                  isActive={activeTab === "Property Details"}
+                  isActive={activeTab === "Detalii Proprietate"}
                   text={listing.description}
                 >
                   <DetailsTabFeatures
-                    title="Additional Details"
+                    title="Detalii Aditionale"
                     property={listingFeatures?.map((feature) => ({
                       [feature.name]: feature.value,
                     }))}
@@ -73,7 +73,7 @@ function PropertyDetails({ listing }) {
                 <PropertyLocation
                   address="70 Washington Square South, New York, NY 10012, United States"
                   text="Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden end to main to marked."
-                  isActive={activeTab === "Locations"}
+                  isActive={activeTab === "Locatie"}
                 />
                 <PropertyReview isActive={activeTab === "Review"} />
               </div>

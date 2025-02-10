@@ -2,16 +2,20 @@ import { useEffect, useState } from "react";
 import WelcomeCardUniversity from "../Cards/WelcomeCardUniversity";
 import PropertyTextInput from "../Form/PropertyTextInput";
 import Preloader from "../Loader";
-import { useTranslation } from "react-i18next";  // Importă hook-ul useTranslation
+import { useTranslation } from "react-i18next"; // Importă hook-ul useTranslation
+import { useAuth } from "../../context/AuthProvider";
+import ApiService from "../../services/ApiService";
+import { useNavigate } from "react-router-dom";
 
 function SignUpUniversity() {
-  const { t } = useTranslation();  // Folosește useTranslation pentru traduceri
+  const { t } = useTranslation(); // Folosește useTranslation pentru traduceri
+  const navigate = useNavigate();
+  const { setAuth } = useAuth();
 
   const [input, setInput] = useState({
-    universityName: "",
+    name: "",
     email: "",
     validationCIF: "",
-    validationCI: "",
     password: "",
     confirmPassword: "",
   });
@@ -25,14 +29,34 @@ function SignUpUniversity() {
     setisLoadingg(false);
   }, []);
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const data = new FormData();
+      data.append("Name", input.name);
+      data.append("Email", input.email);
+      data.append("EncryptedPassword", input.password);
+      data.append("Phone", "075556544");
+      data.append("CIF", input.validationCIF);
+      data.append("Address.AddressDetails", "Address");
+      data.append("Address.City", "City");
+      data.append("Address.County", "county");
+
+    const response = await ApiService.post("Universities", data);
+    const authData = {
+      id: response.data.id,
+      role: "University",
+    };
+    setAuth(authData);
+    navigate("/home-university", { state: input });
+  };
+
   let component = undefined;
   if (isLoading) {
     component = <Preloader />;
   } else {
     component = (
-      <section
-        className="ecom-wc ecom-wc__full ecom-bg-cover"
-      >
+      <section className="ecom-wc ecom-wc__full ecom-bg-cover">
         <div className="container-fluid p-0">
           <div className="row g-0">
             <div className="col-lg-6 col-12">
@@ -44,15 +68,14 @@ function SignUpUniversity() {
                   </h3>
                   <form
                     className="ecom-wc__form-main p-0"
-                    action="index.html"
-                    method="post"
+                    onSubmit={handleSubmit}
                   >
                     <div className="row">
                       <PropertyTextInput
                         size="col-lg-15 col-md-15"
                         title={t("university_name")}
-                        name="universityName"
-                        value={input.universityName}
+                        name="name"
+                        value={input.name}
                         handleChange={handleChange}
                         placeholder="Universitatea Ștefan cel Mare"
                         margin="-10px"
@@ -75,16 +98,6 @@ function SignUpUniversity() {
                         value={input.validationCIF}
                         handleChange={handleChange}
                         placeholder="123456789"
-                        margin="-10px"
-                      />
-                      
-                      <PropertyTextInput
-                        size="col-lg-6 col-md-6"
-                        title={t("ci_validation")}
-                        name="validationCI"
-                        value={input.validationCI}
-                        handleChange={handleChange}
-                        placeholder="987654321"
                         margin="-10px"
                       />
 
@@ -111,19 +124,19 @@ function SignUpUniversity() {
                     </div>
                     <div className="form-group form-mg-top-30">
                       <div className="ecom-wc__button ecom-wc__button--bottom">
-                        <a
-                          href="/home-university"
+                        <button
                           className="homec-btn homec-btn__second"
                           type="submit"
                         >
                           <span>{t("signup")}</span>
-                        </a>
+                        </button>
                       </div>
                     </div>
                     <div className="form-group mg-top-20">
                       <div className="ecom-wc__bottom">
                         <p className="ecom-wc__text">
-                          {t("already_have_account")} <a href="signup">{t("sign_in")}</a>
+                          {t("already_have_account")}{" "}
+                          <a href="signup">{t("sign_in")}</a>
                         </p>
                       </div>
                     </div>
