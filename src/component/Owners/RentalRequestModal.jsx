@@ -10,7 +10,6 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
   const [q1, setQ1] = useState("");
   const [colleagueCount, setColleagueCount] = useState("");
   const [q2, setQ2] = useState("");
-  const [q3, setQ3] = useState("");
   const [identityFiles, setIdentityFiles] = useState(null);
   const [imagePreviews, setImagePreviews] = useState([]);
   const [selectedColleagues, setSelectedColleagues] = useState([]); // Lifted state
@@ -38,7 +37,6 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
       inchiriereCu: q1,
       colleagueCount: q1 === "withColleagues" ? colleagueCount : null,
       durata: q2,
-      contractANAF: q3,
       identityFiles,
       selectedColleagues,
     };
@@ -118,13 +116,8 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
                         {previewData.colleagueCount}
                       </li>
                     )}
-                  <li>
-                    <strong>Contract ANAF solicitat:</strong>{" "}
-                    {previewData.contractANAF === "yes" ? "Da" : "Nu"}
-                  </li>
                 </ul>
 
-                {previewData.contractANAF === "yes" && (
                   <div>
                     <p>
                       <strong>Documente încărcate:</strong>
@@ -145,7 +138,6 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
                       ))}
                     </div>
                   </div>
-                )}
 
                 <div className="d-flex justify-content-between">
                   <button
@@ -176,7 +168,7 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
                         <div className="homec-submit-form__inner">
                           <div className="form-group">
                             <label>
-                              1. Dorești să închiriezi apartamentul împreună cu
+                              1.    Dorești să închiriezi apartamentul împreună cu
                               un coleg?
                             </label>
                             <div>
@@ -187,9 +179,10 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
                                 value="alone"
                                 checked={q1 === "alone"}
                                 onChange={() => setQ1("alone")}
+                                style ={{marginRight: "10px"}}
                               />
                               <label htmlFor="alone">
-                                Nu, doresc să închiriez apartamentul singură
+                                   Nu, doresc să închiriez apartamentul singură
                               </label>
                             </div>
                             <div>
@@ -200,6 +193,7 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
                                 value="withFriend"
                                 checked={q1 === "withFriend"}
                                 onChange={() => setQ1("withFriend")}
+                                style ={{marginRight: "10px"}}
                               />
                               <label htmlFor="withFriend">
                                 Da, împreună cu colegul / colegii{" "}
@@ -231,6 +225,7 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
                                 value="6luni"
                                 checked={q2 === "6luni"}
                                 onChange={() => setQ2("6luni")}
+                                style ={{marginRight: "10px"}}
                               />
                               <label htmlFor="6luni">6 luni</label>
                             </div>
@@ -242,38 +237,13 @@ function RentalRequestModal({ isOpen, onClose, onSubmit, listingId }) {
                                 value="1an"
                                 checked={q2 === "1an"}
                                 onChange={() => setQ2("1an")}
+                                style ={{marginRight: "10px"}}
                               />
                               <label htmlFor="1an">1 an</label>
                             </div>
                           </div>
 
                           <div className="form-group">
-                            <label>
-                              3. Dorești ca proprietarul să adauge contractul de
-                              închiriere de la ANAF?
-                            </label>
-                            <div>
-                              <input
-                                type="radio"
-                                id="anafNo"
-                                name="q3"
-                                value="no"
-                                checked={q3 === "no"}
-                                onChange={() => setQ3("no")}
-                              />
-                              <label htmlFor="anafNo">Nu</label>
-                            </div>
-                            <div>
-                              <input
-                                type="radio"
-                                id="anafYes"
-                                name="q3"
-                                value="yes"
-                                checked={q3 === "yes"}
-                                onChange={() => setQ3("yes")}
-                              />
-                              <label htmlFor="anafYes">Da</label>
-                            </div>
 
                             <div className="sub-input">
                               <label>

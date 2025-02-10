@@ -6,17 +6,17 @@ function AboutV2() {
       <div className="homec-shape">
         <img
           className="homec-shape-single homec-shape-1"
-          src="img/anim-shape-1.svg"
+          src="/img/anim-shape-1.svg"
           alt="#"
         />
         <img
           className="homec-shape-single homec-shape-2"
-          src="img/anim-shape-2.svg"
+          src="/img/anim-shape-2.svg"
           alt="#"
         />
         <img
           className="homec-shape-single homec-shape-3"
-          src="img/anim-shape-3.svg"
+          src="/img/anim-shape-3.svg"
           alt="#"
         />
       </div>

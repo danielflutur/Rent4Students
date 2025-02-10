@@ -1,26 +1,46 @@
-import React, { useState } from "react";
-import { Space, Table, Modal, Upload, Button, Radio } from "antd";
+import React, { useState, useEffect } from "react";
+import { Tag, Table, Modal, Upload, Button, Radio } from "antd";
 import { UploadOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
 import * as XLSX from "xlsx";
 import { Document, Page } from "react-pdf"; // Import react-pdf components
+import { useAuth } from "../../context/AuthProvider";
+import ApiService from "../../services/ApiService";
+import Preloader from "../Loader";
 
 const TableManageStudentsApplications = () => {
   const { t } = useTranslation();
   const [isPreviewModalOpen, setIsPreviewModalOpen] = useState(false); // Separate state for preview modal
-  const [isStatusModalOpen, setIsStatusModalOpen] = useState(false);   // Separate state for status modal
+  const [isStatusModalOpen, setIsStatusModalOpen] = useState(false); // Separate state for status modal
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [status, setStatus] = useState(""); // For storing the selected status
-  const [realData, setRealData] = useState([
-    {
-      key: "1",
-      firstName: "Ion",
-      lastName: "Ionescu",
-      email: "ion.ionescu@example.com",
-      document: "https://fiesc.usv.ro/wp-content/uploads/sites/17/2024/09/Informatii-subventie-sept.pdf", // Example URL for PDF
-      status: "Pending",
-    },
-  ]);
+  
+  const { auth } = useAuth();
+  const [students, setStudents] = useState();
+  const [isLoading, setisLoadingg] = useState(true);
+
+  useEffect(() => {
+    if (auth) {
+      ApiService.get(`FinancialHelpDocument/faculty/${auth?.id}`)
+        .then((response) => {
+          setStudents(response.data);
+          console.log(response.data);
+          setisLoadingg(false);
+        })
+        .catch((error) =>
+          console.error("Error fetching faculties details:", error)
+        );
+    }
+  }, []);
+
+  const realData = students?.map((student) => ({
+    key: student?.documentDetails.id,
+    firstName: student?.studentDetails.firstName,
+    lastName: student?.studentDetails.lastName,
+    email: student?.studentDetails.email,
+    document: student?.documentDetails.storageURL,
+    tags: student?.documentDetails.documentStatusId === 1 ? ["APROBAT"] : student?.documentDetails.documentStatusId === 2 ? ["RESPINS"] : ["IN ASTEPTARE"]
+  }));
 
   // Handle opening of preview modal
   const showPreviewModal = (record) => {
@@ -36,31 +56,8 @@ const TableManageStudentsApplications = () => {
 
   // Handle closing of modals
   const handleCancel = () => {
-    setIsPreviewModalOpen(false);  // Close preview modal
-    setIsStatusModalOpen(false);   // Close status modal
-  };
-
-  const handleFileUpload = (file) => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const data = new Uint8Array(e.target.result);
-      const workbook = XLSX.read(data, { type: "array" });
-      const sheetName = workbook.SheetNames[0];
-      const sheet = workbook.Sheets[sheetName];
-      const jsonData = XLSX.utils.sheet_to_json(sheet);
-
-      const formattedData = jsonData.map((row, index) => ({
-        key: index.toString(),
-        firstName: row["First Name"],
-        lastName: row["Last Name"],
-        email: row["Email"],
-        document: row["Document"] || "N/A", // Assume URL or path in Excel
-        status: "Pending",
-      }));
-      setRealData(formattedData);
-    };
-    reader.readAsArrayBuffer(file);
-    return false;
+    setIsPreviewModalOpen(false); // Close preview modal
+    setIsStatusModalOpen(false); // Close status modal
   };
 
   const handleStatusChange = (e) => {
@@ -68,14 +65,34 @@ const TableManageStudentsApplications = () => {
   };
 
   const handleSubmitStatus = () => {
-    setRealData((prevData) =>
-      prevData.map((student) =>
-        student.key === selectedStudent.key ? { ...student, status } : student
-      )
-    );
-    setIsStatusModalOpen(false); // Close status modal after submitting
-  };
+    // Map the status string to the numerical code
+    const statusCode = status === "Approved" ? 1 : status === "Rejected" ? 2 : null;
+    if (!statusCode) {
+      console.error("Invalid status selected.");
+      return;
+    }
 
+  // Call your API service to update the status
+  ApiService.put(`FinancialHelpDocument?documentId=${selectedStudent.key}&documentStatus=${statusCode}`) // Replace "your-endpoint" with the actual API route
+    .then((response) => {
+      console.log("Status updated successfully", response);
+      ApiService.get(`FinancialHelpDocument/faculty/${auth?.id}`)
+        .then((response) => {
+          setStudents(response.data);
+          console.log(response.data);
+          setisLoadingg(false);
+        })
+        .catch((error) =>
+          console.error("Error fetching faculties details:", error)
+        );
+    })
+    .catch((error) => {
+      console.error("Error updating status:", error);
+    });
+
+  // Close the status modal once the request is sent
+  setIsStatusModalOpen(false);
+};
   const columns = [
     {
       title: t("manageapplications.first_name"),
@@ -94,6 +111,38 @@ const TableManageStudentsApplications = () => {
       dataIndex: "email",
       key: "email",
       width: 250,
+    },
+    {
+      title: t("status"),
+      key: "tags",
+      dataIndex: "tags",
+      width: 100,
+      render: (_, { tags }) => (
+        <>
+          {tags.map((tag) => {
+            let color;
+            switch (tag.toUpperCase()) {
+              case "APROBAT":
+                color = "green";
+                break;
+              case "RESPINS":
+                color = "red";
+                break;
+                
+              case "IN ASTEPTARE":
+                color = "orange";
+                break;
+              default:
+                color = "default";
+            }
+            return (
+              <Tag color={color} key={tag}>
+                {tag.toUpperCase()}
+              </Tag>
+            );
+          })}
+        </>
+      ),
     },
     {
       title: t("manageapplications.access_document"),
@@ -131,56 +180,61 @@ const TableManageStudentsApplications = () => {
     },
   ];
 
-  return (
-    <div className="table-container">
-      <Table
-        columns={columns}
-        dataSource={realData}
-        tableLayout="fixed"
-        pagination={{ pageSize: 5 }}
-        scroll={{ x: true }}
-      />
+  let component = undefined;
+  if (isLoading) {
+    component = <Preloader />;
+  } else {
+    component = (
+      <div className="table-container">
+        <Table
+          columns={columns}
+          dataSource={realData}
+          tableLayout="fixed"
+          pagination={{ pageSize: 5 }}
+          scroll={{ x: true }}
+        />
 
-      {/* Modal for displaying PDF */}
-      <Modal
-        title={t("manageapplications.document_preview")}
-        open={isPreviewModalOpen}
-        onCancel={handleCancel}
-        footer={null}
-        width={800}
-      >
-        {selectedStudent?.document && (
-          <Document
-            file={selectedStudent.document} // Use dynamic document URL or path
-            onLoadError={(error) => console.error("Error loading PDF:", error)}
-            loading={<div>Loading PDF...</div>} // Show loading message
-          >
-            <Page pageNumber={1} width={600} /> {/* Show first page of PDF */}
-          </Document>
-        )}
-      </Modal>
-
-      {/* Modal for setting status */}
-      <Modal
-        title={t("manageapplications.set_status_for_documents")}
-        open={isStatusModalOpen}
-        onCancel={handleCancel}
-        onOk={handleSubmitStatus}
-        okText={t("manageapplications.submit")}
-        cancelText={t("manageapplications.cancel")}
-      >
-        <p>{t("manageapplications.choose_status_for_the_document")}</p>
-        <Radio.Group
-          onChange={handleStatusChange}
-          value={status}
-          style={{ display: "flex", flexDirection: "column" }}
+        {/* Modal for displaying PDF */}
+        <Modal
+          title={t("manageapplications.document_preview")}
+          open={isPreviewModalOpen}
+          onCancel={handleCancel}
+          footer={null}
+          width={800}
         >
-          <Radio value="Approved">{t("manageapplications.approved")}</Radio>
-          <Radio value="Rejected">{t("manageapplications.rejected")}</Radio>
-        </Radio.Group>
-      </Modal>
-    </div>
-  );
+          {selectedStudent?.document && (
+            <embed
+            src={selectedStudent?.document}
+            type="application/pdf"
+            width="100%"
+            height="800px"
+          />
+          )}
+        </Modal>
+
+        {/* Modal for setting status */}
+        <Modal
+          title={t("manageapplications.set_status_for_documents")}
+          open={isStatusModalOpen}
+          onCancel={handleCancel}
+          onOk={handleSubmitStatus}
+          okText={t("manageapplications.submit")}
+          cancelText={t("manageapplications.cancel")}
+        >
+          <p>{t("manageapplications.choose_status_for_the_document")}</p>
+          <Radio.Group
+            onChange={handleStatusChange}
+            value={status}
+            style={{ display: "flex", flexDirection: "column" }}
+          >
+            <Radio value="Approved">{t("manageapplications.approved")}</Radio>
+            <Radio value="Rejected">{t("manageapplications.rejected")}</Radio>
+          </Radio.Group>
+        </Modal>
+      </div>
+    );
+  }
+  return component;
 };
 
 export default TableManageStudentsApplications;

@@ -103,7 +103,7 @@ function StudentAddressInput({ address, handleLocation }) {
           </div>
           <div className="col-lg-6 col-md-6 col-12">
             <div className="mg-top-20">
-              <h4 className="homec-submit-form__heading">Orașul*</h4>
+              <h4 className="homec-submit-form__heading">Localitatea*</h4>
               <Select
                 values={selectedLocality ? [selectedLocality] : []}
                 options={localities.map((locality) => ({

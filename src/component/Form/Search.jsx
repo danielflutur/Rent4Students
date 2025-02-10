@@ -20,7 +20,7 @@ function Search() {
       <input
         type="text"
         name="search"
-        placeholder="Search Properties..."
+        placeholder="Caută Proprietăți..."
         required=""
         value={search}
         onChange={(e) => {
@@ -28,7 +28,7 @@ function Search() {
         }}
       />
       <button type="submit" className="homec-btn">
-        <span>Search Now</span>
+        <span>Caută</span>
       </button>
     </form>
   );

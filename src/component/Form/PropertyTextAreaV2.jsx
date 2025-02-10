@@ -20,6 +20,7 @@ function PropertyTextAreaV2({
             value={value}
             name={name}
             onChange={(e) => handleChange(e)}
+            style={{color: "#000"}}
           />
         </div>
       </div>

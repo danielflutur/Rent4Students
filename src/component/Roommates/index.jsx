@@ -12,14 +12,14 @@ import { useAuth } from "../../context/AuthProvider";
 import ApiService from "../../services/ApiService";
 
 function Roommates() {
-  const { user } = useAuth();
+  const { auth } = useAuth();
   const [currentPage, setCurrentPage] = useState(1);
   const totalPage = 24;
   const [compatibleStudents, setCompatibleStudents] = useState([]);
   const [isLoading, setisLoading] = useState(true);
 
   useEffect(() => {
-    ApiService.get(`Students/matching/${user?.id}`)
+    ApiService.get(`Students/matching/${auth?.id}`)
       .then((response) => {
         setCompatibleStudents(response.data);
         setisLoading(false);

@@ -19,13 +19,13 @@ function HomeSecretary() {
 
   useEffect(() => {
     if (auth) {
-      ApiService.get(`Universities/${auth.id}`)
+      ApiService.get(`Faculties/${auth.id}`)
         .then((response) => {
           setUser(response.data);
           setisLoadingg(false);
         })
         .catch((error) =>
-          console.error("Error fetching student details:", error)
+          console.error("Error fetching faculty details:", error)
         );
     }
   }, []);

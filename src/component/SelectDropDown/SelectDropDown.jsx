@@ -2,8 +2,8 @@ import Select from "react-dropdown-select";
 
 function SelectDropDown({ size, title, margin, data, name, handleChange, defaultValueId }) {
   return (
-    <div className={`${size && size} col-12`}>
-      <div className="mg-top-20">
+    <div className={`${size && size} col-8`}>
+      <div className="mg-top-10">
         <h4
           className="homec-submit-form__heading"
           style={{ marginBottom: margin }}

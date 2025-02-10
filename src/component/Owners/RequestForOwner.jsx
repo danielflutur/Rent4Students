@@ -58,13 +58,8 @@ function RequestForOwner({ previewData, onClose }) {
 
   const handleRejectRequest = async () => {
     try {
-      await apiService.post(
-        `Listings/accept-rent?id=${previewData.requestDetails?.id}`,
-        {
-          requestId: previewData.requestId,
-          requestStatusId: 2, // 2 = Rejected
-        }
-      );
+      await ApiService.post(
+        `Listings/reject-rent?id=${previewData.requestDetails?.id}`);
       alert("Cererea a fost respinsă cu succes!");
       closePreview();
     } catch (error) {
@@ -135,10 +130,6 @@ function RequestForOwner({ previewData, onClose }) {
                   <li>
                     <strong>Durata închirierii:</strong>{" "}
                     {previewData.durata === "1an" ? "1 an" : "6 luni"}
-                  </li>
-                  <li>
-                    <strong>Contract ANAF solicitat:</strong>{" "}
-                    {previewData.contractANAF === "yes" ? "Da" : "Nu"}
                   </li>
                 </ul>
 

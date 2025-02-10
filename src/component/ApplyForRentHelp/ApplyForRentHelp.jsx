@@ -8,6 +8,7 @@ import "@react-pdf-viewer/core/lib/styles/index.css";
 import { useAuth } from "../../context/AuthProvider";
 import ApiService from "../../services/ApiService";
 import { PDFDocument } from "pdf-lib";
+import { useUser } from "../../context/AuthDetailsProvider";
 
 function ApplyForRentHelp() {
   const { t } = useTranslation();
@@ -25,7 +26,7 @@ function ApplyForRentHelp() {
   const [filePreview, setFilePreview] = useState(null); // State for file preview
   const [isDocumentUploaded, setIsDocumentUploaded] = useState(false); // Tracks document upload status
   const [isFormSubmitted, setIsFormSubmitted] = useState(false); // Tracks form submission status
-  const { user } = useAuth();
+  const { user } = useUser();
   const [pdfUrl, setPdfUrl] = useState(null);
 
   useEffect(() => {
@@ -160,17 +161,17 @@ function ApplyForRentHelp() {
             </div>
             <div className="section_form_rent-content">
               <p>
-                <strong>{t("university_label")}:</strong> Universitatea Suceava
+                <strong>{t("university_label")}:</strong> Universitatea Stefan Cel Mare Suceava
               </p>
               <p>
-                <strong>{t("faculty_label")}:</strong> FIESC
+                <strong>{t("faculty_label")}:</strong> Facultatea de Inginerie Electrica
               </p>
               <p>
-                <strong>{t("secretary_label")}:</strong> Popescu Maria
+                <strong>{t("secretary_label")}:</strong> Laura Popovici
               </p>
               <p>
                 <strong>{t("email_label")}:</strong>{" "}
-                <a href="mailto:maria.popescu@usv.ro">maria.popescu@usv.ro</a>
+                <a href="mailto:maria.popescu@usv.ro">secretarfacultate1@gmail.com</a>
               </p>
             </div>
           </section>

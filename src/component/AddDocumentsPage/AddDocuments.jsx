@@ -19,12 +19,8 @@ function AddDocuments() {
     phone: "",
     documents: [],
     requestLetter: null,
-    universityId: auth.id,
+    facultyId: auth.id,
   });
-
-  const handleTextChange = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
 
   const handleFileChange = (info, type) => {
     if (type === "documents") {
@@ -38,18 +34,12 @@ function AddDocuments() {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("name", input.name);
-      formData.append("email", input.email);
-      formData.append("phone", input.phone);
-      formData.append("universityId", input.universityId);
-      input.documents.forEach((file) => formData.append("documents", file.originFileObj));
-      if (input.requestLetter) {
-        formData.append("requestLetter", input.requestLetter.originFileObj);
-      }
+      formData.append("facultyId", auth.id);
+      formData.append("file", input.requestLetter);
 
-      const response = await ApiService.post(`Documents/Upload`, formData, {
-        headers: { "Content-Type": "multipart/form-data" },
-      });
+      console.log(input.requestLetter);
+      
+      const response = await ApiService.post(`FinancialHelpDocument`, formData);
       showModal(response.data);
       console.log(response.data);
     } catch (error) {
@@ -64,7 +54,6 @@ function AddDocuments() {
   const handleOk = () => {
     console.log("Documentele au fost încărcate cu succes!");
     setIsModalOpen(false);
-    navigate("/documents");
   };
 
   const handleCancel = () => {
@@ -107,7 +96,7 @@ function AddDocuments() {
                             onChange={(info) => handleFileChange(info, "requestLetter")}
                             beforeUpload={() => false}
                             fileList={input.requestLetter ? [input.requestLetter] : []}
-                            accept=".docx, .doc"
+                            accept=".pdf"
                         >
                             <button type="button" className="homec-btn upload-button">
                             <UploadOutlined className="anticon" /> {t("upload_request_letter_button")}

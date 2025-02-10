@@ -6,14 +6,15 @@ import ApiService from "../../services/ApiService";
 
 function PropertyOwners({ image, name, position, ownerId, listingId }) {
   const [isChatOpen, setIsChatOpen] = useState(false);
-  const [messages, setMessages] = useState([
-    { sender: "agent", text: "Bună! Cum te pot ajuta?", avatar: image },
-  ]);
   const [inputMessage, setInputMessage] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user } = useUser();
   const [owner, setOwner] = useState();
-
+  const [profilePhoto , setPhoto] = useState();
+  const [messages, setMessages] = useState([
+    { sender: "agent", text: "Bună! Cum te pot ajuta?", avatar: profilePhoto },
+  ]);
+  
   const handleSendMessage = () => {
     if (inputMessage.trim() !== "") {
       setMessages([
@@ -29,9 +30,22 @@ function PropertyOwners({ image, name, position, ownerId, listingId }) {
   };
 
   useEffect(() => {
+    if (profilePhoto) {
+      setMessages((prevMessages) =>
+        prevMessages.map((msg) =>
+          msg.sender === "agent" ? { ...msg, avatar: profilePhoto } : msg
+        )
+      );
+    }
+  }, [profilePhoto]);
+  
+
+  useEffect(() => {
     ApiService.get(`PropertyOwners/${ownerId}`)
       .then((response) => {
         setOwner(response.data);
+        setPhoto(response.data.profilePhoto)
+        
       })
       .catch((error) => console.error("Error fetching owner details:", error));
   }, []);

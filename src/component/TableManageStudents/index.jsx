@@ -11,13 +11,6 @@ const TableManageStudents = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [realData, setRealData] = useState([
-    {
-      key: "1",
-      firstName: "Ion",
-      lastName: "Ionescu",
-      email: "ion.ionescu@example.com",
-      studentId: "123456",
-    },
   ]);
 
   const showModal = (record) => {
@@ -53,19 +46,19 @@ const TableManageStudents = () => {
 
   const columns = [
     {
-      title: t("first_name"),
+      title: t("students_table_first_name"),
       dataIndex: "firstName",
       key: "firstName",
       width: 200,
     },
     {
-      title: t("last_name"),
+      title: t("students_table_last_name"),
       dataIndex: "lastName",
       key: "lastName",
       width: 200,
     },
     {
-      title: t("email"),
+      title: t("students_table_email"),
       dataIndex: "email",
       key: "email",
       width: 250,
